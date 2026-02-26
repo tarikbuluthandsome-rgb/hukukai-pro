@@ -548,7 +548,7 @@
             margin-top: 4px;
         }
         
-        /* Sağ Sidebar - DARALTILMIŞ */
+        /* Sağ Sidebar */
         .sidebar-right {
             width: 280px;
             background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
@@ -558,7 +558,6 @@
             flex-shrink: 0;
         }
         
-        /* Arama Header - TEK SATIR */
         .search-header {
             padding: 12px 16px;
             background: linear-gradient(90deg, #1e1b4b 0%, #312e81 100%);
@@ -575,7 +574,6 @@
             margin-bottom: 10px;
         }
         
-        /* Google Arama - TEK SATIR KOMPAKT */
         .google-search-container {
             background: rgba(255,255,255,0.05);
             border-radius: 8px;
@@ -624,7 +622,6 @@
             box-shadow: 0 4px 12px rgba(66, 133, 244, 0.4);
         }
         
-        /* Hızlı Kaynaklar - DARALTILMIŞ */
         .quick-sources {
             padding: 12px;
             flex: 1;
@@ -692,7 +689,6 @@
             border-color: #00aeef;
         }
         
-        /* WhatsApp Entegrasyonu - KOMPAKT */
         .whatsapp-section {
             padding: 10px;
             background: linear-gradient(90deg, #25d366 0%, #128c7e 100%);
@@ -741,7 +737,7 @@
             opacity: 0.9;
         }
         
-        /* Ana İçerik - Dilekçe Editör */
+        /* Ana İçerik */
         .main-content {
             flex: 1;
             display: flex;
@@ -751,7 +747,6 @@
             overflow: hidden;
         }
         
-        /* Header - KOMPAKT */
         .header {
             height: 48px;
             background: #0f172a;
@@ -784,7 +779,6 @@
             font-size: 14px;
         }
         
-        /* Header Actions - KÜÇÜK BUTONLAR TEK SATIR */
         .header-actions {
             display: flex;
             gap: 6px;
@@ -827,7 +821,7 @@
             border: 1px solid #312e81;
         }
         
-        /* Akıllı Dilekçe Modal */
+        /* Modal Styles */
         .modal-overlay {
             position: fixed;
             inset: 0;
@@ -906,7 +900,6 @@
             flex: 1;
         }
         
-        /* Form Styles */
         .form-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
@@ -954,10 +947,6 @@
             resize: vertical;
         }
         
-        .form-select {
-            cursor: pointer;
-        }
-        
         .btn-primary {
             width: 100%;
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
@@ -984,10 +973,6 @@
         .btn-magic {
             background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
             box-shadow: 0 4px 12px rgba(124, 58, 237, 0.3);
-        }
-        
-        .btn-magic:hover {
-            box-shadow: 0 8px 20px rgba(124, 58, 237, 0.4);
         }
         
         /* Dilekçe Editör */
@@ -1102,27 +1087,6 @@
             box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.1);
         }
         
-        .field-row {
-            display: flex;
-            gap: 20px;
-            margin-bottom: 12px;
-            align-items: flex-start;
-        }
-        
-        .field-label {
-            font-weight: bold;
-            min-width: 120px;
-            color: #0f172a;
-            font-size: 13px;
-        }
-        
-        .field-content {
-            flex: 1;
-            border-bottom: 1px solid #cbd5e1;
-            padding-bottom: 4px;
-            min-height: 24px;
-        }
-        
         .aciklamalar-list {
             counter-reset: item;
             padding-left: 0;
@@ -1158,29 +1122,6 @@
             font-weight: bold;
         }
         
-        /* Hukuki Sebepler Tam Metin */
-        .hukuki-sebep-box {
-            background: linear-gradient(90deg, #fef2f2 0%, #fff 100%);
-            border: 2px solid #dc2626;
-            border-left: 6px solid #dc2626;
-            padding: 20px;
-            margin: 20px 0;
-            border-radius: 12px;
-        }
-        
-        .hukuki-sebep-title {
-            font-size: 14px;
-            font-weight: 800;
-            color: #dc2626;
-            text-transform: uppercase;
-            margin-bottom: 16px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            border-bottom: 2px solid #fecaca;
-            padding-bottom: 8px;
-        }
-        
         .madde-item {
             margin-bottom: 16px;
             padding: 16px;
@@ -1188,6 +1129,7 @@
             border-radius: 8px;
             border: 1px solid #e2e8f0;
             box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+            page-break-inside: avoid;
         }
         
         .madde-header {
@@ -1198,6 +1140,8 @@
             display: flex;
             align-items: center;
             gap: 8px;
+            border-bottom: 1px solid #f1f5f9;
+            padding-bottom: 8px;
         }
         
         .madde-numara {
@@ -1206,33 +1150,14 @@
             padding: 4px 10px;
             border-radius: 20px;
             font-size: 11px;
+            white-space: nowrap;
         }
         
         .madde-metin {
-            font-size: 13px;
+            font-size: 12px;
             line-height: 1.8;
             color: #334155;
             text-align: justify;
-        }
-        
-        .madde-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 6px;
-            color: #dc2626;
-            font-size: 11px;
-            font-weight: 600;
-            margin-top: 8px;
-            text-decoration: none;
-            padding: 6px 12px;
-            background: rgba(220, 38, 38, 0.1);
-            border-radius: 20px;
-            transition: all 0.2s;
-        }
-        
-        .madde-link:hover {
-            background: #dc2626;
-            color: white;
         }
         
         .sonuc-box {
@@ -1257,7 +1182,6 @@
             text-align: center;
         }
         
-        /* Action Bar - KOMPAKT */
         .action-bar {
             background: #0f172a;
             border-top: 1px solid #312e81;
@@ -1303,7 +1227,6 @@
             opacity: 0.9;
         }
         
-        /* AI Badge */
         .ai-badge {
             display: inline-flex;
             align-items: center;
@@ -1317,7 +1240,6 @@
             margin-left: 8px;
         }
         
-        /* Notification */
         .notification {
             position: fixed;
             top: 20px;
@@ -1377,7 +1299,6 @@
             display: flex;
         }
         
-        /* DevTools Uyarı Modal */
         .devtools-warning-modal {
             position: fixed;
             inset: 0;
@@ -1587,7 +1508,6 @@
             gap: 8px;
         }
         
-        /* Scrollbar */
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -1606,7 +1526,6 @@
             background: #dc2626;
         }
         
-        /* Print Styles */
         @media print {
             body * { visibility: hidden; }
             .dilekce-paper, .dilekce-paper * { visibility: visible; }
@@ -1627,7 +1546,6 @@
             }
         }
         
-        /* Mobile */
         @media (max-width: 1024px) {
             .sidebar-left { width: 200px; }
             .sidebar-right { 
@@ -1790,7 +1708,7 @@
             </div>
         </div>
         
-        <div class="login-version"><i class="fas fa-code"></i> v6.0 PRO AI Dilekçe Sistemi</div>
+        <div class="login-version"><i class="fas fa-code"></i> v7.0 PRO AI Dilekçe Sistemi (4787 sayılı Kanun Güncellemesi)</div>
     </div>
 
     <!-- MAIN APP -->
@@ -1819,7 +1737,6 @@
             </div>
             
             <div class="menu-section">
-                <!-- TEK AKILLI DİLEKÇE BUTONU -->
                 <div class="menu-title">
                     <i class="fas fa-magic"></i> AI Dilekçe Sistemi
                 </div>
@@ -1831,10 +1748,9 @@
                 </div>
                 
                 <div style="padding: 10px; background: rgba(124, 58, 237, 0.1); border-radius: 6px; margin-top: 6px; font-size: 10px; color: #94a3b8; line-height: 1.5;">
-                    <i class="fas fa-robot" style="color: #7c3aed;"></i> Yapay zeka destekli dilekçe oluşturun.
+                    <i class="fas fa-robot" style="color: #7c3aed;"></i> Yapay zeka destekli dilekçe oluşturun. 4787 sayılı Kanun uyumlu.
                 </div>
                 
-                <!-- Hukuk Veritabanı -->
                 <div class="menu-title" style="margin-top: 20px;">
                     <i class="fas fa-book-open"></i> Hukuk Veritabanı
                 </div>
@@ -1859,7 +1775,12 @@
                     <span>AİHM (HUDOC)</span>
                 </div>
                 
-                <!-- Yönetici Menüsü -->
+                <div class="menu-item" onclick="quickOpenMevzuat('4787')" style="background: rgba(220, 38, 38, 0.1); border-color: rgba(220, 38, 38, 0.3);">
+                    <i class="fas fa-courthouse" style="color: #dc2626;"></i>
+                    <span style="font-weight: 600;">4787 sayılı Kanun</span>
+                    <span class="badge new">YENİ</span>
+                </div>
+                
                 <div class="menu-title admin-only hidden" style="margin-top: 16px;">
                     <i class="fas fa-cogs"></i> Yönetici İşlemleri
                 </div>
@@ -1874,7 +1795,6 @@
                     <span>Misafir Şifresi Değiştir</span>
                 </div>
                 
-                <!-- Hesap -->
                 <div class="menu-title" style="margin-top: 16px;">
                     <i class="fas fa-user-circle"></i> Hesap
                 </div>
@@ -1894,7 +1814,7 @@
             <div class="sidebar-footer">
                 <div style="color: #64748b; font-size: 10px; margin-bottom: 4px; font-weight: 600; letter-spacing: 1px;">GELİŞTİRİCİ</div>
                 <div class="developer-name">TARIK AKTAN</div>
-                <div class="version-tag" id="versionTag">v6.0 PRO</div>
+                <div class="version-tag" id="versionTag">v7.0 PRO</div>
                 <div style="margin-top: 8px; font-size: 9px; color: #475569;">
                     <i class="fas fa-copyright"></i> 2024 Tüm Hakları Saklıdır
                 </div>
@@ -1903,7 +1823,6 @@
         
         <!-- ANA İÇERİK - DİLEKÇE EDİTÖR -->
         <main class="main-content">
-            <!-- KOMPAKT HEADER -->
             <header class="header">
                 <div class="header-left">
                     <div class="header-icon">
@@ -1913,12 +1832,11 @@
                         <div style="font-size: 14px; font-weight: 700; color: #e2e8f0;">Dilekçe Editör</div>
                         <div style="font-size: 10px; color: #64748b; font-weight: 500;">
                             <i class="fas fa-circle" style="color: #10b981; font-size: 6px;"></i> 
-                            <span id="systemStatus">HMK 6100 | AI Destekli</span>
+                            <span id="systemStatus">4787 sayılı Kanun | AI Destekli</span>
                         </div>
                     </div>
                 </div>
                 
-                <!-- KÜÇÜK TEK SATIR BUTONLAR -->
                 <div class="header-actions">
                     <button class="header-btn" onclick="clearDilekce()" title="Temizle">
                         <i class="fas fa-trash-alt"></i> Temizle
@@ -1947,9 +1865,12 @@
                 <button class="toolbar-btn" onclick="insertAIYasalDayanak()" title="AI Yasal Dayanak Ekle" style="background: #7c3aed; border-color: #7c3aed;">
                     <i class="fas fa-robot"></i> AI Dayanak
                 </button>
+                <button class="toolbar-btn" onclick="insert4787Kanun()" title="4787 sayılı Kanun Ekle" style="background: #dc2626; border-color: #dc2626;">
+                    <i class="fas fa-courthouse"></i> 4787 Md.
+                </button>
             </div>
             
-            <!-- Dilekçe Editör Alanı -->
+            <!-- Dilekçe Editör Alanı - SAĞ TIK SERBEST -->
             <div class="editor-container" id="editorContainer">
                 <div class="dilekce-paper" id="dilekcePaper">
                     <div class="dilekce-content" id="dilekceContent" contenteditable="true">
@@ -2053,10 +1974,12 @@
                         <div class="dilekce-section" style="margin-top: 40px; page-break-before: always;">
                             <div class="section-label">KAYNAKLAR</div>
                             <div style="font-size: 11px; line-height: 1.6; color: #475569;">
-                                <p>• Türkiye Cumhuriyeti Anayasası (mülga 1982, mevcut metin)</p>
+                                <p>• Türkiye Cumhuriyeti Anayasası (1982, mevcut metin)</p>
+                                <p>• Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete)</p>
+                                <p>• Avrupa İnsan Hakları Sözleşmesi (19 Mart 1954 tarih ve 8662 sayılı Resmî Gazete)</p>
                                 <p>• 4721 sayılı Türk Medeni Kanunu (08.02.2001 tarih ve 24308 sayılı Resmî Gazete)</p>
+                                <p>• 4787 sayılı Aile Mahkemelerinin Kuruluş, Görev ve Yargılama Usullerine Dair Kanun (09.01.2003 tarih ve 24990 sayılı Resmî Gazete)</p>
                                 <p>• 5395 sayılı Çocuk Koruma Kanunu (03.07.2005 tarih ve 25876 sayılı Resmî Gazete)</p>
-                                <p>• Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)</p>
                                 <p>• 6284 sayılı Ailenin Korunması ve Kadına Karşı Şiddetin Önlenmesine Dair Kanun (20.03.2012 tarih ve 28239 sayılı Resmî Gazete)</p>
                                 <p>• 6100 sayılı Hukuk Muhakemeleri Kanunu (04.12.2010 tarih ve 27542 sayılı Resmî Gazete)</p>
                             </div>
@@ -2065,7 +1988,7 @@
                 </div>
             </div>
             
-            <!-- Bottom Action Bar - KOMPAKT -->
+            <!-- Bottom Action Bar -->
             <div class="action-bar">
                 <button class="action-btn btn-copy" onclick="copyDilekce()">
                     <i class="fas fa-copy"></i> Kopyala
@@ -2082,9 +2005,8 @@
             </div>
         </main>
         
-        <!-- SAĞ SIDEBAR - DARALTILMIŞ (280px) -->
+        <!-- SAĞ SIDEBAR - GÜNCELLENMİŞ ADRESLER -->
         <aside class="sidebar-right" id="sidebarRight">
-            <!-- Google Arama - TEK SATIR KOMPAKT -->
             <div class="search-header">
                 <div class="search-title">
                     <i class="fab fa-google"></i>
@@ -2101,7 +2023,7 @@
                 </div>
             </div>
             
-            <!-- Hızlı Kaynaklar - KOMPAKT -->
+            <!-- Hızlı Kaynaklar - DÜZELTİLMİŞ ADRESLER -->
             <div class="quick-sources">
                 <!-- Resmi Mevzuat -->
                 <div class="source-category">
@@ -2118,22 +2040,22 @@
                     </a>
                 </div>
                 
-                <!-- Yargı Kaynakları -->
+                <!-- Yargı Kaynakları - DÜZELTİLMİŞ -->
                 <div class="source-category">
                     <div class="source-category-title">
                         <i class="fas fa-gavel"></i> Yargı Kararları
                     </div>
                     <a href="https://kararlar.yargitay.gov.tr" target="_blank" class="source-link">
                         <i class="fas fa-balance-scale"></i>
-                        <span>Yargıtay</span>
+                        <span>Yargıtay Kararları</span>
                     </a>
                     <a href="https://www.anayasa.gov.tr" target="_blank" class="source-link">
                         <i class="fas fa-landmark"></i>
-                        <span>AYM</span>
+                        <span>Anayasa Mahkemesi</span>
                     </a>
                     <a href="https://hudoc.echr.coe.int" target="_blank" class="source-link">
                         <i class="fas fa-globe"></i>
-                        <span>AİHM</span>
+                        <span>AİHM (HUDOC)</span>
                     </a>
                 </div>
                 
@@ -2148,7 +2070,7 @@
                     </a>
                     <a href="https://www.un.org" target="_blank" class="source-link">
                         <i class="fas fa-globe"></i>
-                        <span>BM</span>
+                        <span>Birleşmiş Milletler</span>
                     </a>
                 </div>
                 
@@ -2159,28 +2081,32 @@
                     </div>
                     <div class="source-link" onclick="quickOpenMevzuat('hmk')">
                         <i class="fas fa-gavel"></i>
-                        <span>HMK</span>
+                        <span>HMK (6100)</span>
                     </div>
                     <div class="source-link" onclick="quickOpenMevzuat('tmk')">
                         <i class="fas fa-home"></i>
-                        <span>TMK</span>
+                        <span>TMK (4721)</span>
                     </div>
                     <div class="source-link" onclick="quickOpenMevzuat('tbk')">
                         <i class="fas fa-handshake"></i>
-                        <span>TBK</span>
+                        <span>TBK (6098)</span>
                     </div>
                     <div class="source-link" onclick="quickOpenMevzuat('tck')">
                         <i class="fas fa-exclamation-triangle"></i>
-                        <span>TCK</span>
+                        <span>TCK (5237)</span>
                     </div>
                     <div class="source-link" onclick="quickOpenMevzuat('6284')">
                         <i class="fas fa-shield-alt"></i>
-                        <span>6284</span>
+                        <span>6284 Sayılı Kanun</span>
+                    </div>
+                    <div class="source-link" onclick="quickOpenMevzuat('4787')" style="border-color: #dc2626; background: rgba(220, 38, 38, 0.1);">
+                        <i class="fas fa-courthouse" style="color: #dc2626;"></i>
+                        <span style="font-weight: 600;">4787 Sayılı Kanun</span>
                     </div>
                 </div>
             </div>
             
-            <!-- WhatsApp - KOMPAKT -->
+            <!-- WhatsApp -->
             <div class="whatsapp-section">
                 <a href="https://wa.me/905061703020?text=Merhaba%20HukukAI%20Pro%20ile%20ilgili%20yardım%20istiyorum" target="_blank" class="whatsapp-btn">
                     <i class="fab fa-whatsapp"></i>
@@ -2209,7 +2135,6 @@
             <div class="modal-body">
                 <form id="akilliDilekceForm" onsubmit="event.preventDefault(); generateAkilliDilekce();">
                     
-                    <!-- Dava Türü Seçimi -->
                     <div class="form-group full-width">
                         <label class="form-label"><i class="fas fa-balance-scale" style="color: #dc2626;"></i> Dava Türü Seçin</label>
                         <select class="form-select" id="davaTuru" onchange="updateFormFields()" required>
@@ -2224,16 +2149,17 @@
                             <option value="alacak">Alacak Davası (TBK 112)</option>
                             <option value="tapu">Tapu İptal ve Tescil</option>
                             <option value="iscilik">İşçilik Alacağı (İş Kanunu)</option>
+                            <option value="aile-mahkemesi-gorev">Aile Mahkemesi Görev Alanı (4787 md. 4)</option>
+                            <option value="soybag">Soybağı Davası (TMK 285-315)</option>
+                            <option value="mal-rejimi">Mal Rejimi Tasfiyesi (TMK 202-281)</option>
                         </select>
                     </div>
                     
-                    <!-- Mahkeme Bilgileri -->
                     <div class="form-group full-width">
                         <label class="form-label">Mahkeme Adı</label>
                         <input type="text" class="form-input" id="mahkemeAdi" placeholder="Örn: İstanbul Aile Mahkemesi" required>
                     </div>
                     
-                    <!-- Davacı Bilgileri -->
                     <div class="form-grid">
                         <div class="form-group">
                             <label class="form-label">Davacı Ad Soyad</label>
@@ -2250,7 +2176,6 @@
                         <textarea class="form-textarea" id="davaciAdres" placeholder="Tam adres bilgisi..."></textarea>
                     </div>
                     
-                    <!-- Davalı Bilgileri -->
                     <div class="form-grid">
                         <div class="form-group">
                             <label class="form-label">Davalı Ad Soyad</label>
@@ -2267,7 +2192,6 @@
                         <textarea class="form-textarea" id="davalıAdres" placeholder="Tam adres bilgisi..."></textarea>
                     </div>
                     
-                    <!-- Çocuk Bilgileri (Koşullu) -->
                     <div id="cocukBilgileriSection" style="display: none;">
                         <div class="form-grid">
                             <div class="form-group">
@@ -2285,7 +2209,6 @@
                         </div>
                     </div>
                     
-                    <!-- Dava Konusu ve Açıklamalar -->
                     <div class="form-group full-width">
                         <label class="form-label">Davanın Konusu</label>
                         <input type="text" class="form-input" id="davaKonusuInput" placeholder="Kısa ve net dava konusu..." required>
@@ -2296,29 +2219,26 @@
                         <textarea class="form-textarea" id="olayAciklama" rows="3" placeholder="Olayların kronolojik ve detaylı açıklaması..."></textarea>
                     </div>
                     
-                    <!-- Deliller -->
                     <div class="form-group full-width">
                         <label class="form-label">Deliller</label>
                         <textarea class="form-textarea" id="delillerInput" rows="2" placeholder="Tanık, belge, bilirkişi vb. deliller..."></textarea>
                     </div>
                     
-                    <!-- Talepler -->
                     <div class="form-group full-width">
                         <label class="form-label">Talepleriniz</label>
                         <textarea class="form-textarea" id="taleplerInput" rows="2" placeholder="Net ve açık taleplerinizi yazın..." required></textarea>
                     </div>
                     
-                    <!-- AI Bilgilendirme -->
                     <div style="background: linear-gradient(90deg, rgba(124, 58, 237, 0.2) 0%, rgba(91, 33, 182, 0.2) 100%); border: 1px solid #7c3aed; border-radius: 10px; padding: 12px; margin-bottom: 16px;">
                         <div style="display: flex; align-items: center; gap: 8px; margin-bottom: 6px;">
                             <i class="fas fa-robot" style="color: #7c3aed; font-size: 16px;"></i>
                             <span style="font-weight: 700; color: #e2e8f0; font-size: 13px;">Yapay Zeka Desteği</span>
                         </div>
                         <div style="font-size: 11px; color: #94a3b8; line-height: 1.5;">
-                            • Otomatik hukuki dayanaklar (Anayasa, TMK, 5395, BM ÇHS, 6284)<br>
+                            • Otomatik hukuki dayanaklar (BM ÇHS, AİHS, Anayasa, TMK, 4787, 5395, 6284)<br>
                             • Tam metin kanun maddeleri<br>
                             • Yargıtay içtihatları<br>
-                            • HMK 6100 formatı
+                            • HMK 6100 ve 4787 sayılı Kanun formatı
                         </div>
                     </div>
                     
@@ -2345,7 +2265,6 @@
                 </button>
             </div>
             <div class="modal-body">
-                <!-- İstatistikler -->
                 <div class="admin-stats">
                     <div class="stat-card">
                         <div class="stat-value" id="totalUsers">0</div>
@@ -2365,7 +2284,6 @@
                     </div>
                 </div>
                 
-                <!-- Yeni Kullanıcı Ekleme Formu -->
                 <div class="add-user-form">
                     <div class="add-user-title">
                         <i class="fas fa-user-plus" style="color: #10b981;"></i>
@@ -2386,7 +2304,6 @@
                     </button>
                 </div>
                 
-                <!-- Kullanıcı Listesi -->
                 <table class="user-table">
                     <thead>
                         <tr>
@@ -2398,7 +2315,6 @@
                         </tr>
                     </thead>
                     <tbody id="userTableBody">
-                        <!-- Kullanıcılar buraya eklenecek -->
                     </tbody>
                 </table>
             </div>
@@ -2461,17 +2377,15 @@
         let isLocked = false;
         let currentUser = null;
         let currentDavaTuru = null;
-        
-        // DevTools Tespit Değişkenleri
         let devToolsWarningShown = false;
         let devToolsDetected = false;
         
         // ==========================================
-        // KANUN METİNLERİ VERİTABANI (TAM METİN)
+        // KANUN METİNLERİ VERİTABANI (TAM METİN - GÜNCELLENMİŞ)
         // ==========================================
         
         const kanunMetinleri = {
-            // Anayasa Maddesi
+            // 1. ANAYASA (Öncelikli)
             anayasa41: {
                 kanun: 'Türkiye Cumhuriyeti Anayasası',
                 madde: '41',
@@ -2480,10 +2394,71 @@
 (2) Devlet, ailenin huzur ve refahı ile özellikle ananın ve çocukların korunması ve aile planlamasının öğretimi ile uygulanmasını sağlamak için gerekli tedbirleri alır, teşkilatı kurar.<br><br>
 (3) Her çocuk, korunma ve bakımdan yararlanma, yüksek yararı gözetilerek kendisiyle hemhal olma hakkına sahiptir. Devlet, bütün çocukların korunmasını, varlık içinde büyümesini ve bu amaçla her türlü önlemin alınmasını sağlar.<br><br>
 (4) Ana veya babanın çocuğuna karşı işlediği suçlarda, şikâyet süresi işlemez.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.5.2709 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.5.2709'
             },
             
-            // TMK Maddeleri
+            // 2. BM ÇHS (Öncelikli - Yeni Maddeler Eklendi)
+            bmchs3: {
+                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
+                madde: '3/1',
+                baslik: 'Çocuğun üstün yararı',
+                metin: `Tüm işlemlerde, kamu veya özel sosyal yardım kurumları, mahkemeler, idari makamlar veya yasama organları tarafından çocuğa ilişkin olarak yapılan her türlü faaliyette, çocuğun üstün yararı öncelikli olarak gözetilir.<br><br>
+(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
+                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf'
+            },
+            bmchs8: {
+                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
+                madde: '8/2',
+                baslik: 'Kimlik hakkı',
+                metin: `Çocuğun kimliğinin unsurlarının bazılarından hukuka aykırı olarak yoksun bırakılması halinde Taraf Devletler, çocuğun kimliğine yeniden kavuşturulup gerekli yardım ve korumanın sağlanması amacıyla ivedilikle harekete geçerler.<br><br>
+(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
+                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf'
+            },
+            bmchs9: {
+                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
+                madde: '9/1',
+                baslik: 'Aile birliği',
+                metin: `Çocuk, ana-babasından izinsiz ayrılmamalıdır. Çocuğun ana-babasından veya her ikisinden ayrılması ancak yetkili makamların çocuğun üstün yararı gerektirdiği hallerde ve usulüne uygun karar vermesi durumunda mümkündür.<br><br>
+(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
+                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf'
+            },
+            bmchs12: {
+                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
+                madde: '12/1',
+                baslik: 'Görüş beyan etme hakkı',
+                metin: `Taraf Devletler, görüşlerini serbestçe ifade etme hakkı tanınan çocuğun bu hakkına saygı gösterirler. Çocuğun görüşlerine, çocuğun yaşı ve olgunluğu göz önünde bulundurularak, kendisini ilgilendiren herhangi bir yargı ve idari işlemde uygun şekilde dikkat edilir.<br><br>
+(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
+                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf'
+            },
+            bmchs18: {
+                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
+                madde: '18/1',
+                baslik: 'Ebeveyn sorumluluğu',
+                metin: `Taraf Devletler, çocuğun yetiştirilmesi ve gelişmesi konusunda veli veya yasal vasilerin ortak sorumluluğu ilkesini tanır ve bu sorumluluğun yerine getirilmesinde onlara uygun yardım sağlarlar. Çocuğun üstün yararı her zaman temel önceliklerindendir.<br><br>
+(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
+                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf'
+            },
+            bmchs19: {
+                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
+                madde: '19/1',
+                baslik: 'Korunma hakkı',
+                metin: `Bu Sözleşme'ye Taraf Devletler, çocuğun ana–babasının ya da onlardan yalnızca birinin, yasal vasi veya vasilerinin ya da bakımını üstlenen herhangi bir kişinin yanında iken bedensel veya zihinsel saldırı, şiddet veya suistimale, ihmal ya da ihmalkâr muameleye, ırza geçme dahil her türlü istismar ve kötü muameleye karşı korunması için; yasal, idari, toplumsal, eğitsel bütün önlemleri alırlar.<br><br>
+(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
+                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf'
+            },
+            
+            // 3. AİHS (YENİ EKLENDİ - Öncelikli)
+            aihs8: {
+                kanun: 'Avrupa İnsan Hakları Sözleşmesi (19 Mart 1954 tarih ve 8662 sayılı Resmî Gazete)',
+                madde: '8',
+                baslik: 'Özel ve aile hayatına saygı hakkı',
+                metin: `1. Herkes özel ve aile hayatına, konutuna ve yazışmasına saygı gösterilmesi hakkına sahiptir.<br><br>
+2. Bu hakların kullanılmasına resmi bir makamın müdahalesi ancak milli güvenlik, kamu güvenliği, ülkenin iktisadi refahı, düzenin korunması, suçların önlenmesi, sağlığın veya ahlâkın veya başkalarının hak ve özgürlüklerinin korunması için gerekli olduğu ölçüde ve kanunla öngörülen hallerde yapılabilir.<br><br>
+(Tam metin için 19 Mart 1954 tarih ve 8662 sayılı Resmî Gazete'ye bakınız)`,
+                url: 'https://www.resmigazete.gov.tr/arsiv/8662.pdf'
+            },
+            
+            // 4. TMK Maddeleri
             tmk166: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
                 madde: '166',
@@ -2491,7 +2466,7 @@
                 metin: `(1) Eşlerden biri, evlilik birliğinin temelinden sarsıldığını ileri sürerek boşanma davası açabilir.<br><br>
 (2) Evlilik birliğinin temelinden sarsılması, ortak hayatın kurulmasına imkân vermeyecek derecede ve kusurlu davranışla veya başka bir sebeple ruhî birliktelik derin ve kesin bir biçimde tahrip olmuşsa mevcuttur.<br><br>
 (3) Evlilik birliğinin temelinden sarsılmasında kusurun önemi yoktur. Ancak, davalı kusurlu davranışlarla evlilik birliğinin temelinden sarsılmasına sebep olmuşsa, davacı boşanma davası açma hakkını kaybeder. Bu durumda davalı, boşanma davası açabilir.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk169: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2499,9 +2474,8 @@
                 baslik: 'Tedbir nafakası',
                 metin: `(1) Boşanma veya ayrılık davası açıldığında, eşlerden biri geçimi için diğerinden tedbir nafakası isteyebilir.<br><br>
 (2) Tedbir nafakası, davanın açıldığı tarihten itibaren hüküm tarihine kadar olan süre için ödenir.<br><br>
-(3) Tedbir nafakasının miktarı, tarafların sosyal ve ekonomik durumlarına göre hakim tarafından takdir olunur.<br><br>
-(4) Tedbir nafakası, ödenmemesi halinde icra yoluyla tahsil olunur.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+(3) Tedbir nafakasının miktarı, tarafların sosyal ve ekonomik durumlarına göre hakim tarafından takdir olunur.`,
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk175: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2510,7 +2484,7 @@
                 metin: `(1) Boşanma yüzünden yoksulluğa düşecek taraf, kusuru daha ağır olmamak koşuluyla geçimi için diğer taraftan nafaka isteyebilir.<br><br>
 (2) Yoksulluk nafakasının ödenmesine, boşanmaya veya evliliğin iptaline karar verildiği tarihte hak kazanılır.<br><br>
 (3) Yoksulluk nafakası, süresiz veya belirli bir süre için ödenebilir; ayrıca şarta veya teminata bağlanabilir.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk182: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2519,7 +2493,7 @@
                 metin: `(1) Boşanma, hükmen kesinleştiği tarihte sona erer.<br><br>
 (2) Boşanma sonunda, evlilik birliğinin mallara ilişkin sonuçları, evlilik sözleşmesi veya kanun hükümlerine göre çözümlenir.<br><br>
 (3) Boşanma, çocukların durumunu etkilemez. Ana ve baba, çocuklar üzerindeki hak ve görevlerini sürdürürler.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk323: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2528,7 +2502,7 @@
                 metin: `(1) Ana ve baba, çocuğun kişiliğini, eğitimini, bakımını, gözetimini ve sağlığını koruma ve yetiştirme hakkına ve görevine sahiptir.<br><br>
 (2) Ana ve baba, çocuğun üstün yararına aykırı davranamazlar.<br><br>
 (3) Ana ve baba, çocuğun kişiliğini geliştirmek ve sorumluluk duygusu içinde kendi kendine yeterli hale getirmek için ona karşı görevlidirler.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk328: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2537,7 +2511,7 @@
                 metin: `(1) Ana ve baba, çocuklarının geçimini sağlamakla yükümlüdür.<br><br>
 (2) İştirak nafakası, çocuğun geçimi, eğitimi ve öğrenimi için ödenir.<br><br>
 (3) İştirak nafakası, çocuğun ihtiyaçlarına ve ana babanın ekonomik durumuna göre hakim tarafından takdir olunur.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk335: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2546,7 +2520,7 @@
                 metin: `(1) Velayet, çocuğun kişiliğini temsil etmeyi, onun bakımını, eğitimini ve gözetimini üstlenmeyi içerir.<br><br>
 (2) Velayet hakkını kullanan ana veya baba, çocuğun kişiliğini geliştirmek ve sorumluluk duygusu içinde kendi kendine yeterli hale getirmek için ona karşı görevlidir.<br><br>
 (3) Velayet hakkı, çocuğun üstün yararına göre kullanılır.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk336: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2555,7 +2529,7 @@
                 metin: `(1) Mahkeme, çocuğun üstün yararının gerektirdiği takdirde velayetin değiştirilmesine karar verebilir.<br><br>
 (2) Velayetin değiştirilmesi, çocuğun kişiliğinin gelişmesi, bakım ve eğitimi için gerekli maddî ve manevî koşulların sağlanması bakımından zorunlu ise yapılır.<br><br>
 (3) Velayetin değiştirilmesi, çocuğun üstün yararına aykırı olduğu takdirde reddedilir.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk339: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2564,7 +2538,7 @@
                 metin: `(1) Ana veya baba, velayet görevini kötüye kullanır veya çocuğun bakımından aciz kalırsa, mahkeme velayetin kaldırılmasına karar verebilir.<br><br>
 (2) Velayetin kaldırılması, çocuğun üstün yararına aykırı olduğu takdirde reddedilir.<br><br>
 (3) Velayeti kaldırılan ana veya baba, çocuğun kişisel ilişki kurma hakkını kaybetmez.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             tmk349: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
@@ -2573,10 +2547,10 @@
                 metin: `(1) Velâyeti kendisinde bulunmayan ana veya baba, çocukla kişisel ilişki kurma hakkına sahiptir.<br><br>
 (2) Kişisel ilişkinin kapsamı ve şekli, çocuğun üstün yararı göz önünde tutularak velî ile ana veya baba arasında yapılacak sözleşme ile belirlenir. Taraflar anlaşamazlarsa, mahkeme çocuğun üstün yararına uygun olarak bunları kararlaştırır.<br><br>
 (3) Kişisel ilişki hakkının kötüye kullanılması veya çocuğun üstün yararının tehlikeye girmesi hâlinde, mahkeme bu hakkı kısıtlayabilir veya kaldırabilir.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721'
             },
             
-            // 5395 Sayılı Kanun Maddeleri
+            // 5. 5395 Sayılı Kanun
             kanun5395md4: {
                 kanun: '5395 sayılı Çocuk Koruma Kanunu',
                 madde: '4',
@@ -2584,7 +2558,7 @@
                 metin: `(1) Bu Kanun ve ilgili diğer mevzuatın uygulanmasında çocuğun üstün yararı esas alınır.<br><br>
 (2) Çocuğun üstün yararı, çocuğun sağlık, eğitim, gelişim ve korunma ihtiyaçlarının karşılanması, fiziksel, zihinsel, duygusal ve ahlaki bütünlüğünün korunmasıdır.<br><br>
 (3) Çocuğun üstün yararının belirlenmesinde çocuğun kendi görüşü de dikkate alınır.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.5395 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.5395'
             },
             kanun5395md5: {
                 kanun: '5395 sayılı Çocuk Koruma Kanunu',
@@ -2593,44 +2567,10 @@
                 metin: `(1) Devlet; çocuğun fiziksel, zihinsel, duygusal, ahlaki ve sosyal gelişimini sağlamak, çocuğu her türlü tehlikeden, kötü muamele ve istismardan korumak için gerekli her türlü tedbiri alır.<br><br>
 (2) Devlet, çocuğun ailesi yanında büyümesini destekler; aile içinde bakımı mümkün olmayan çocuklar için koruyucu ve destekleyici tedbirler uygular.<br><br>
 (3) Çocuğun korunması ve bakımı ile ilgili hizmetlerin planlanması, yürütülmesi ve denetimi Devletin sorumluluğundadır.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.5395 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.5395'
             },
             
-            // BM Çocuk Hakları Sözleşmesi Maddeleri
-            bmchs3: {
-                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
-                madde: '3/1',
-                baslik: 'Çocuğın üstün yararı',
-                metin: `Tüm işlemlerde, kamu veya özel sosyal yardım kurumları, mahkemeler, idari makamlar veya yasama organları tarafından çocuğa ilişkin olarak yapılan her türlü faaliyette, çocuğın üstün yararı öncelikli olarak gözetilir.<br><br>
-(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
-                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf '
-            },
-            bmchs9: {
-                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
-                madde: '9/1',
-                baslik: 'Aile birliği',
-                metin: `Çocuk, ana-babasından izinsiz ayrılmamalıdır. Çocuğun ana-babasından veya her ikisinden ayrılması ancak yetkili makamların çocuğun üstün yararı gerektirdiği hallerde ve usulüne uygun karar vermesi durumunda mümkündür.<br><br>
-(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
-                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf '
-            },
-            bmchs12: {
-                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
-                madde: '12/1',
-                baslik: 'Görüş beyan etme hakkı',
-                metin: `Taraf Devletler, görüşlerini serbestçe ifade etme hakkı tanınan çocuğun bu hakkına saygı gösterirler. Çocuğun görüşlerine, çocuğun yaşı ve olgunluğu göz önünde bulundurularak, kendisini ilgilendiren herhangi bir yargı ve idari işlemde uygun şekilde dikkat edilir.<br><br>
-(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
-                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf '
-            },
-            bmchs18: {
-                kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme (27.01.1995 tarih ve 22184 sayılı Resmî Gazete)',
-                madde: '18/1',
-                baslik: 'Ebeveyn sorumluluğu',
-                metin: `Taraf Devletler, çocuğun yetiştirilmesi ve gelişmesi konusunda veli veya yasal vasilerin ortak sorumluluğu ilkesini tanır ve bu sorumluluğun yerine getirilmesinde onlara uygun yardım sağlarlar. Çocuğun üstün yararı her zaman temel önceliklerindendir.<br><br>
-(Tam metin için 27 Ocak 1995 tarih ve 22184 sayılı Resmî Gazete'ye bakınız)`,
-                url: 'https://www.resmigazete.gov.tr/arsiv/22184.pdf '
-            },
-            
-            // 6284 Sayılı Kanun Maddeleri
+            // 6. 6284 Sayılı Kanun
             kanun6284md1: {
                 kanun: '6284 sayılı Ailenin Korunması ve Kadına Karşı Şiddetin Önlenmesine Dair Kanun',
                 madde: '1',
@@ -2638,7 +2578,7 @@
                 metin: `(1) Bu Kanunun amacı; aile içi şiddetin önlenmesi ve mağdurların korunmasıdır.<br><br>
 (2) Bu Kanun, aile içi şiddetin önlenmesi ve mağdurların korunması için alınacak tedbirler ile bu tedbirlere ilişkin usul ve esasları düzenler.<br><br>
 (3) Bu Kanunun uygulanmasında mağdurun ve çocukların üstün yararı esas alınır.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284'
             },
             kanun6284md2: {
                 kanun: '6284 sayılı Ailenin Korunması ve Kadına Karşı Şiddetin Önlenmesine Dair Kanun',
@@ -2649,7 +2589,7 @@ a) Aile içi şiddet: Bir aile ferdinin diğer bir aile ferdine karşı fiziksel
 b) Çocuk: On sekiz yaşını doldurmamış kişiyi,<br>
 c) Mağdur: Aile içi şiddete maruz kalan çocuk veya yetişkin kişiyi,<br>
 ifade eder.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284'
             },
             kanun6284md5: {
                 kanun: '6284 sayılı Ailenin Korunması ve Kadına Karşı Şiddetin Önlenmesine Dair Kanun',
@@ -2663,16 +2603,61 @@ c) Geçici velayet.<br>
 d) Tedavi.<br><br>
 (3) Hâkim, mağdurun ve çocuğunun geçimini sağlamak üzere şiddet uygulayana geçici nafaka ödettirebilir.<br><br>
 (4) Hâkim, çocuğun üstün yararı gözetilerek geçici velayet kararı verebilir.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284'
             },
             
-            // Yargıtay İçtihadı
+            // 7. 4787 Sayılı Kanun - YENİ EKLENDİ
+            kanun4787md1: {
+                kanun: '4787 sayılı Aile Mahkemelerinin Kuruluş, Görev ve Yargılama Usullerine Dair Kanun',
+                madde: '1',
+                baslik: 'Amaç',
+                metin: `Bu Kanunun amacı; aile mahkemelerinin kuruluş, görev ve yargılama usullerini düzenlemektir.`,
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4787'
+            },
+            kanun4787md4: {
+                kanun: '4787 sayılı Aile Mahkemelerinin Kuruluş, Görev ve Yargılama Usullerine Dair Kanun',
+                madde: '4',
+                baslik: 'Aile mahkemesinin görevi',
+                metin: `(1) Aile mahkemeleri; aile hukukundan doğan dava ve işlere bakmakla görevlidir.<br><br>
+(2) Aile mahkemelerinin görevine giren davalar şunlardır:<br>
+a) Evliliğin genel hükümlerine, nişanlanmaya, evlenmenin butlanına, iptaline ve hükümsüzlüğüne ilişkin davalar.<br>
+b) Boşanma ve ayrılık davaları ile bunlara bağlı maddi ve manevi tazminat, nafaka, tazminat, mal rejiminin tasfiyesi ve soybağına ilişkin davalar.<br>
+c) Eşler arasındaki mal rejimi sözleşmelerine ve mal rejimine ilişkin davalar.<br>
+ç) Velayet, vesayet, kayyımlık, çocuğun kişisel ilişki kurması ve çocuk teslimine ilişkin davalar.<br>
+d) Nafaka davaları.<br>
+e) Ana-baba ile çocuk arasındaki soybağına ilişkin davalar.<br>
+f) Evlat edinmeye ilişkin davalar.<br>
+g) Aile konutuyla ilgili davalar.<br>
+ğ) Ailenin korunması ve kadına karşı şiddetin önlenmesine dair kanun hükümlerine göre açılan davalar.<br>
+h) Bu Kanunda ve diğer kanunlarda aile mahkemesinin görevine girdiği belirtilen diğer davalar.`,
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4787'
+            },
+            kanun4787md5: {
+                kanun: '4787 sayılı Aile Mahkemelerinin Kuruluş, Görev ve Yargılama Usullerine Dair Kanun',
+                madde: '5',
+                baslik: 'Görevli mahkeme',
+                metin: `(1) Aile hukukundan doğan davalar, davalının veya çocuğun yerleşim yeri aile mahkemesinde açılır.<br><br>
+(2) Aile mahkemesi kurulmayan yerlerde, bu davalar asliye hukuk mahkemesinde görülür.<br><br>
+(3) Aile mahkemesinin görevine giren davalar, hakim tarafından öncelikli olarak görülür.`,
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4787'
+            },
+            kanun4787md8: {
+                kanun: '4787 sayılı Aile Mahkemelerinin Kuruluş, Görev ve Yargılama Usullerine Dair Kanun',
+                madde: '8',
+                baslik: 'Yargılama usulü',
+                metin: `(1) Aile mahkemelerinde yapılacak yargılama, Hukuk Muhakemeleri Kanunu hükümlerine tabidir.<br><br>
+(2) Aile mahkemelerinde hakim, çocuğun üstün yararını gözeterek re'sen veya talep üzerine gerekli her türlü tedbiri alabilir.<br><br>
+(3) Aile mahkemelerinde hakim, tarafları dinleyerek veya dinletmeden, dosya üzerinde karar verebilir.`,
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4787'
+            },
+            
+            // 8. Yargıtay İçtihadı
             yargitayictihat: {
                 kanun: 'Yargıtay 2. Hukuk Dairesi Yerleşik İçtihatları',
                 madde: 'İçtihat',
                 baslik: 'Kişisel ilişki ve eğitim katılımı',
                 metin: `Yargıtay 2. Hukuk Dairesi'nin yerleşik içtihatları uyarınca, velayet kendisinde bulunmayan ebeveynin de çocuğun eğitim-öğretim hayatına, okul etkinliklerine, veli toplantılarına, gezilerine ve sosyal gelişimine katılımı kişisel ilişki hakkının doğal ve ayrılmaz bir parçasıdır; bu katılımın engellenmesi çocuğun üstün yararına aykırıdır.`,
-                url: 'https://kararlar.yargitay.gov.tr '
+                url: 'https://kararlar.yargitay.gov.tr'
             },
             
             // Diğer Kanunlar
@@ -2683,7 +2668,7 @@ d) Tedavi.<br><br>
                 metin: `(1) Borçlu, borcunu vadesinde ifa etmezse temerrüde düşer.<br><br>
 (2) Borçlu, temerrüde düştüğü anda alacaklıya temerrüt faizi ödemekle yükümlüdür.<br><br>
 (3) Temerrüt faizi, yıllık olarak Türkiye Cumhuriyet Merkez Bankasınca açıklanan reeskont faizine yüzde beş ilave edilmek suretiyle belirlenir.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6098 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6098'
             },
             hmk114: {
                 kanun: '6100 sayılı Hukuk Muhakemeleri Kanunu',
@@ -2692,7 +2677,7 @@ d) Tedavi.<br><br>
                 metin: `(1) Dava, davalının yerleşim yeri mahkemesinde açılır.<br><br>
 (2) Dava, davalının Türkiye'de yerleşim yeri yoksa veya davalının yerleşim yeri bilinmiyorsa, davalının Türkiye'deki ikametgâhı mahkemesinde açılır.<br><br>
 (3) Dava, davalının yerleşim yeri veya ikametgâhı yoksa veya bilinmiyorsa, son yerleşim yeri mahkemesinde açılır.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6100 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6100'
             },
             isk34: {
                 kanun: '4857 sayılı İş Kanunu',
@@ -2700,27 +2685,31 @@ d) Tedavi.<br><br>
                 baslik: 'Fesih bildiriminin şekli ve süresi',
                 metin: `(1) Belirsiz süreli iş sözleşmesinin süreli feshinde, fesih bildiriminin yazılı yapılması ve fesih sebebinin açık ve kesin bir şekilde belirtilmesi zorunludur.<br><br>
 (2) İşveren, fesih bildirimini yazılı olarak yapmakla yükümlüdür. Yazılı fesih bildirimi yapılmadığı takdirde, fesih hükümsüzdür.`,
-                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4857 '
+                url: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4857'
             }
         };
         
-        // Dava türlerine göre hukuki dayanaklar (Güncellenmiş - Tüm aile hukuku davalarında zorunlu maddeler)
+        // Dava türlerine göre hukuki dayanaklar (Uluslararası sözleşmeler öncelikli)
         const davaDayanaklari = {
-            'kisisel': ['anayasa41', 'tmk335', 'tmk336', 'tmk339', 'tmk349', 'kanun5395md4', 'kanun5395md5', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'yargitayictihat', 'hmk114'],
-            'velayet': ['anayasa41', 'tmk323', 'tmk335', 'tmk336', 'tmk339', 'kanun5395md4', 'kanun5395md5', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'hmk114'],
-            'bosanma': ['anayasa41', 'tmk166', 'tmk169', 'tmk175', 'tmk182', 'kanun5395md4', 'kanun5395md5', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'hmk114'],
-            'siddet': ['kanun6284md1', 'kanun6284md2', 'kanun6284md5', 'kanun5395md4', 'kanun5395md5', 'bmchs3', 'bmchs9', 'hmk114'],
-            'nafaka-yoksulluk': ['anayasa41', 'tmk175', 'tmk182', 'hmk114'],
-            'nafaka-tedbir': ['anayasa41', 'tmk169', 'hmk114'],
-            'nafaka-istihkak': ['anayasa41', 'tmk328', 'tmk335', 'kanun5395md4', 'bmchs3', 'bmchs18', 'hmk114'],
+            'kisisel': ['anayasa41', 'bmchs3', 'bmchs8', 'bmchs9', 'bmchs12', 'bmchs18', 'bmchs19', 'aihs8', 'tmk335', 'tmk336', 'tmk339', 'tmk349', 'kanun4787md4', 'kanun4787md5', 'kanun4787md8', 'kanun5395md4', 'kanun5395md5', 'yargitayictihat', 'hmk114'],
+            'velayet': ['anayasa41', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'aihs8', 'tmk323', 'tmk335', 'tmk336', 'tmk339', 'kanun4787md4', 'kanun4787md5', 'kanun4787md8', 'kanun5395md4', 'kanun5395md5', 'hmk114'],
+            'bosanma': ['anayasa41', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'aihs8', 'tmk166', 'tmk169', 'tmk175', 'tmk182', 'kanun4787md4', 'kanun4787md5', 'kanun4787md8', 'kanun5395md4', 'kanun5395md5', 'hmk114'],
+            'siddet': ['bmchs3', 'bmchs19', 'aihs8', 'kanun6284md1', 'kanun6284md2', 'kanun6284md5', 'kanun4787md4', 'kanun5395md4', 'kanun5395md5', 'hmk114'],
+            'nafaka-yoksulluk': ['anayasa41', 'aihs8', 'tmk175', 'tmk182', 'kanun4787md4', 'kanun4787md5', 'hmk114'],
+            'nafaka-tedbir': ['anayasa41', 'aihs8', 'tmk169', 'kanun4787md4', 'kanun4787md5', 'hmk114'],
+            'nafaka-istihkak': ['anayasa41', 'bmchs3', 'bmchs18', 'aihs8', 'tmk328', 'tmk335', 'kanun4787md4', 'kanun4787md5', 'kanun5395md4', 'hmk114'],
             'alacak': ['tbk112', 'hmk114'],
-            'tapu': ['tmk1024', 'hmk114'],
-            'iscilik': ['isk34', 'hmk114']
+            'tapu': ['hmk114'],
+            'iscilik': ['isk34', 'hmk114'],
+            'aile-mahkemesi-gorev': ['kanun4787md1', 'kanun4787md4', 'kanun4787md5', 'kanun4787md8', 'hmk114'],
+            'soybag': ['anayasa41', 'bmchs3', 'bmchs8', 'aihs8', 'kanun4787md4', 'kanun4787md5', 'hmk114'],
+            'mal-rejimi': ['anayasa41', 'aihs8', 'kanun4787md4', 'kanun4787md5', 'hmk114']
         };
         
         document.addEventListener('DOMContentLoaded', function() {
             initializeSystem();
             initDevToolsProtection();
+            initEditorContextMenu();
         });
 
         function initializeSystem() {
@@ -2736,7 +2725,6 @@ d) Tedavi.<br><br>
             if (saved) {
                 usersDB = JSON.parse(saved);
             } else {
-                // Varsayılan kullanıcılar
                 usersDB.guests = [
                     { 
                         id: 1, 
@@ -2817,20 +2805,17 @@ d) Tedavi.<br><br>
             const username = document.getElementById('guestUsernameInput').value.trim();
             const password = document.getElementById('guestPasswordInput').value;
             
-            // Şifre kontrolü
             if (password !== SECURITY.guest.password) {
                 showGuestLoginError('Hatalı misafir şifresi!');
                 return;
             }
             
-            // Kullanıcı adı kontrolü
             const guestUser = usersDB.guests.find(g => g.username === username);
             if (!guestUser) {
                 showGuestLoginError('Kullanıcı bulunamadı!');
                 return;
             }
             
-            // Kullanıcı şifresi kontrolü (kullanıcıya özel şifre)
             if (guestUser.password && password !== guestUser.password) {
                 showGuestLoginError('Kullanıcı şifresi hatalı!');
                 return;
@@ -2953,33 +2938,36 @@ d) Tedavi.<br><br>
                 roleBadge.textContent = 'MASTER';
                 roleBadge.className = 'user-role master';
                 userNameDisplay.textContent = 'Master Yönetici';
-                versionTag.textContent = 'v6.0 MASTER';
-                systemStatus.textContent = 'Tam Yetki - AI Destekli';
+                versionTag.textContent = 'v7.0 MASTER';
+                systemStatus.textContent = 'Tam Yetki - 4787 sayılı Kanun';
                 adminMenus.forEach(m => m.classList.remove('hidden'));
             } else if (currentUser.role === 'admin') {
                 roleBadge.textContent = 'YÖNETİCİ';
                 roleBadge.className = 'user-role admin';
                 userNameDisplay.textContent = currentUser.username;
-                versionTag.textContent = 'v6.0 ADMIN';
-                systemStatus.textContent = 'Yönetici Modu - AI Destekli';
+                versionTag.textContent = 'v7.0 ADMIN';
+                systemStatus.textContent = 'Yönetici Modu - 4787 sayılı Kanun';
                 adminMenus.forEach(m => m.classList.remove('hidden'));
             } else if (currentUser.role === 'guest') {
                 roleBadge.textContent = 'MİSAFİR';
                 roleBadge.className = 'user-role guest';
                 userNameDisplay.textContent = currentUser.username;
-                versionTag.textContent = 'v6.0 GUEST';
-                systemStatus.textContent = 'Misafir Modu - AI Destekli';
+                versionTag.textContent = 'v7.0 GUEST';
+                systemStatus.textContent = 'Misafir Modu - 4787 sayılı Kanun';
                 adminMenus.forEach(m => m.classList.add('hidden'));
             }
         }
 
         // ==========================================
-        // DEVTOOLS KORUMA SİSTEMİ
+        // DEVTOOLS KORUMA SİSTEMİ (Dilekçe editörü hariç)
         // ==========================================
         
         function initDevToolsProtection() {
-            // F12, Ctrl+Shift+I, Ctrl+Shift+J, Ctrl+U engelleme
+            // Klavye kısayolları
             document.addEventListener('keydown', function(e) {
+                // Dilekçe editöründe değilsek engelle
+                if (isInDilekceEditor(e.target)) return;
+                
                 // F12
                 if (e.key === 'F12') {
                     e.preventDefault();
@@ -2987,14 +2975,14 @@ d) Tedavi.<br><br>
                     return false;
                 }
                 
-                // Ctrl+Shift+I veya Ctrl+Shift+J
+                // Ctrl+Shift+I/J/C
                 if ((e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'J' || e.key === 'C'))) {
                     e.preventDefault();
                     handleDevToolsAttempt();
                     return false;
                 }
                 
-                // Ctrl+U (Sayfa kaynağını görüntüle)
+                // Ctrl+U
                 if (e.ctrlKey && e.key === 'u') {
                     e.preventDefault();
                     handleDevToolsAttempt();
@@ -3002,14 +2990,19 @@ d) Tedavi.<br><br>
                 }
             });
             
-            // Sağ tık menüsünü engelle
+            // Sağ tık - Dilekçe editörü hariç engelle
             document.addEventListener('contextmenu', function(e) {
+                if (isInDilekceEditor(e.target)) {
+                    // Dilekçe editöründe sağ tık serbest
+                    return true;
+                }
+                // Diğer alanlarda engelle
                 e.preventDefault();
                 handleDevToolsAttempt();
                 return false;
             });
             
-            // DevTools açılışını tespit etme (console.log yöntemi)
+            // DevTools tespiti
             const checkDevTools = () => {
                 const threshold = 160;
                 const widthThreshold = window.outerWidth - window.innerWidth > threshold;
@@ -3025,10 +3018,8 @@ d) Tedavi.<br><br>
                 }
             };
             
-            // Periyodik kontrol
             setInterval(checkDevTools, 1000);
             
-            // Debugger tespiti
             setInterval(() => {
                 const start = performance.now();
                 debugger;
@@ -3039,13 +3030,31 @@ d) Tedavi.<br><br>
             }, 1000);
         }
         
+        // Dilekçe editöründe olup olmadığını kontrol et
+        function isInDilekceEditor(element) {
+            const dilekceContent = document.getElementById('dilekceContent');
+            if (!dilekceContent) return false;
+            return dilekceContent.contains(element) || element === dilekceContent;
+        }
+        
+        // Dilekçe editörü için sağ tık menüsü desteği
+        function initEditorContextMenu() {
+            const dilekceContent = document.getElementById('dilekceContent');
+            if (!dilekceContent) return;
+            
+            // Dilekçe editöründe sağ tık serbest bırakıldı
+            // Tarayıcının varsayılan context menu'sü çalışacak
+            dilekceContent.addEventListener('contextmenu', function(e) {
+                // Varsayılan sağ tık menüsünün açılmasına izin ver
+                e.stopPropagation();
+            });
+        }
+        
         function handleDevToolsAttempt() {
             if (!devToolsWarningShown) {
-                // İlk uyarı
                 showDevToolsWarning();
                 devToolsWarningShown = true;
             } else {
-                // İkinci deneme - kullanıcıyı at
                 forceLogout();
             }
         }
@@ -3053,8 +3062,6 @@ d) Tedavi.<br><br>
         function showDevToolsWarning() {
             const modal = document.getElementById('devtoolsWarningModal');
             modal.classList.add('active');
-            
-            // Modal açıkken tüm etkileşimleri engelle
             document.body.style.pointerEvents = 'none';
             modal.style.pointerEvents = 'auto';
         }
@@ -3063,22 +3070,16 @@ d) Tedavi.<br><br>
             const modal = document.getElementById('devtoolsWarningModal');
             modal.classList.remove('active');
             document.body.style.pointerEvents = 'auto';
-            
             showNotification('Uyarı kabul edildi. Tekrar denemeniz halinde sistemden atılacaksınız!', 'warning');
         }
         
         function forceLogout() {
-            // Tüm verileri temizle
             clearSession();
             localStorage.removeItem('hukukai_users_db');
             localStorage.removeItem('hukukai_guest_password');
             localStorage.removeItem('hukukai_guest_pass_changed');
             localStorage.removeItem('hukukai_dilekceler');
-            
-            // Kullanıcıyı uyar ve yönlendir
             alert('Geliştirici araçları kullanımı tespit edildi!\n\nGüvenlik nedeniyle sistemden atıldınız ve tüm verileriniz silindi.');
-            
-            // Sayfayı yenile
             location.reload();
         }
 
@@ -3094,7 +3095,6 @@ d) Tedavi.<br><br>
             const davaTuru = document.getElementById('davaTuru').value;
             const cocukSection = document.getElementById('cocukBilgileriSection');
             
-            // Çocuk bilgileri gerektiren davalar
             const cocukDavalar = ['kisisel', 'velayet', 'bosanma', 'nafaka-istihkak', 'siddet'];
             
             if (cocukDavalar.includes(davaTuru)) {
@@ -3103,7 +3103,6 @@ d) Tedavi.<br><br>
                 cocukSection.style.display = 'none';
             }
             
-            // Otomatik dava konusu önerisi
             const konuInput = document.getElementById('davaKonusuInput');
             const konular = {
                 'kisisel': 'TMK 349 gereğince çocukla kişisel ilişki düzenlenmesi talebi',
@@ -3115,7 +3114,10 @@ d) Tedavi.<br><br>
                 'nafaka-istihkak': 'TMK 328 gereğince iştirak nafakası talebi',
                 'alacak': 'TBK 112 gereğince alacak davası',
                 'tapu': 'Tapu iptali ve tescil davası',
-                'iscilik': 'İş Kanunu gereğince işçilik alacağı davası'
+                'iscilik': 'İş Kanunu gereğince işçilik alacağı davası',
+                'aile-mahkemesi-gorev': '4787 sayılı Kanun md. 4 uyarınca aile mahkemesi görev alanı davası',
+                'soybag': 'TMK 285-315 uyarınca soybağı davası',
+                'mal-rejimi': 'TMK 202-281 uyarınca mal rejimi tasfiyesi davası'
             };
             
             if (konular[davaTuru]) {
@@ -3126,7 +3128,6 @@ d) Tedavi.<br><br>
         function generateAkilliDilekce() {
             currentDavaTuru = document.getElementById('davaTuru').value;
             
-            // Temel bilgileri al
             const mahkeme = document.getElementById('mahkemeAdi').value;
             const davaciAd = document.getElementById('davaciAdSoyad').value;
             const davaciTc = document.getElementById('davaciTcNo').value;
@@ -3139,7 +3140,6 @@ d) Tedavi.<br><br>
             const deliller = document.getElementById('delillerInput').value;
             const talepler = document.getElementById('taleplerInput').value;
             
-            // Çocuk bilgileri (varsa)
             let cocukAd = '', cocukDogum = '', cocukTc = '';
             if (document.getElementById('cocukBilgileriSection').style.display !== 'none') {
                 cocukAd = document.getElementById('cocukAdSoyad').value;
@@ -3147,7 +3147,6 @@ d) Tedavi.<br><br>
                 cocukTc = document.getElementById('cocukTcNo').value;
             }
             
-            // Dilekçeyi doldur
             document.getElementById('dilekceMahkeme').textContent = mahkeme.toUpperCase() + ' HAKİMLİĞİNE';
             document.getElementById('davaciAd').textContent = davaciAd;
             document.getElementById('davaciTc').textContent = davaciTc || '....................................';
@@ -3158,7 +3157,6 @@ d) Tedavi.<br><br>
             document.getElementById('davalıTc').textContent = davalıTc || '....................................';
             document.getElementById('davalıAdres').textContent = davalıAdres || '..................................................';
             
-            // Çocuk bilgileri
             if (cocukAd) {
                 document.getElementById('cocukBilgiSection').style.display = 'block';
                 document.getElementById('cocukAd').textContent = cocukAd;
@@ -3168,11 +3166,9 @@ d) Tedavi.<br><br>
                 document.getElementById('cocukBilgiSection').style.display = 'none';
             }
             
-            // Dava konusu ve diğer alanlar
             document.getElementById('davaKonusu').textContent = davaKonusu;
             document.getElementById('davaKonusu').style.fontWeight = '600';
             
-            // Açıklamalar
             const aciklamalarListesi = document.getElementById('aciklamalarListesi');
             aciklamalarListesi.innerHTML = '';
             if (olaylar) {
@@ -3192,7 +3188,6 @@ d) Tedavi.<br><br>
                 aciklamalarListesi.appendChild(li);
             }
             
-            // Deliller
             const delillerListesi = document.getElementById('delillerListesi');
             delillerListesi.innerHTML = '';
             if (deliller) {
@@ -3213,7 +3208,6 @@ d) Tedavi.<br><br>
                 `;
             }
             
-            // Talepler
             const taleplerListesi = document.getElementById('taleplerListesi');
             taleplerListesi.innerHTML = '';
             if (talepler) {
@@ -3226,14 +3220,12 @@ d) Tedavi.<br><br>
                     li.textContent = talep.trim();
                     taleplerListesi.appendChild(li);
                 });
-                // Yargılama giderleri maddesi
                 const liGider = document.createElement('li');
                 liGider.className = 'editable-field';
                 liGider.contentEditable = true;
                 liGider.textContent = 'Yargılama giderleri ile vekalet ücretinin davalıya yükletilmesine,';
                 taleplerListesi.appendChild(liGider);
                 
-                // Hüküm maddesi
                 const liHukum = document.createElement('li');
                 liHukum.className = 'editable-field';
                 liHukum.contentEditable = true;
@@ -3241,40 +3233,45 @@ d) Tedavi.<br><br>
                 taleplerListesi.appendChild(liHukum);
             }
             
-            // AI HUKUKİ SEBEPLER - TAM METİN (Zorunlu tüm maddeler)
+            // AI HUKUKİ SEBEPLER - TAM METİN (Uluslararası sözleşmeler öncelikli)
             generateHukukiSebepler(currentDavaTuru);
             
-            // Modalı kapat
             closeModal('akilliDilekceModal');
-            
-            // Formu temizle
             document.getElementById('akilliDilekceForm').reset();
             document.getElementById('cocukBilgileriSection').style.display = 'none';
             
-            showNotification('AI destekli dilekçe başarıyla oluşturuldu! Tüm yasal dayanaklar eklendi.');
+            showNotification('AI destekli dilekçe başarıyla oluşturuldu! Tüm yasal dayanaklar (uluslararası sözleşmeler ve 4787 sayılı Kanun öncelikli) eklendi.');
         }
 
         function generateHukukiSebepler(davaTuru) {
             const hukukiSebepBox = document.getElementById('hukukiSebepBox');
             const container = document.getElementById('hukukiMaddelerContainer');
             
-            // Aile hukuku davaları için zorunlu tüm maddeler
             let dayanaklar = davaDayanaklari[davaTuru] || ['hmk114'];
             
-            // Eğer aile hukuku davasıysa (çocuk/velayet/nafaka/bosanma vs.), zorunlu tüm maddeleri ekle
-            const aileHukukuDavalar = ['kisisel', 'velayet', 'bosanma', 'nafaka-yoksulluk', 'nafaka-tedbir', 'nafaka-istihkak', 'siddet'];
+            // Aile hukuku davalarında tüm zorunlu maddeler
+            const aileHukukuDavalar = ['kisisel', 'velayet', 'bosanma', 'nafaka-yoksulluk', 'nafaka-tedbir', 'nafaka-istihkak', 'siddet', 'soybag', 'mal-rejimi', 'aile-mahkemesi-gorev'];
             if (aileHukukuDavalar.includes(davaTuru)) {
-                // Temel aile hukuku maddelerini ekle (eğer listede yoksa)
-                const temelMaddeler = ['anayasa41', 'tmk335', 'kanun5395md4', 'kanun5395md5', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18'];
+                const temelMaddeler = ['anayasa41', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'aihs8', 'kanun4787md4', 'kanun4787md5', 'kanun4787md8', 'kanun5395md4', 'kanun5395md5'];
                 temelMaddeler.forEach(madde => {
                     if (!dayanaklar.includes(madde)) {
                         dayanaklar.push(madde);
                     }
                 });
                 
-                // Yargıtay içtihadını ekle (kişisel ilişki davaları için)
                 if ((davaTuru === 'kisisel' || davaTuru === 'velayet') && !dayanaklar.includes('yargitayictihat')) {
                     dayanaklar.push('yargitayictihat');
+                }
+                
+                // Şiddet davalarında BM ÇHS 19 ve 8 ekle
+                if (davaTuru === 'siddet') {
+                    if (!dayanaklar.includes('bmchs19')) dayanaklar.push('bmchs19');
+                    if (!dayanaklar.includes('bmchs8')) dayanaklar.push('bmchs8');
+                }
+                
+                // Soybağı davalarında BM ÇHS 8 ekle
+                if (davaTuru === 'soybag') {
+                    if (!dayanaklar.includes('bmchs8')) dayanaklar.push('bmchs8');
                 }
             }
             
@@ -3283,7 +3280,7 @@ d) Tedavi.<br><br>
             // Başlık ekle
             const baslikDiv = document.createElement('div');
             baslikDiv.style.cssText = 'font-weight: 700; color: #dc2626; margin-bottom: 15px; font-size: 14px; border-bottom: 2px solid #fecaca; padding-bottom: 8px;';
-            baslikDiv.innerHTML = '<i class="fas fa-balance-scale"></i> DAVA DAYANAKLARI (TAM METİN)';
+            baslikDiv.innerHTML = '<i class="fas fa-balance-scale"></i> DAVA DAYANAKLARI (ULUSLARARASI SÖZLEŞMELER VE 4787 SAYILI KANUN ÖNCELİKLİ)';
             container.appendChild(baslikDiv);
             
             dayanaklar.forEach(dayanakKey => {
@@ -3299,17 +3296,16 @@ d) Tedavi.<br><br>
                         </div>
                         <div class="madde-metin" style="font-size: 12px; line-height: 1.8; color: #334155; text-align: justify;">${madde.metin}</div>
                         <div style="margin-top: 8px; font-size: 10px; color: #94a3b8; font-style: italic;">
-                            Kaynak: ${madde.kanun} (Mevzuat.gov.tr)
+                            Kaynak: ${madde.kanun}
                         </div>
                     `;
                     container.appendChild(maddeDiv);
                 }
             });
             
-            // Uyarı ekle
             const uyariDiv = document.createElement('div');
             uyariDiv.style.cssText = 'margin-top: 20px; padding: 12px; background: #fef2f2; border: 1px solid #fecaca; border-radius: 8px; font-size: 11px; color: #991b1b; font-style: italic;';
-            uyariDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Yukarıdaki hukuki dayanaklar talep edilen dava türüne göre otomatik olarak belirlenmiştir. Tam metinler Mevzuat.gov.tr ve Resmî Gazete kaynaklarından alınmıştır.';
+            uyariDiv.innerHTML = '<i class="fas fa-exclamation-circle"></i> Yukarıdaki hukuki dayanaklar talep edilen dava türüne göre otomatik olarak belirlenmiştir. Uluslararası sözleşmeler (BM ÇHS, AİHS), Anayasa, 4787 sayılı Kanun ve ilgili mevzuat öncelikli olarak listelenmiştir.';
             container.appendChild(uyariDiv);
             
             hukukiSebepBox.style.display = 'block';
@@ -3322,6 +3318,35 @@ d) Tedavi.<br><br>
             }
             generateHukukiSebepler(currentDavaTuru);
             showNotification('Yasal dayanaklar güncellendi!');
+        }
+
+        function insert4787Kanun() {
+            // 4787 sayılı Kanun maddelerini dilekçeye ekle
+            const container = document.getElementById('hukukiMaddelerContainer');
+            
+            const maddeler4787 = ['kanun4787md1', 'kanun4787md4', 'kanun4787md5', 'kanun4787md8'];
+            
+            maddeler4787.forEach(maddeKey => {
+                const madde = kanunMetinleri[maddeKey];
+                if (madde) {
+                    const maddeDiv = document.createElement('div');
+                    maddeDiv.className = 'madde-item';
+                    maddeDiv.style.cssText = 'margin-bottom: 20px; padding: 16px; background: white; border-radius: 8px; border: 1px solid #e2e8f0; box-shadow: 0 2px 8px rgba(0,0,0,0.05); page-break-inside: avoid;';
+                    maddeDiv.innerHTML = `
+                        <div class="madde-header" style="font-weight: 700; color: #0f172a; font-size: 13px; margin-bottom: 10px; display: flex; align-items: center; gap: 8px; border-bottom: 1px solid #f1f5f9; padding-bottom: 8px;">
+                            <span class="madde-numara" style="background: #dc2626; color: white; padding: 4px 10px; border-radius: 20px; font-size: 11px; white-space: nowrap;">${madde.kanun}<br>Md. ${madde.madde}</span>
+                            <span style="font-size: 12px; color: #475569;">${madde.baslik}</span>
+                        </div>
+                        <div class="madde-metin" style="font-size: 12px; line-height: 1.8; color: #334155; text-align: justify;">${madde.metin}</div>
+                        <div style="margin-top: 8px; font-size: 10px; color: #94a3b8; font-style: italic;">
+                            Kaynak: ${madde.kanun}
+                        </div>
+                    `;
+                    container.appendChild(maddeDiv);
+                }
+            });
+            
+            showNotification('4787 sayılı Kanun maddeleri eklendi!');
         }
 
         // ==========================================
@@ -3422,7 +3447,7 @@ d) Tedavi.<br><br>
         }
 
         // ==========================================
-        // ARAMA & KAYNAKLAR
+        // ARAMA & KAYNAKLAR (DÜZELTİLMİŞ ADRESLER)
         // ==========================================
 
         function performGoogleSearch() {
@@ -3441,7 +3466,9 @@ d) Tedavi.<br><br>
                 aym: 'https://www.anayasa.gov.tr',
                 aihm: 'https://hudoc.echr.coe.int'
             };
-            window.open(urls[source], '_blank');
+            if (urls[source]) {
+                window.open(urls[source], '_blank');
+            }
         }
 
         function quickOpenMevzuat(kanun) {
@@ -3450,9 +3477,12 @@ d) Tedavi.<br><br>
                 tmk: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4721',
                 tbk: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6098',
                 tck: 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.5237',
-                '6284': 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284'
+                '6284': 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.6284',
+                '4787': 'https://www.mevzuat.gov.tr/mevzuat?mevzuatKod=1.1.4787'
             };
-            if (urls[kanun]) window.open(urls[kanun], '_blank');
+            if (urls[kanun]) {
+                window.open(urls[kanun], '_blank');
+            }
         }
 
         // ==========================================
