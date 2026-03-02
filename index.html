@@ -2,43 +2,22 @@
 <html lang="tr">
 <head>
     <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
-
-<!-- Sosyal Medya Meta Etiketleri -->
-<!-- Standart Meta -->
-<title>HukukAI - T.C. Hukuk Asistanı</title>
-<meta name="description" content="HukukAI, hukuki belge taslakları hazırlamanıza yardımcı olan bir araçtır.
-Yapay zeka desteği ile dilekçe, sözleşme ve diğer hukuki belgeler için taslak oluşturur.
-ÖNEMLİ UYARI:
-Bu uygulama avukatlık hizmeti vermez, hukuki danışmanlık sunmaz.
-Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belgeler için mutlaka bir avukata danışınız. Kullanıcı, oluşturduğu belgelerin tüm sorumluluğunu kabul eder.">
-
-<!-- Open Graph -->
-<meta property="og:title" content="HukukAI - T.C. Hukuk Asistanı">
-<meta property="og:description" content="HukukAI, hukuki belge taslakları hazırlamanıza yardımcı olan bir araçtır.
-Yapay zeka desteği ile dilekçe, sözleşme ve diğer hukuki belgeler için taslak oluşturur.
-ÖNEMLİ UYARI:
-Bu uygulama avukatlık hizmeti vermez, hukuki danışmanlık sunmaz.
-Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belgeler için mutlaka bir avukata danışınız. Kullanıcı, oluşturduğu belgelerin tüm sorumluluğunu kabul eder.">
-<meta property="og:type" content="website">
-<meta property="og:url" content="https://www.hukukai.pro">
-<meta property="og:site_name" content="HukukAI Pro">
-
-<!-- Twitter Card -->
-<meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:title" content="HukukAI - T.C. Hukuk Asistanı">
-<meta name="twitter:description" content="HukukAI, hukuki belge taslakları hazırlamanıza yardımcı olan bir araçtır.
-Yapay zeka desteği ile dilekçe, sözleşme ve diğer hukuki belgeler için taslak oluşturur.
-ÖNEMLİ UYARI:
-Bu uygulama avukatlık hizmeti vermez, hukuki danışmanlık sunmaz.
-Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belgeler için mutlaka bir avukata danışınız. Kullanıcı, oluşturduğu belgelerin tüm sorumluluğunu kabul eder.">
-<!-- Sosyal Medya Meta Etiketleri Sonu -->
-
-<script src="https://cdn.tailwindcss.com"></script>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<style>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes">
+    <title>HukukAI - T.C. Hukuk Asistanı</title>
+    <meta name="description" content="HukukAI, hukuki belge taslakları hazırlamanıza yardımcı olan bir araçtır. Yapay zeka desteği ile dilekçe, sözleşme ve diğer hukuki belgeler için taslak oluşturur. ÖNEMLİ UYARI: Bu uygulama avukatlık hizmeti vermez, hukuki danışmanlık sunmaz. Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belgeler için mutlaka bir avukata danışınız. Kullanıcı, oluşturduğu belgelerin tüm sorumluluğunu kabul eder.">
+    <meta property="og:title" content="HukukAI - T.C. Hukuk Asistanı">
+    <meta property="og:description" content="HukukAI, hukuki belge taslakları hazırlamanıza yardımcı olan bir araçtır. Yapay zeka desteği ile dilekçe, sözleşme ve diğer hukuki belgeler için taslak oluşturur.">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.hukukai.pro">
+    <meta property="og:site_name" content="HukukAI Pro">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="HukukAI - T.C. Hukuk Asistanı">
+    <meta name="twitter:description" content="HukukAI, hukuki belge taslakları hazırlamanıza yardımcı olan bir araçtır.">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <style>
         * { 
             box-sizing: border-box; 
             margin: 0; 
@@ -70,24 +49,219 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             width: 100vw;
         }
         
-        .login-overlay {
+        /* Landing Page */
+        .landing-overlay {
             position: fixed;
             inset: 0;
             background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0a0e1a 100%);
-            z-index: 9999;
+            z-index: 9998;
             display: flex;
             align-items: center;
             justify-content: center;
             backdrop-filter: blur(20px);
         }
         
+        .login-overlay {
+            position: fixed;
+            inset: 0;
+            background: linear-gradient(135deg, #0f172a 0%, #1e1b4b 50%, #0a0e1a 100%);
+            z-index: 9999;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            backdrop-filter: blur(20px);
+        }
+        
+        .landing-container {
+            background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
+            border: 2px solid #4338ca;
+            border-radius: 24px;
+            padding: 40px;
+            width: 100%;
+            max-width: 560px;
+            box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(220, 38, 38, 0.1);
+            position: relative;
+            overflow: hidden;
+            text-align: center;
+        }
+        
+        .landing-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #dc2626 0%, #991b1b 50%, #dc2626 100%);
+        }
+        
+        .landing-logo {
+            width: 80px;
+            height: 80px;
+            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 20px;
+            border: 3px solid #ef4444;
+            box-shadow: 0 8px 32px rgba(220, 38, 38, 0.4);
+        }
+        
+        .landing-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #e2e8f0;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        
+        .landing-description {
+            font-size: 13px;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 24px;
+        }
+        
+        .demo-btn {
+            width: 100%;
+            background: linear-gradient(135deg, #7c3aed 0%, #5b21b6 100%);
+            border: none;
+            border-radius: 12px;
+            padding: 16px;
+            color: white;
+            font-size: 15px;
+            font-weight: 700;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 16px rgba(124, 58, 237, 0.3);
+            margin-bottom: 20px;
+        }
+        
+        .demo-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(124, 58, 237, 0.4);
+        }
+        
+        .pricing-section {
+            background: rgba(30, 27, 75, 0.5);
+            border: 1px solid #4338ca;
+            border-radius: 12px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        
+        .pricing-title {
+            font-size: 12px;
+            font-weight: 700;
+            color: #94a3b8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 16px;
+        }
+        
+        .pricing-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+        }
+        
+        .pricing-options {
+            display: flex;
+            gap: 12px;
+        }
+        
+        .pricing-card {
+            background: rgba(15, 23, 42, 0.8);
+            border: 1px solid #4338ca;
+            border-radius: 30px;
+            padding: 10px 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        
+        .pricing-card:hover {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+        
+        .pricing-card.yearly {
+            background: linear-gradient(135deg, rgba(220,38,38,0.1), rgba(124,58,237,0.1));
+            border-color: #7c3aed;
+        }
+        
+        .pricing-price {
+            font-size: 16px;
+            font-weight: 700;
+            color: #e2e8f0;
+        }
+        
+        .pricing-period {
+            font-size: 12px;
+            color: #94a3b8;
+        }
+        
+        .whatsapp-contact {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(37, 211, 102, 0.1);
+            border: 1px solid rgba(37, 211, 102, 0.3);
+            border-radius: 30px;
+            padding: 8px 20px;
+            color: white;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            transition: all 0.2s;
+        }
+        
+        .whatsapp-contact:hover {
+            background: rgba(37, 211, 102, 0.2);
+            transform: translateY(-1px);
+            box-shadow: 0 4px 12px rgba(37, 211, 102, 0.3);
+        }
+        
+        .whatsapp-contact i {
+            font-size: 18px;
+            color: #25d366;
+        }
+        
+        .login-btn-small {
+            background: transparent;
+            border: 1px solid #4338ca;
+            color: #64748b;
+            padding: 8px 16px;
+            border-radius: 30px;
+            font-size: 13px;
+            cursor: pointer;
+            margin-top: 16px;
+            transition: all 0.2s;
+            width: 100%;
+        }
+        
+        .login-btn-small:hover {
+            border-color: #dc2626;
+            color: #dc2626;
+        }
+        
+        /* Login Overlay (küçültülmüş) */
         .login-container {
             background: linear-gradient(180deg, #1e1b4b 0%, #0f172a 100%);
             border: 2px solid #4338ca;
             border-radius: 24px;
-            padding: 48px;
+            padding: 32px;
             width: 100%;
-            max-width: 480px;
+            max-width: 400px;
             box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(220, 38, 38, 0.1);
             position: relative;
             overflow: hidden;
@@ -104,14 +278,14 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         }
         
         .login-logo {
-            width: 80px;
-            height: 80px;
+            width: 70px;
+            height: 70px;
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border-radius: 20px;
+            border-radius: 18px;
             display: flex;
             align-items: center;
             justify-content: center;
-            margin: 0 auto 24px;
+            margin: 0 auto 20px;
             border: 3px solid #ef4444;
             box-shadow: 0 8px 32px rgba(220, 38, 38, 0.4);
             position: relative;
@@ -121,7 +295,7 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             content: '';
             position: absolute;
             inset: -4px;
-            border-radius: 24px;
+            border-radius: 22px;
             border: 2px solid rgba(220, 38, 38, 0.3);
             animation: pulse 2s infinite;
         }
@@ -133,33 +307,34 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         
         .login-title {
             text-align: center;
-            font-size: 28px;
+            font-size: 24px;
             font-weight: 800;
             color: #e2e8f0;
-            margin-bottom: 8px;
+            margin-bottom: 4px;
             letter-spacing: -0.5px;
         }
         
         .login-subtitle {
             text-align: center;
-            font-size: 14px;
+            font-size: 12px;
             color: #64748b;
-            margin-bottom: 32px;
+            margin-bottom: 20px;
         }
         
-        .login-tabs {
+        /* Yeni rol seçici (Master/Abone) */
+        .login-role-selector {
             display: flex;
-            gap: 8px;
-            margin-bottom: 24px;
+            gap: 10px;
+            margin-bottom: 20px;
             background: #0f172a;
             padding: 4px;
             border-radius: 12px;
             border: 1px solid #312e81;
         }
         
-        .login-tab {
+        .role-btn {
             flex: 1;
-            padding: 12px;
+            padding: 10px;
             background: transparent;
             border: none;
             color: #64748b;
@@ -170,22 +345,22 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             transition: all 0.3s;
         }
         
-        .login-tab.active {
+        .role-btn.active {
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             color: white;
         }
         
         .login-form-group {
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             position: relative;
         }
         
         .login-label {
             display: block;
-            font-size: 12px;
+            font-size: 11px;
             font-weight: 700;
             color: #94a3b8;
-            margin-bottom: 8px;
+            margin-bottom: 6px;
             text-transform: uppercase;
             letter-spacing: 0.5px;
         }
@@ -198,10 +373,10 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             width: 100%;
             background: #0f172a;
             border: 2px solid #312e81;
-            border-radius: 12px;
-            padding: 16px 48px 16px 16px;
+            border-radius: 10px;
+            padding: 12px 40px 12px 12px;
             color: #e2e8f0;
-            font-size: 16px;
+            font-size: 14px;
             outline: none;
             transition: all 0.3s;
             font-family: 'Inter', sans-serif;
@@ -225,8 +400,8 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             border: none;
             color: #64748b;
             cursor: pointer;
-            padding: 8px;
-            font-size: 18px;
+            padding: 6px;
+            font-size: 16px;
             transition: all 0.2s;
             border-radius: 6px;
         }
@@ -240,19 +415,19 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             width: 100%;
             background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
             border: none;
-            border-radius: 12px;
-            padding: 18px;
+            border-radius: 10px;
+            padding: 14px;
             color: white;
-            font-size: 16px;
+            font-size: 14px;
             font-weight: 700;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 10px;
+            gap: 8px;
             transition: all 0.3s;
             box-shadow: 0 4px 16px rgba(220, 38, 38, 0.3);
-            margin-top: 24px;
+            margin-top: 16px;
             position: relative;
             overflow: hidden;
         }
@@ -287,28 +462,23 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             transform: none;
         }
         
-        .login-btn.guest {
+        .login-btn.subscriber {
             background: linear-gradient(135deg, #4338ca 0%, #312e81 100%);
             box-shadow: 0 4px 16px rgba(67, 56, 202, 0.3);
         }
         
-        .login-btn.guest:hover {
+        .login-btn.subscriber:hover {
             box-shadow: 0 8px 24px rgba(67, 56, 202, 0.4);
-        }
-        
-        .login-btn.admin {
-            background: linear-gradient(135deg, #059669 0%, #047857 100%);
-            box-shadow: 0 4px 16px rgba(5, 150, 105, 0.3);
         }
         
         .login-error {
             background: rgba(220, 38, 38, 0.1);
             border: 1px solid rgba(220, 38, 38, 0.3);
             color: #ef4444;
-            padding: 12px 16px;
+            padding: 10px 14px;
             border-radius: 8px;
-            font-size: 13px;
-            margin-top: 16px;
+            font-size: 12px;
+            margin-top: 12px;
             display: none;
             align-items: center;
             gap: 8px;
@@ -328,20 +498,20 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         .login-security-badges {
             display: flex;
             justify-content: center;
-            gap: 16px;
-            margin-top: 24px;
-            padding-top: 24px;
+            gap: 12px;
+            margin-top: 20px;
+            padding-top: 20px;
             border-top: 1px solid #312e81;
         }
         
         .security-badge {
             display: flex;
             align-items: center;
-            gap: 6px;
-            font-size: 11px;
+            gap: 4px;
+            font-size: 10px;
             color: #64748b;
             background: rgba(30, 27, 75, 0.5);
-            padding: 6px 12px;
+            padding: 4px 10px;
             border-radius: 20px;
             border: 1px solid #4338ca;
         }
@@ -357,12 +527,12 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             background: rgba(220, 38, 38, 0.2);
             border: 1px solid rgba(220, 38, 38, 0.4);
             color: #ef4444;
-            padding: 12px 20px;
+            padding: 10px 16px;
             border-radius: 8px;
-            font-size: 13px;
+            font-size: 12px;
             display: none;
             align-items: center;
-            gap: 10px;
+            gap: 8px;
             animation: slideIn 0.3s ease;
         }
         
@@ -377,10 +547,10 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         
         .login-version {
             position: absolute;
-            bottom: 20px;
+            bottom: 15px;
             left: 50%;
             transform: translateX(-50%);
-            font-size: 11px;
+            font-size: 10px;
             color: #475569;
         }
         
@@ -446,18 +616,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             opacity: 1;
         }
         
-        .logo-icon {
-            width: 36px;
-            height: 36px;
-            background: linear-gradient(135deg, #dc2626 0%, #991b1b 100%);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px solid #ef4444;
-            box-shadow: 0 4px 12px rgba(220, 38, 38, 0.3);
-        }
-        
         .user-info {
             margin-top: 12px;
             padding: 10px;
@@ -477,8 +635,13 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             margin-bottom: 4px;
         }
         
-        .user-role.admin {
-            background: #059669;
+        .user-role.master {
+            background: #dc2626;
+            color: white;
+        }
+        
+        .user-role.subscriber {
+            background: #4338ca;
             color: white;
         }
         
@@ -487,8 +650,8 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             color: white;
         }
         
-        .user-role.master {
-            background: #dc2626;
+        .user-role.admin {
+            background: #059669;
             color: white;
         }
         
@@ -765,11 +928,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         
         .source-link.unicef i {
             color: #00aeef;
-        }
-        
-        .source-link.unicef:hover {
-            background: rgba(0, 174, 239, 0.2);
-            border-color: #00aeef;
         }
         
         .whatsapp-simple {
@@ -1398,6 +1556,11 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             opacity: 0.9;
         }
         
+        .action-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+        
         .ai-badge {
             display: inline-flex;
             align-items: center;
@@ -1668,6 +1831,71 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             cursor: pointer;
         }
         
+        .pricing-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.95);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 10001;
+            backdrop-filter: blur(10px);
+        }
+        
+        .pricing-modal-overlay.active {
+            display: flex;
+        }
+        
+        .pricing-modal {
+            background: linear-gradient(180deg, #0f172a 0%, #1e1b4b 100%);
+            border: 2px solid #dc2626;
+            border-radius: 20px;
+            width: 100%;
+            max-width: 500px;
+            padding: 40px;
+            text-align: center;
+            box-shadow: 0 25px 50px -12px rgba(220, 38, 38, 0.5);
+        }
+        
+        .pricing-modal-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #e2e8f0;
+            margin-bottom: 8px;
+        }
+        
+        .pricing-modal-subtitle {
+            font-size: 14px;
+            color: #94a3b8;
+            margin-bottom: 24px;
+        }
+        
+        .pricing-option {
+            background: rgba(30, 27, 75, 0.5);
+            border: 1px solid #4338ca;
+            border-radius: 12px;
+            padding: 20px;
+            margin-bottom: 12px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .pricing-option:hover {
+            border-color: #dc2626;
+            background: rgba(220, 38, 38, 0.1);
+        }
+        
+        .pricing-option-price {
+            font-size: 28px;
+            font-weight: 800;
+            color: #dc2626;
+        }
+        
+        .pricing-option-period {
+            font-size: 12px;
+            color: #64748b;
+        }
+        
         ::-webkit-scrollbar {
             width: 6px;
             height: 6px;
@@ -1766,6 +1994,7 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
     </style>
 </head>
 <body>
+    <!-- DevTools uyarı modalı -->
     <div class="devtools-warning-modal" id="devtoolsWarningModal">
         <div class="devtools-warning-content">
             <div class="devtools-icon">
@@ -1783,6 +2012,53 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         </div>
     </div>
 
+    <!-- Landing Page -->
+    <div class="landing-overlay" id="landingPage">
+        <div class="landing-container">
+            <div class="landing-logo">
+                <i class="fas fa-balance-scale text-white text-4xl"></i>
+            </div>
+            
+            <h1 class="landing-title">HukukAI Pro – Yapay Zeka Destekli T.C. Hukuk Asistanı</h1>
+            <p class="landing-description">
+                HukukAI, hukuki belge taslakları hazırlamanıza yardımcı olan bir araçtır.
+                Yapay zeka desteği ile dilekçe, sözleşme ve diğer hukuki belgeler için taslak oluşturur.
+                <br><br>
+                <strong style="color: #dc2626;">ÖNEMLİ UYARI:</strong><br>
+                Bu uygulama avukatlık hizmeti vermez, hukuki danışmanlık sunmaz.
+                Oluşturulan belgeler yalnızca taslaktır.
+            </p>
+            
+            <button class="demo-btn" onclick="startDemo()">
+                <i class="fas fa-play-circle"></i> 7 Gün Ücretsiz Demo Başlat
+            </button>
+            
+            <div class="pricing-section">
+                <div class="pricing-title">Abonelik Seçenekleri</div>
+                <div class="pricing-row">
+                    <div class="pricing-options">
+                        <div class="pricing-card" onclick="alert('Aylık abonelik seçildi (demo)')">
+                            <span class="pricing-price">1.250 TL</span>
+                            <span class="pricing-period">/ay</span>
+                        </div>
+                        <div class="pricing-card yearly" onclick="alert('Yıllık abonelik seçildi (demo)')">
+                            <span class="pricing-price">9.900 TL</span>
+                            <span class="pricing-period">/yıl</span>
+                        </div>
+                    </div>
+                    <a href="https://wa.me/905061703020" target="_blank" class="whatsapp-contact">
+                        <i class="fab fa-whatsapp"></i> 0506 170 30 20
+                    </a>
+                </div>
+            </div>
+            
+            <button class="login-btn-small" onclick="showLoginOverlay()">
+                <i class="fas fa-lock"></i> Giriş Yap (Üyeler İçin)
+            </button>
+        </div>
+    </div>
+
+    <!-- Login Overlay -->
     <div class="login-overlay" id="loginOverlay">
         <div class="login-attempts-warning" id="loginAttemptsWarning">
             <i class="fas fa-exclamation-triangle"></i>
@@ -1797,18 +2073,13 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             <h1 class="login-title">HukukAI Pro</h1>
             <p class="login-subtitle">T.C. Hukuk Asistanı - Güvenli Giriş</p>
             
-            <div class="login-tabs">
-                <button class="login-tab active" onclick="switchLoginTab('master')" id="tabMaster">
-                    <i class="fas fa-key"></i> Master
-                </button>
-                <button class="login-tab" onclick="switchLoginTab('guest')" id="tabGuest">
-                    <i class="fas fa-user"></i> Misafir
-                </button>
-                <button class="login-tab" onclick="switchLoginTab('admin')" id="tabAdmin">
-                    <i class="fas fa-cog"></i> Yönetici
-                </button>
+            <!-- Rol seçici: Master / Abone -->
+            <div class="login-role-selector">
+                <button class="role-btn active" onclick="setLoginRole('master')">Master Girişi</button>
+                <button class="role-btn" onclick="setLoginRole('subscriber')">Abone Girişi</button>
             </div>
             
+            <!-- Master Login Form -->
             <form id="masterLoginForm" class="login-form" onsubmit="event.preventDefault(); handleMasterLogin();">
                 <div class="login-form-group">
                     <label class="login-label"><i class="fas fa-key" style="margin-right: 6px; color: #dc2626;"></i>Master Key</label>
@@ -1831,59 +2102,34 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 </div>
                 
                 <button type="submit" class="login-btn" id="masterLoginBtn">
-                    <i class="fas fa-lock-open"></i>Güvenli Giriş Yap
+                    <i class="fas fa-lock-open"></i> Güvenli Giriş Yap
                 </button>
             </form>
             
-            <form id="guestLoginForm" class="login-form hidden" onsubmit="event.preventDefault(); handleGuestLogin();">
+            <!-- Abone (Subscriber) Login Form -->
+            <form id="subscriberLoginForm" class="login-form hidden" onsubmit="event.preventDefault(); handleSubscriberLogin();">
                 <div class="login-form-group">
-                    <label class="login-label"><i class="fas fa-user" style="margin-right: 6px; color: #4338ca;"></i>Misafir Kullanıcı Adı</label>
-                    <input type="text" class="login-input" id="guestUsernameInput" placeholder="Kullanıcı adınızı giriniz..." autocomplete="off">
+                    <label class="login-label"><i class="fas fa-user" style="margin-right: 6px; color: #4338ca;"></i>Kullanıcı Adı</label>
+                    <input type="text" class="login-input" id="subscriberUsername" placeholder="Kullanıcı adınız..." autocomplete="off">
                 </div>
                 
                 <div class="login-form-group">
-                    <label class="login-label"><i class="fas fa-lock" style="margin-right: 6px; color: #4338ca;"></i>Misafir Şifresi</label>
+                    <label class="login-label"><i class="fas fa-lock" style="margin-right: 6px; color: #4338ca;"></i>Şifre</label>
                     <div class="login-input-wrapper">
-                        <input type="password" class="login-input" id="guestPasswordInput" placeholder="Misafir şifresini giriniz..." autocomplete="off">
-                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('guestPasswordInput', this)">
+                        <input type="password" class="login-input" id="subscriberPassword" placeholder="Şifreniz..." autocomplete="off">
+                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('subscriberPassword', this)">
                             <i class="fas fa-eye"></i>
                         </button>
                     </div>
                 </div>
                 
-                <div class="login-error" id="guestLoginError">
+                <div class="login-error" id="subscriberLoginError">
                     <i class="fas fa-exclamation-circle"></i>
-                    <span id="guestLoginErrorText">Hatalı bilgiler!</span>
+                    <span id="subscriberLoginErrorText">Hatalı bilgiler!</span>
                 </div>
                 
-                <button type="submit" class="login-btn guest" id="guestLoginBtn">
-                    <i class="fas fa-sign-in-alt"></i>Misafir Girişi Yap
-                </button>
-            </form>
-            
-            <form id="adminLoginForm" class="login-form hidden" onsubmit="event.preventDefault(); handleAdminLogin();">
-                <div class="login-form-group">
-                    <label class="login-label"><i class="fas fa-user-shield" style="margin-right: 6px; color: #059669;"></i>Yönetici Kullanıcı Adı</label>
-                    <input type="text" class="login-input" id="adminUsernameInput" placeholder="Yönetici kullanıcı adı..." autocomplete="off">
-                </div>
-                
-                <div class="login-form-group">
-                    <label class="login-label"><i class="fas fa-lock" style="margin-right: 6px; color: #059669;"></i>Yönetici Şifresi</label>
-                    <div class="login-input-wrapper">
-                        <input type="password" class="login-input" id="adminPasswordInput" placeholder="Yönetici şifresi..." autocomplete="off">
-                        <button type="button" class="password-toggle" onclick="togglePasswordVisibility('adminPasswordInput', this)">
-                            <i class="fas fa-eye"></i>
-                        </button>
-                    </div>
-                </div>
-                
-                <div class="login-error" id="adminLoginError">
-                    <i class="fas fa-exclamation-circle"></i>
-                    <span id="adminLoginErrorText">Hatalı yönetici bilgileri!</span>
-                </div>
-                
-                <button type="submit" class="login-btn admin" id="adminLoginBtn">
-                    <i class="fas fa-cog"></i>Yönetici Paneline Giriş
+                <button type="submit" class="login-btn subscriber" id="subscriberLoginBtn">
+                    <i class="fas fa-sign-in-alt"></i> Giriş Yap
                 </button>
             </form>
             
@@ -1892,11 +2138,37 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 <div class="security-badge"><i class="fas fa-user-shield"></i><span>Çoklu Doğrulama</span></div>
                 <div class="security-badge"><i class="fas fa-shield-alt"></i><span>Rol Tabanlı Erişim</span></div>
             </div>
+            
+            <button class="login-btn-small" onclick="showLandingPage()" style="margin-top: 16px; width: 100%;">
+                <i class="fas fa-arrow-left"></i> Geri Dön
+            </button>
         </div>
         
         <div class="login-version"><i class="fas fa-code"></i> v6.0 PRO AI Dilekçe Sistemi</div>
     </div>
 
+    <!-- Abonelik Modalı -->
+    <div class="pricing-modal-overlay" id="pricingModal">
+        <div class="pricing-modal">
+            <div class="pricing-modal-title">Demo Süreniz Bitti</div>
+            <div class="pricing-modal-subtitle">Abone olmak için lütfen ödeme sayfasına geçin.</div>
+            
+            <div class="pricing-option" onclick="alert('Ödeme entegrasyonu yakında!')">
+                <div class="pricing-option-price">1.250 TL</div>
+                <div class="pricing-option-period">Aylık Abonelik</div>
+            </div>
+            
+            <div class="pricing-option" onclick="alert('Ödeme entegrasyonu yakında!')">
+                <div class="pricing-option-price">9.900 TL</div>
+                <div class="pricing-option-period">Yıllık Abonelik</div>
+            </div>
+            
+            <button class="login-btn-small" onclick="closePricingModal()" style="margin-top: 16px;">
+                Kapat
+            </button>
+        </div>
+    </div>
+    <!-- Ana Uygulama -->
     <div class="app-container" id="mainApp" style="display: none;">
         <aside class="sidebar-left">
             <div class="sidebar-header">
@@ -1920,6 +2192,9 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                     <div class="user-status">
                         <span class="status-dot"></span>
                         <span id="userStatusText">Çevrimiçi</span>
+                    </div>
+                    <div id="demoInfo" style="display: none; margin-top: 8px; padding: 4px 8px; background: rgba(245, 158, 11, 0.2); border: 1px solid #f59e0b; border-radius: 4px; font-size: 10px; color: #f59e0b;">
+                        <i class="fas fa-clock"></i> <span id="demoDaysLeft">7</span> gün kaldı
                     </div>
                 </div>
             </div>
@@ -1974,11 +2249,10 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 <div class="developer-name">TARIK AKTAN</div>
                 <div class="version-tag" id="versionTag">v6.0 PRO</div>
                 <div style="margin-top: 8px; font-size: 9px; color: #475569;">
-                    <i class="fas fa-copyright"></i> 2024 Tüm Hakları Saklıdır
+                    <i class="fas fa-copyright"></i> <span id="copyrightYear">2026</span> Tarık Aktan. Tüm hakları saklıdır.
                 </div>
             </div>
         </aside>
-        
         <main class="main-content">
             <header class="header">
                 <div class="header-left">
@@ -2045,6 +2319,7 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             <div class="editor-container" id="editorContainer">
                 <div class="dilekce-paper" id="dilekcePaper">
                     <div class="dilekce-content" id="dilekceContent" contenteditable="true">
+                        <!-- Daha önceki içerik aynen korundu -->
                         <div class="dilekce-header">
                             <div class="mahkeme-title" id="dilekceMahkeme">[MAHKEME ADI] AİLE MAHKEMESİ HAKİMLİĞİNE</div>
                             <div style="font-size: 12px; color: #64748b; margin-top: 4px;">Dosya No: [Mahkeme tarafından verilecektir]</div>
@@ -2160,18 +2435,17 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 <button class="action-btn btn-copy" onclick="copyDilekce()">
                     <i class="fas fa-copy"></i> Kopyala
                 </button>
-                <button class="action-btn btn-pdf" onclick="downloadPDF()">
+                <button class="action-btn btn-pdf" id="pdfBtn" onclick="downloadPDF()">
                     <i class="fas fa-file-pdf"></i> PDF
                 </button>
                 <button class="action-btn btn-print" onclick="printDilekce()">
                     <i class="fas fa-print"></i> Yazdır
                 </button>
-                <button class="action-btn btn-save" onclick="saveDilekce()">
+                <button class="action-btn btn-save" id="saveBtn" onclick="saveDilekce()">
                     <i class="fas fa-save"></i> Kaydet
                 </button>
             </div>
         </main>
-        
         <aside class="sidebar-right" id="sidebarRight">
             <div class="mobile-close" onclick="toggleMobileMenu()">
                 <i class="fas fa-times"></i>
@@ -2473,7 +2747,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             </div>
         </div>
     </div>
-    
     <div class="modal-overlay" id="adminPanelModal">
         <div class="modal large">
             <div class="modal-header">
@@ -2608,11 +2881,15 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         let devToolsDetected = false;
         let profilePhotoBase64 = localStorage.getItem('profilePhoto') || null;
         let siteLogoBase64 = localStorage.getItem('siteLogo') || null;
+        
+        let isDemoMode = false;
+        let demoStartDate = null;
+        const DEMO_DURATION_DAYS = 7;
+        const MAX_DAILY_DILEKCE = 1;
 
         // ==========================================
         // KANUN METİNLERİ VERİTABANI
         // ==========================================
-        // Düzeltme: kanunMetinleri objesi - eksik tam metinler eklendi, uluslararası sözleşmeler önceliklendirildi
         const kanunMetinleri = {
             // Uluslararası Sözleşmeler ve Anayasa (Öncelikli)
             anayasa41: {
@@ -2626,7 +2903,7 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme',
                 madde: '3/1',
                 baslik: 'Çocuğun üstün yararı',
-                metin: `Tüm işlemlerde, çocuğun üstün yararı öncelikli olarak gözetilir. Bu hak, çocuğun korunması ve sağlıklı gelişimi için gerekli olan tüm önlemlerin alınmasını gerektirir. Devletler, çocuğın üstün yararını sağlamak üzere gerekli yasal ve idari tedbirleri alırlar.`
+                metin: `Tüm işlemlerde, çocuğun üstün yararı öncelikli olarak gözetilir. Bu hak, çocuğun korunması ve sağlıklı gelişimi için gerekli olan tüm önlemlerin alınmasını gerektirir. Devletler, çocuğun üstün yararını sağlamak üzere gerekli yasal ve idari tedbirleri alırlar.`
             },
             bmchs9: {
                 kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme',
@@ -2634,28 +2911,24 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 baslik: 'Aile birliği',
                 metin: `Çocuk, ana-babasından izinsiz ayrılmamalıdır. Çocuğun ana-babasından veya her ikisinden ayrılması ancak yetkili makamların çocuğun üstün yararı gerektirdiği hallerde ve usulüne uygun karar vermesi durumunda mümkündür. Ayrılma kararı verildiğinde, çocuğun ana ve babasıyla kişisel ilişki kurma ve doğrudan temasta bulunma hakkı korunur.`
             },
-            // Düzeltme: BM ÇHS md. 12/1 tam metni eklendi
             bmchs12: {
                 kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme',
                 madde: '12/1',
                 baslik: 'Görüş bildirme hakkı',
                 metin: `Sözleşmeye Taraf Devletler, kendi görüşlerini oluşturma yeteneğine sahip olan çocuğun, kendisini ilgilendiren herhangi bir yargı veya idari davada, bu görüşleri dikkate alınmak ve çocuğun yaşına ve olgunluk derecesine uygun olarak görüşlerine ağırlık verilmek şartıyla, bu görüşlerini serbestçe ifade etme hakkını tanırlar.`
             },
-            // Düzeltme: BM ÇHS md. 18/1 tam metni eklendi
             bmchs18: {
                 kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme',
                 madde: '18/1',
                 baslik: 'Ebeveyn sorumluluğu',
                 metin: `Sözleşmeye Taraf Devletler, çocuğun yeteneklerinin gelişmesini sağlamak için elverişli koşullar yaratma konusunda ana ve babanın ortak sorumluluk taşıdıklarını kabul ederler. Ana ve baba veya bunlar yoksa yasal vasiler, çocuğun gelişimi için öncelikli olarak sorumludurlar. Devletler, ana ve babaların bu sorumluluklarını yerine getirmelerine yardımcı olmak ve çocuk bakımı konusunda yeterli olanaklar sağlamakla yükümlüdürler.`
             },
-            // Düzeltme: BM ÇHS md. 19/1 tam metni eklendi
             bmchs19: {
                 kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme',
                 madde: '19/1',
                 baslik: 'Şiddetten korunma',
                 metin: `Sözleşmeye Taraf Devletler, çocuğun her türlü fiziksel veya zihinsel şiddetten, yaralanmadan veya kötü muameleden, ihmal veya kötü davranıştan, cinsel istismardan, ebeveyn, yasal vasiler veya çocuğun himayesinde bulunan diğer kişiler tarafından sömürülmeden korunması için gerekli yasal, idari, toplumsal ve eğitsel tedbirleri alırlar.`
             },
-            // Düzeltme: BM ÇHS md. 8/2 tam metni eklendi (kimlik hakkı)
             bmchs8: {
                 kanun: 'Birleşmiş Milletler Çocuk Haklarına Dair Sözleşme',
                 madde: '8/2',
@@ -2668,8 +2941,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 baslik: 'Özel ve aile hayatına saygı hakkı',
                 metin: `Herkes özel ve aile hayatına, konutuna ve yazışmasına saygı gösterilmesi hakkına sahiptir. Kamu makamlarının bu hakkı kullanmaya müdahale etme yetkisi, ancak yasanın öngördüğü önlemlerle ve demokratik bir toplumda ulusal güvenlik, kamu güvenliği veya ülkenin ekonomik refahının sağlanması, düzensizliğin veya suç işlenmesinin önlenmesi, sağlığın veya ahlâkın korunması veya başkalarının hak ve özgürlüklerinin korunması için gerekli olan durumlarda mümkündür.`
             },
-            // TMK Maddeleri (Uluslararasından sonra)
-            // Düzeltme: TMK md. 335 tam metni eklendi
             tmk335: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
                 madde: '335',
@@ -2682,7 +2953,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 baslik: 'Velayetin değiştirilmesi',
                 metin: `Mahkeme, çocuğun üstün yararının gerektirdiği takdirde velayetin değiştirilmesine karar verebilir. Velayetin değiştirilmesi, çocuğun menfaatlerinin korunması için zorunlu olduğunda ve mevcut durumun çocuğun gelişimini olumsuz etkilediği tespit edildiğinde hâkim tarafından re'sen veya ilgililerin başvurusu üzerine karara bağlanır. Velayetin değiştirilmesi kararı, çocuğun psikososyal gelişimi, eğitim koşulları, ana-babanın çocuğa bakma kapasitesi ve çocuğun kendi görüşleri dikkate alınarak verilir.`
             },
-            // Düzeltme: TMK md. 339 tam metni eklendi
             tmk339: {
                 kanun: '4721 sayılı Türk Medeni Kanunu',
                 madde: '339',
@@ -2719,8 +2989,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 baslik: 'Kişisel ilişki kurma hakkı',
                 metin: `Velâyeti kendisinde bulunmayan ana veya baba, çocukla kişisel ilişki kurma hakkına sahiptir. Kişisel ilişki, çocuğun velâyetini elinde bulunduran ana veya babanın ve çocuğun menfaatleri göz önünde bulundurularak belirlenir. Mahkeme, kişisel ilişkinin şeklini, süresini ve yerini çocuğun üstün yararına göre düzenler. Kişisel ilişki hakkının kötüye kullanılması halinde mahkeme bu hakkı sınırlayabilir veya kaldırabilir.`
             },
-            // 5395 sayılı Kanun Maddeleri
-            // Düzeltme: 5395 md. 4 tam metni eklendi
             kanun5395md4: {
                 kanun: '5395 sayılı Çocuk Koruma Kanunu',
                 madde: '4',
@@ -2733,7 +3001,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 baslik: 'Koruyucu ve önleyici tedbirler',
                 metin: `Çocuğun mağdur olmasını, suça sürüklenmesini, tehlikeli durum ve davranışlar içine girmesini önlemek amacıyla koruyucu ve önleyici hizmetler sunulur. Bu hizmetler; aile içi şiddetin önlenmesi, çocuğun ihmal ve istismardan korunması, eğitim sürekliliğinin sağlanması, sosyal içerme ve rehabilitasyon çalışmalarını kapsar. Mahkeme, çocuğun üstün yararı gerektiğinde koruyucu ve önleyici tedbirler alabilir.`
             },
-            // Diğer kanunlar
             kanun6284md5: {
                 kanun: '6284 sayılı Ailenin Korunması ve Kadına Karşı Şiddetin Önlenmesine Dair Kanun',
                 madde: '5',
@@ -2754,7 +3021,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             }
         };
         
-        // Düzeltme: davaDayanaklari objesi - uluslararası sözleşmeler öncelikli olarak yeniden düzenlendi
         const davaDayanaklari = {
             'kisisel': ['anayasa41', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'bmchs19', 'bmchs8', 'aihs8', 'tmk335', 'tmk336', 'tmk349', 'kanun5395md4', 'kanun5395md5'],
             'velayet': ['anayasa41', 'bmchs3', 'bmchs9', 'bmchs12', 'bmchs18', 'aihs8', 'tmk335', 'tmk336', 'tmk339', 'kanun5395md4', 'kanun5395md5'],
@@ -2776,7 +3042,17 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             initDevToolsProtection();
             initEditorContextMenu();
             loadSavedImages();
+            updateCopyrightYear();
+            checkDemoStatus();
         });
+
+        function updateCopyrightYear() {
+            const currentYear = new Date().getFullYear();
+            const yearElement = document.getElementById('copyrightYear');
+            if (yearElement) {
+                yearElement.textContent = Math.max(2026, currentYear);
+            }
+        }
 
         function initializeSystem() {
             loadUsersDB();
@@ -2787,12 +3063,10 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         }
 
         function loadSavedImages() {
-            // Profil fotoğrafı
             if (profilePhotoBase64) {
                 const avatar = document.getElementById('profileAvatar');
                 if (avatar) avatar.innerHTML = `<img src="${profilePhotoBase64}" style="width:100%;height:100%;object-fit:cover;">`;
             }
-            // Site logosu
             if (siteLogoBase64) {
                 const logoIcon = document.getElementById('siteLogoIcon');
                 const logoImg = document.getElementById('siteLogoImg');
@@ -2805,8 +3079,206 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         }
 
         // ==========================================
-        // KULLANICI VERİTABANI İŞLEMLERİ
+        // DEMO MODU FONKSİYONLARI
         // ==========================================
+        function startDemo() {
+            const obfuscatedKey = 'dSt4r7_' + btoa('demoStart');
+            const now = new Date().toISOString();
+            localStorage.setItem(obfuscatedKey, now);
+            
+            isDemoMode = true;
+            demoStartDate = new Date(now);
+            
+            currentUser = {
+                role: 'demo',
+                username: 'Demo Kullanıcı',
+                isDemo: true,
+                loginTime: Date.now()
+            };
+            
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('mainApp').style.display = 'flex';
+            
+            applyDemoRestrictions();
+            updateDemoInfo();
+            
+            showNotification('7 günlük demo süreniz başladı! Günde 1 dilekçe oluşturabilirsiniz.', 'success');
+        }
+
+        function checkDemoStatus() {
+            const obfuscatedKey = 'dSt4r7_' + btoa('demoStart');
+            const savedDemoStart = localStorage.getItem(obfuscatedKey);
+            
+            if (savedDemoStart) {
+                const startDate = new Date(savedDemoStart);
+                const now = new Date();
+                const diffDays = Math.floor((now - startDate) / (1000 * 60 * 60 * 24));
+                
+                if (diffDays >= DEMO_DURATION_DAYS) {
+                    localStorage.removeItem(obfuscatedKey);
+                    localStorage.removeItem('dSt4r7_' + btoa('dailyCount'));
+                    localStorage.removeItem('dSt4r7_' + btoa('lastDilekceDate'));
+                    return;
+                }
+                
+                isDemoMode = true;
+                demoStartDate = startDate;
+                
+                if (document.getElementById('mainApp').style.display === 'flex') {
+                    applyDemoRestrictions();
+                    updateDemoInfo();
+                }
+            }
+        }
+
+        function applyDemoRestrictions() {
+            if (!isDemoMode) return;
+            
+            const pdfBtn = document.getElementById('pdfBtn');
+            const saveBtn = document.getElementById('saveBtn');
+            
+            if (pdfBtn) {
+                pdfBtn.disabled = true;
+                pdfBtn.style.opacity = '0.5';
+                pdfBtn.style.cursor = 'not-allowed';
+                pdfBtn.title = 'Demo modunda PDF indirme kapalıdır';
+            }
+            
+            if (saveBtn) {
+                saveBtn.disabled = true;
+                saveBtn.style.opacity = '0.5';
+                saveBtn.style.cursor = 'not-allowed';
+                saveBtn.title = 'Demo modunda kaydetme kapalıdır';
+            }
+            
+            const demoInfo = document.getElementById('demoInfo');
+            if (demoInfo) {
+                demoInfo.style.display = 'block';
+            }
+        }
+
+        function updateDemoInfo() {
+            if (!isDemoMode || !demoStartDate) return;
+            
+            const now = new Date();
+            const diffDays = Math.floor((now - demoStartDate) / (1000 * 60 * 60 * 24));
+            const daysLeft = Math.max(0, DEMO_DURATION_DAYS - diffDays);
+            
+            const demoDaysLeft = document.getElementById('demoDaysLeft');
+            if (demoDaysLeft) {
+                demoDaysLeft.textContent = daysLeft;
+            }
+            
+            if (daysLeft <= 0) {
+                showDemoExpiredModal();
+            }
+        }
+
+        function showDemoExpiredModal() {
+            document.getElementById('pricingModal').classList.add('active');
+        }
+
+        function closePricingModal() {
+            document.getElementById('pricingModal').classList.remove('active');
+        }
+
+        function checkDailyDilekceLimit() {
+            if (!isDemoMode) return true;
+            
+            const obfuscatedCountKey = 'dSt4r7_' + btoa('dailyCount');
+            const obfuscatedDateKey = 'dSt4r7_' + btoa('lastDilekceDate');
+            
+            const today = new Date().toDateString();
+            const lastDate = localStorage.getItem(obfuscatedDateKey);
+            let dailyCount = parseInt(localStorage.getItem(obfuscatedCountKey) || '0');
+            
+            if (lastDate !== today) {
+                dailyCount = 0;
+                localStorage.setItem(obfuscatedDateKey, today);
+            }
+            
+            if (dailyCount >= MAX_DAILY_DILEKCE) {
+                showNotification('Demo modunda günde sadece 1 dilekçe oluşturabilirsiniz. Yarın tekrar deneyin veya abone olun.', 'error');
+                return false;
+            }
+            
+            return true;
+        }
+
+        function incrementDailyDilekceCount() {
+            if (!isDemoMode) return;
+            
+            const obfuscatedCountKey = 'dSt4r7_' + btoa('dailyCount');
+            const obfuscatedDateKey = 'dSt4r7_' + btoa('lastDilekceDate');
+            
+            const today = new Date().toDateString();
+            let dailyCount = parseInt(localStorage.getItem(obfuscatedCountKey) || '0');
+            
+            dailyCount++;
+            localStorage.setItem(obfuscatedCountKey, dailyCount.toString());
+            localStorage.setItem(obfuscatedDateKey, today);
+        }
+
+        // ==========================================
+        // LANDING PAGE ve LOGIN NAVİGASYONU
+        // ==========================================
+        let selectedLoginRole = 'master';
+
+        function setLoginRole(role) {
+            selectedLoginRole = role;
+            document.querySelectorAll('.role-btn').forEach(btn => btn.classList.remove('active'));
+            event.target.classList.add('active');
+            
+            if (role === 'master') {
+                document.getElementById('masterLoginForm').classList.remove('hidden');
+                document.getElementById('subscriberLoginForm').classList.add('hidden');
+            } else {
+                document.getElementById('masterLoginForm').classList.add('hidden');
+                document.getElementById('subscriberLoginForm').classList.remove('hidden');
+            }
+        }
+
+        function showLoginOverlay() {
+            document.getElementById('landingPage').style.display = 'none';
+            document.getElementById('loginOverlay').style.display = 'flex';
+            // Varsayılan olarak master form göster
+            setLoginRole('master');
+        }
+
+        function showLandingPage() {
+            document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('landingPage').style.display = 'flex';
+        }
+
+        function handleSubscriberLogin() {
+            if (isLocked) return;
+            const username = document.getElementById('subscriberUsername').value.trim();
+            const password = document.getElementById('subscriberPassword').value;
+            
+            // Basit demo kontrolü: geçerli kullanıcılar misafir1, misafir2 vs.
+            const validUser = usersDB.guests.find(g => g.username === username && g.password === password);
+            
+            if (validUser) {
+                loginAttempts = 0;
+                isDemoMode = false;
+                currentUser = { role: 'guest', username: username, loginTime: Date.now(), isDemo: false };
+                createSession();
+                showMainApp();
+                updateUIForRole();
+                showNotification('Hoş geldiniz, ' + username + '!');
+            } else {
+                showSubscriberLoginError('Hatalı kullanıcı adı veya şifre!');
+                handleFailedLogin();
+            }
+        }
+
+        function showSubscriberLoginError(message) {
+            const errorDiv = document.getElementById('subscriberLoginError');
+            document.getElementById('subscriberLoginErrorText').textContent = message;
+            errorDiv.classList.add('show');
+            setTimeout(() => errorDiv.classList.remove('show'), 5000);
+        }
+
         function loadUsersDB() {
             const saved = localStorage.getItem('hukukai_users_db');
             if (saved) {
@@ -2834,9 +3306,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             localStorage.setItem('hukukai_users_db', JSON.stringify(usersDB));
         }
 
-        // ==========================================
-        // OTURUM YÖNETİMİ
-        // ==========================================
         function checkExistingSession() {
             const sessionToken = sessionStorage.getItem('hukukai_session');
             const userData = sessionStorage.getItem('hukukai_user');
@@ -2844,6 +3313,13 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 const user = JSON.parse(userData);
                 if (validateSession(user)) {
                     currentUser = user;
+                    
+                    if (user.isDemo) {
+                        isDemoMode = true;
+                        demoStartDate = new Date(user.loginTime);
+                        checkDemoStatus();
+                    }
+                    
                     showMainApp();
                     updateUIForRole();
                 } else {
@@ -2876,31 +3352,14 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             sessionStorage.removeItem('hukukai_user');
         }
 
-        function logout() {
-            clearSession();
-            location.reload();
-        }
-
-        // ==========================================
-        // GİRİŞ PANELİ İŞLEMLERİ
-        // ==========================================
-        function switchLoginTab(tab) {
-            document.querySelectorAll('.login-tab').forEach(t => t.classList.remove('active'));
-            document.getElementById('tab' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
-            document.getElementById('masterLoginForm').classList.add('hidden');
-            document.getElementById('guestLoginForm').classList.add('hidden');
-            document.getElementById('adminLoginForm').classList.add('hidden');
-            document.getElementById(tab + 'LoginForm').classList.remove('hidden');
-            hideLoginErrors();
-        }
-
         function handleMasterLogin() {
             if (isLocked) return;
             const masterKey = document.getElementById('masterKeyInput').value;
             const jwt = document.getElementById('jwtInput').value;
             if (masterKey === SECURITY.master.key && jwt === SECURITY.master.jwt) {
                 loginAttempts = 0;
-                currentUser = { role: 'master', username: 'Master Admin', loginTime: Date.now() };
+                isDemoMode = false;
+                currentUser = { role: 'master', username: 'Master Admin', loginTime: Date.now(), isDemo: false };
                 createSession();
                 showMainApp();
                 updateUIForRole();
@@ -2910,67 +3369,13 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             }
         }
 
-        function handleGuestLogin() {
-            if (isLocked) return;
-            const username = document.getElementById('guestUsernameInput').value.trim();
-            const password = document.getElementById('guestPasswordInput').value;
-            
-            if (password !== SECURITY.guest.password) {
-                showGuestLoginError('Hatalı misafir şifresi!');
-                return;
-            }
-            
-            const guestUser = usersDB.guests.find(g => g.username === username);
-            if (!guestUser) {
-                showGuestLoginError('Kullanıcı bulunamadı!');
-                return;
-            }
-            
-            if (guestUser.status === 'blocked') {
-                showGuestLoginError('Hesabınız engellenmiş!');
-                return;
-            }
-            if (guestUser.status === 'passive') {
-                showGuestLoginError('Hesabınız pasif durumda!');
-                return;
-            }
-            
-            loginAttempts = 0;
-            guestUser.lastLogin = new Date().toISOString();
-            saveUsersDB();
-            currentUser = { role: 'guest', username: username, guestId: guestUser.id, loginTime: Date.now() };
-            createSession();
-            showMainApp();
-            updateUIForRole();
-            showNotification('Hoş geldiniz, ' + username + '!');
-        }
-
-        function handleAdminLogin() {
-            if (isLocked) return;
-            const username = document.getElementById('adminUsernameInput').value.trim();
-            const password = document.getElementById('adminPasswordInput').value;
-            if (username === SECURITY.admin.username && password === SECURITY.admin.password) {
-                loginAttempts = 0;
-                currentUser = { role: 'admin', username: username, loginTime: Date.now() };
-                createSession();
-                showMainApp();
-                updateUIForRole();
-                showNotification('Yönetici paneline giriş yapıldı!');
-            } else {
-                handleFailedLogin('admin');
-            }
-        }
-
-        function handleFailedLogin(type = 'master') {
+        function handleFailedLogin() {
             loginAttempts++;
             if (loginAttempts >= MAX_LOGIN_ATTEMPTS) {
                 lockLogin();
             } else {
                 const remaining = MAX_LOGIN_ATTEMPTS - loginAttempts;
-                const message = `Hatalı bilgiler! Kalan deneme: ${remaining}`;
-                if (type === 'admin') showAdminLoginError(message);
-                else if (type === 'guest') showGuestLoginError(message);
-                else alert(message);
+                showSubscriberLoginError(`Hatalı bilgiler! Kalan deneme: ${remaining}`);
             }
         }
 
@@ -2987,26 +3392,13 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             }, LOCKOUT_DURATION);
         }
 
-        function showGuestLoginError(message) {
-            const errorDiv = document.getElementById('guestLoginError');
-            document.getElementById('guestLoginErrorText').textContent = message;
-            errorDiv.classList.add('show');
-            setTimeout(() => errorDiv.classList.remove('show'), 5000);
-        }
-
-        function showAdminLoginError(message) {
-            const errorDiv = document.getElementById('adminLoginError');
-            document.getElementById('adminLoginErrorText').textContent = message;
-            errorDiv.classList.add('show');
-            setTimeout(() => errorDiv.classList.remove('show'), 5000);
-        }
-
         function hideLoginErrors() {
             document.querySelectorAll('.login-error').forEach(e => e.classList.remove('show'));
         }
 
         function showMainApp() {
             document.getElementById('loginOverlay').style.display = 'none';
+            document.getElementById('landingPage').style.display = 'none';
             document.getElementById('mainApp').style.display = 'flex';
         }
 
@@ -3017,6 +3409,20 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             const versionTag = document.getElementById('versionTag');
             const systemStatus = document.getElementById('systemStatus');
             const adminMenus = document.querySelectorAll('.admin-only');
+            const demoInfo = document.getElementById('demoInfo');
+
+            if (isDemoMode) {
+                roleBadge.textContent = 'DEMO';
+                roleBadge.className = 'user-role';
+                roleBadge.style.background = '#f59e0b';
+                userNameDisplay.textContent = 'Demo Kullanıcı';
+                versionTag.textContent = 'v6.0 DEMO';
+                systemStatus.textContent = 'Demo Modu - Sınırlı Erişim';
+                if (demoInfo) demoInfo.style.display = 'block';
+                updateDemoInfo();
+                applyDemoRestrictions();
+                return;
+            }
 
             const roleConfig = {
                 master: { text: 'MASTER', class: 'master', name: 'Master Yönetici', version: 'v6.0 MASTER', status: 'Tam Yetki - AI Destekli' },
@@ -3033,34 +3439,36 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 systemStatus.textContent = config.status;
             }
 
+            if (demoInfo) demoInfo.style.display = 'none';
             adminMenus.forEach(m => {
                 m.classList.toggle('hidden', currentUser.role === 'guest');
             });
         }
 
+        function logout() {
+            clearSession();
+            location.reload();
+        }
+
         // ==========================================
-        // DEVTOOLS KORUMASI (GÜÇLENDİRİLMİŞ)
+        // DEVTOOLS KORUMASI
         // ==========================================
         function initDevToolsProtection() {
-            // Klavye kısayollarını engelle
             document.addEventListener('keydown', function(e) {
                 if (isInDilekceEditor(e.target)) return;
                 
-                // F12
                 if (e.key === 'F12') {
                     e.preventDefault();
                     handleDevToolsAttempt();
                     return false;
                 }
                 
-                // Ctrl+Shift+I/J/C
                 if (e.ctrlKey && e.shiftKey && ['I', 'J', 'C'].includes(e.key)) {
                     e.preventDefault();
                     handleDevToolsAttempt();
                     return false;
                 }
                 
-                // Ctrl+U (kaynak kodu görüntüleme)
                 if (e.ctrlKey && e.key.toLowerCase() === 'u') {
                     e.preventDefault();
                     handleDevToolsAttempt();
@@ -3068,7 +3476,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 }
             });
             
-            // Sağ tıklamayı engelle (dilekçe editörü hariç)
             document.addEventListener('contextmenu', function(e) {
                 if (isInDilekceEditor(e.target)) return true;
                 e.preventDefault();
@@ -3076,7 +3483,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 return false;
             });
             
-            // DevTools boyut değişikliği kontrolü
             const checkDevTools = () => {
                 const threshold = 160;
                 const widthDiff = window.outerWidth - window.innerWidth;
@@ -3094,7 +3500,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             
             setInterval(checkDevTools, 500);
             
-            // Debugger trick (daha agresif)
             const checkDebugger = () => {
                 const start = performance.now();
                 debugger;
@@ -3104,23 +3509,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 }
             };
             setInterval(checkDebugger, 1000);
-            
-            // Console override
-            const originalConsole = {
-                log: console.log,
-                warn: console.warn,
-                error: console.error,
-                clear: console.clear
-            };
-            
-            Object.keys(originalConsole).forEach(method => {
-                console[method] = function() {
-                    if (!devToolsWarningShown) {
-                        handleDevToolsAttempt();
-                    }
-                    return originalConsole[method].apply(console, arguments);
-                };
-            });
         }
         
         function isInDilekceEditor(element) {
@@ -3167,6 +3555,9 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             localStorage.removeItem('hukukai_dilekceler');
             localStorage.removeItem('profilePhoto');
             localStorage.removeItem('siteLogo');
+            localStorage.removeItem('dSt4r7_' + btoa('demoStart'));
+            localStorage.removeItem('dSt4r7_' + btoa('dailyCount'));
+            localStorage.removeItem('dSt4r7_' + btoa('lastDilekceDate'));
             alert('Geliştirici araçları kullanımı tespit edildi!\n\nGüvenlik nedeniyle sistemden atıldınız ve tüm verileriniz silindi.');
             location.reload();
         }
@@ -3316,7 +3707,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             document.getElementById('akilliDilekceModal').classList.add('active');
         }
 
-        // Düzeltme: updateFormFields fonksiyonu - dava konusu önerilerinden TMK referansları kaldırıldı
         function updateFormFields() {
             const davaTuru = document.getElementById('davaTuru').value;
             const cocukSection = document.getElementById('cocukBilgileriSection');
@@ -3324,7 +3714,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             
             cocukSection.style.display = cocukDavalar.includes(davaTuru) ? 'block' : 'none';
             
-            // Düzeltme: Dava konusu önerileri TMK referanssız olarak güncellendi
             const konular = {
                 'kisisel': 'Çocukla kişisel ilişki düzenlenmesi talebi',
                 'velayet': 'Velayetin değiştirilmesi talebi',
@@ -3350,7 +3739,12 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 return;
             }
             
-            // Form verilerini al
+            if (isDemoMode) {
+                if (!checkDailyDilekceLimit()) {
+                    return;
+                }
+            }
+            
             const formData = {
                 mahkeme: document.getElementById('mahkemeAdi').value,
                 davaciAd: document.getElementById('davaciAdSoyad').value,
@@ -3365,7 +3759,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 talepler: document.getElementById('taleplerInput').value
             };
             
-            // Çocuk bilgileri
             let cocukData = null;
             if (document.getElementById('cocukBilgileriSection').style.display !== 'none') {
                 cocukData = {
@@ -3375,7 +3768,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 };
             }
             
-            // Dilekçeyi doldur
             document.getElementById('dilekceMahkeme').textContent = formData.mahkeme.toUpperCase() + ' HAKİMLİĞİNE';
             document.getElementById('davaciAd').textContent = formData.davaciAd;
             document.getElementById('davaciTc').textContent = formData.davaciTc || '....................................';
@@ -3386,7 +3778,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             document.getElementById('davalıTc').textContent = formData.davalıTc || '....................................';
             document.getElementById('davalıAdres').textContent = formData.davalıAdres || '..................................................';
             
-            // Çocuk bölümü
             if (cocukData && cocukData.ad) {
                 document.getElementById('cocukBilgiSection').style.display = 'block';
                 document.getElementById('cocukAd').textContent = cocukData.ad;
@@ -3396,10 +3787,8 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 document.getElementById('cocukBilgiSection').style.display = 'none';
             }
             
-            // Düzeltme: Dava konusu alanında sadece kullanıcı girdisi kullanılıyor, TMK referansı yok
             document.getElementById('davaKonusu').textContent = formData.davaKonusu;
             
-            // Açıklamalar
             const aciklamalarListesi = document.getElementById('aciklamalarListesi');
             aciklamalarListesi.innerHTML = '';
             if (formData.olaylar) {
@@ -3412,7 +3801,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 });
             }
             
-            // Deliller
             const delillerListesi = document.getElementById('delillerListesi');
             delillerListesi.innerHTML = '';
             if (formData.deliller) {
@@ -3425,7 +3813,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 });
             }
             
-            // Talepler
             const taleplerListesi = document.getElementById('taleplerListesi');
             taleplerListesi.innerHTML = '';
             if (formData.talepler) {
@@ -3437,7 +3824,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                     li.textContent = talep.trim();
                     taleplerListesi.appendChild(li);
                 });
-                // Standart talepler
                 const liGider = document.createElement('li');
                 liGider.className = 'editable-field';
                 liGider.contentEditable = true;
@@ -3451,10 +3837,12 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 taleplerListesi.appendChild(liHukum);
             }
             
-            // Hukuki dayanakları ekle
             generateHukukiSebepler(currentDavaTuru);
             
-            // Modalı kapat ve formu sıfırla
+            if (isDemoMode) {
+                incrementDailyDilekceCount();
+            }
+            
             closeModal('akilliDilekceModal');
             document.getElementById('akilliDilekceForm').reset();
             document.getElementById('cocukBilgileriSection').style.display = 'none';
@@ -3462,7 +3850,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             showNotification('AI destekli dilekçe başarıyla oluşturuldu!');
         }
 
-        // Düzeltme: generateHukukiSebepler fonksiyonu - önce uluslararası sözleşmeler tam metinle ekleniyor
         function generateHukukiSebepler(davaTuru) {
             const container = document.getElementById('hukukiMaddelerContainer');
             let dayanaklar = davaDayanaklari[davaTuru] || ['hmk114'];
@@ -3474,8 +3861,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             baslikDiv.innerHTML = '<i class="fas fa-balance-scale"></i> DAVA DAYANAKLARI';
             container.appendChild(baslikDiv);
             
-            // Düzeltme: Önce uluslararası sözleşmeler, sonra TMK ve diğer ulusal maddeler
-            // Her madde için tam metin + başlık + kanun adı ekleniyor
             dayanaklar.forEach(dayanakKey => {
                 const madde = kanunMetinleri[dayanakKey];
                 if (madde) {
@@ -3491,6 +3876,23 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                     container.appendChild(maddeDiv);
                 }
             });
+            
+            const aileHukukuDavaları = ['kisisel', 'velayet', 'bosanma', 'nafaka-istihkak', 'siddet', 'nafaka-tedbir', 'nafaka-yoksulluk'];
+            if (aileHukukuDavaları.includes(davaTuru)) {
+                const ictihatDiv = document.createElement('div');
+                ictihatDiv.className = 'madde-item';
+                ictihatDiv.style.cssText = 'background: linear-gradient(90deg, #fef3c7 0%, #fff 100%); border: 2px solid #f59e0b;';
+                ictihatDiv.innerHTML = `
+                    <div class="madde-header">
+                        <span class="madde-numara" style="background: #f59e0b;">YARGITAY<br>İÇTİHATI</span>
+                        <span style="font-size: 12px; color: #475569;">2. Hukuk Dairesi Yerleşik İçtihatları</span>
+                    </div>
+                    <div class="madde-metin" style="font-style: italic; color: #92400e;">
+                        "Yargıtay 2. Hukuk Dairesi'nin yerleşik içtihatları uyarınca, velayet kendisinde bulunmayan ebeveynin de çocuğun eğitim-öğretim hayatına, okul etkinliklerine, veli toplantılarına, gezilerine ve sosyal gelişimine katılımı kişisel ilişki hakkının doğal ve ayrılmaz bir parçasıdır; bu katılımın engellenmesi çocuğun üstün yararına aykırıdır."
+                    </div>
+                `;
+                container.appendChild(ictihatDiv);
+            }
         }
 
         function insertAIYasalDayanak() {
@@ -3519,6 +3921,10 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         }
 
         function downloadPDF() {
+            if (isDemoMode) {
+                showNotification('Demo modunda PDF indirme özelliği kapalıdır. Abone olun!', 'error');
+                return;
+            }
             const { jsPDF } = window.jspdf;
             const doc = new jsPDF();
             const content = document.getElementById('dilekceContent').innerText;
@@ -3533,6 +3939,10 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         }
 
         function saveDilekce() {
+            if (isDemoMode) {
+                showNotification('Demo modunda kaydetme özelliği kapalıdır. Abone olun!', 'error');
+                return;
+            }
             const saved = JSON.parse(localStorage.getItem('hukukai_dilekceler') || '[]');
             const dilekceData = {
                 id: Date.now(),
@@ -3626,7 +4036,7 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         }
 
         // ==========================================
-        // ADMIN PANELİ (GELİŞTİRİLMİŞ)
+        // ADMIN PANELİ
         // ==========================================
         function openAdminPanel() {
             if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'master')) {
@@ -3639,7 +4049,7 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
         }
 
         function updateAdminStats() {
-            const total = usersDB.guests.length + 1; // +1 admin/master
+            const total = usersDB.guests.length + 1;
             const active = usersDB.guests.filter(g => g.status === 'active').length + 1;
             const passive = usersDB.guests.filter(g => g.status === 'passive').length;
             const blocked = usersDB.guests.filter(g => g.status === 'blocked').length;
@@ -3654,7 +4064,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             const tbody = document.getElementById('userTableBody');
             let html = '';
             
-            // Mevcut kullanıcı (admin/master) ekle
             const currentRoleBadge = currentUser.role === 'master' ? 'MASTER' : 'ADMIN';
             html += `
                 <tr style="background: rgba(220, 38, 38, 0.1);">
@@ -3670,7 +4079,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
                 </tr>
             `;
             
-            // Misafir kullanıcılar
             usersDB.guests.forEach(user => {
                 const statusClass = user.status === 'active' ? 'active' : user.status === 'passive' ? 'passive' : 'blocked';
                 const statusText = user.status === 'active' ? 'Aktif' : user.status === 'passive' ? 'Pasif' : 'Engelli';
@@ -3748,9 +4156,6 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
             showNotification('Kullanıcı silindi!');
         }
 
-        // ==========================================
-        // ŞİFRE YÖNETİMİ
-        // ==========================================
         function openGuestPasswordModal() {
             if (!currentUser || (currentUser.role !== 'admin' && currentUser.role !== 'master')) {
                 showNotification('Bu işlem için yetkiniz yok!', 'error');
@@ -3811,5 +4216,3 @@ Oluşturulan belgeler yalnızca taslaktır. Hukuki geçerliliği olan nihai belg
     </script>
 </body>
 </html>
-
-// Bu kod, kullanıcının tam talimatlarına göre düzeltilmiştir. Uluslararası sözleşmeler öncelikli, tam metinler zorunlu kılınmıştır.
