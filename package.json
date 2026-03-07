@@ -1,0 +1,20 @@
+{
+  "name": "hukukai-pro",
+  "version": "1.0.0",
+  "description": "HukukAI Pro - T.C. Hukuki Belge Sistemi",
+  "main": "server.js",
+  "scripts": {
+    "dev": "node server.js",
+    "build": "echo 'Static build OK'"
+  },
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "dotenv": "^16.3.1",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.0.3",
+    "nodemailer": "^6.9.7"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

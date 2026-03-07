@@ -1,0 +1,30 @@
+{
+  "version": 2,
+  "name": "hukukai-pro",
+  "builds": [
+    { "src": "api/*.js", "use": "@vercel/node" },
+    { "src": "public/**", "use": "@vercel/static" }
+  ],
+  "routes": [
+    { "src": "/api/auth(.*)", "dest": "/api/auth.js" },
+    { "src": "/api/users(.*)", "dest": "/api/users.js" },
+    { "src": "/api/dilekce(.*)", "dest": "/api/dilekce.js" },
+    { "src": "/api/config(.*)", "dest": "/api/config.js" },
+    { "src": "/(.*)", "dest": "/public/$1" }
+  ],
+  "headers": [
+    {
+      "source": "/api/(.*)",
+      "headers": [
+        { "key": "Access-Control-Allow-Origin", "value": "*" },
+        { "key": "Access-Control-Allow-Methods", "value": "GET,POST,PUT,DELETE,OPTIONS" },
+        { "key": "Access-Control-Allow-Headers", "value": "Content-Type, Authorization" }
+      ]
+    }
+  ],
+  "functions": {
+    "api/*.js": {
+      "maxDuration": 30
+    }
+  }
+}
