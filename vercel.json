@@ -9,6 +9,7 @@
     { "src": "/api/users(.*)", "dest": "/api/users.js" },
     { "src": "/api/dilekce(.*)", "dest": "/api/dilekce.js" },
     { "src": "/api/config(.*)", "dest": "/api/config.js" },
+    { "src": "/api/email(.*)", "dest": "/api/email.js" },
     { "src": "/(.*)", "dest": "/public/$1" }
   ],
   "headers": [
