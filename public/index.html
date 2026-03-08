@@ -2072,8 +2072,8 @@ async function () {
         username, email, password, fullName,
         status: 'pending',
         requestDate: new Date().toISOString(),
-        violationCount: 0
-};
+ violationCount: 0
+    };
     usersDB.pending.push(newPending);
     saveUsersDB();
     logActivity('register', `📝 Kayıt talebi: ${username} (${email})`);
