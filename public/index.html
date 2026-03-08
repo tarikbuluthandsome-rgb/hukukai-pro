@@ -788,7 +788,7 @@
         </form>
 
         <!-- KAYIT FORMU -->
-        <form id="registerForm" style="display:none;" onsubmit="event.preventDefault(); handleRegister();">
+        <form id="registerForm" style="display:none;" onsubmit="event.preventDefault(); ();">
             <div class="lf-group">
                 <label class="lf-label"><i class="fas fa-user"></i> Ad Soyad</label>
                 <div class="lf-input-wrap">
@@ -2035,7 +2035,7 @@ async function handleSubscriberLogin() {
 // ============================================================
 // KAYIT OL
 // ============================================================
-function handleRegister() {
+function () {
     const fullName = document.getElementById('regFullName').value.trim();
     const email = document.getElementById('regEmail').value.trim();
     const username = document.getElementById('regUsername').value.trim();
@@ -2050,15 +2050,29 @@ function handleRegister() {
     const existsPending = usersDB.pending.find(u => u.username === username || u.email === email);
     if (existsGuest || existsPending) { showLoginError('reg','Bu kullanıcı adı veya e-posta zaten kayıtlı!'); return; }
 
+    // API'ye kaydet
+    try {
+        const r = await apiCall('/auth?action=register', 'POST', { fullName, email, username, password });
+        if (r.ok) {
+            showNotification('Kayıt talebiniz alındı! Yönetici onayı bekleniyor.', 'success');
+            // Telegram bildirimi otomatik gider
+            document.getElementById('regFullName').value = '';
+            document.getElementById('regEmail').value = '';
+            document.getElementById('regUsername').value = '';
+            document.getElementById('regPassword').value = '';
+            return;
+        } else if (!r.offline) {
+            showLoginError('reg', r.data?.error || 'Kayıt hatası');
+            return;
+        }
+    } catch(e) {}
+    // Offline fallback - localStorage
     const newPending = {
         id: Date.now(),
         username, email, password, fullName,
         status: 'pending',
         requestDate: new Date().toISOString(),
         violationCount: 0
-    };
-    usersDB.pending.push(newPending);
-    saveUsersDB();
 
     logActivity('register', `📝 Kayıt talebi: ${username} (${email})`);
 
