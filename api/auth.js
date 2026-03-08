@@ -82,7 +82,15 @@ module.exports = async (req, res) => {
 
     const user = await User.create({ fullName, email: email.toLowerCase(), username, password, status: 'pending' });
     await ActivityLog.create({ userId: user._id, username, type: 'register', description: `Kayıt talebi: ${username}` });
-
+// Telegram bildirimi gönder
+    try {
+      const msg = `🔔 Yeni Kayıt Talebi!\n👤 Ad: ${fullName}\n📧 Email: ${email}\n🔑 Kullanıcı: ${username}`;
+      await fetch(`https://api.telegram.org/bot${process.env.TELEGRAM_BOT_TOKEN}/sendMessage`, {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        body: JSON.stringify({ chat_id: process.env.TELEGRAM_CHAT_ID, text: msg })
+      });
+    } catch(e) {}
     return res.status(201).json({ message: 'Kayıt talebi alındı! Yönetici onayı bekleniyor.' });
   }
 
