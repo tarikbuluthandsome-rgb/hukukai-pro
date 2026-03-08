@@ -3467,7 +3467,11 @@ function updateHeroSavedCount() {
     if (badge) { badge.textContent = filtered.length; badge.style.display = filtered.length > 0 ? 'inline-flex' : 'none'; }
 }
 }
-
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js');
+  });
+}
 </script>
 </body>
 </html>
