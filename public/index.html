@@ -2088,6 +2088,7 @@ async function handleRegister() {
     try {
         const r = await apiCall('/auth?action=register', 'POST', { fullName, email, username, password });
         if (r.ok) {
+            sendRegisterNotification(fullName, email, username);
             showPendingApprovalScreen(fullName, email);
             return;
         } else if (!r.offline) {
@@ -2103,7 +2104,20 @@ async function handleRegister() {
     usersDB.pending.push(newPending);
     saveUsersDB();
     logActivity('register', `📝 Kayıt talebi: ${username} (${email})`);
+    // Telegram bildirimi gönder
+    sendRegisterNotification(fullName, email, username);
     showPendingApprovalScreen(fullName, email);
+}
+
+async function sendRegisterNotification(fullName, email, username) {
+    const msg = `📝 *Yeni Kayıt Talebi!*\n\n👤 *Ad Soyad:* ${fullName}\n📧 *E-posta:* ${email}\n🔑 *Kullanıcı Adı:* ${username}\n🕐 *Tarih:* ${new Date().toLocaleString('tr-TR')}\n\n✅ Onaylamak için admin panelini açın.`;
+    try {
+        const res = await fetch('https://api.telegram.org/bot8725385830:AAHrmcgNNpvZApD9wJZMA5v-VMjCOMmCgEs/sendMessage', {
+            method: 'POST',
+            headers: {'Content-Type':'application/json'},
+            body: JSON.stringify({ chat_id: '1575763358', text: msg, parse_mode: 'Markdown' })
+        });
+    } catch(e) {}
 }
 
 function showPendingApprovalScreen(fullName, email) {
