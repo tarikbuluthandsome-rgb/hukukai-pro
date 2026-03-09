@@ -494,6 +494,23 @@
         }
         .hidden { display:none !important; }
         #masterForm, #subscriberForm, #registerForm { display:block; }
+
+        /* ── Hukuki Terim Tooltip ── */
+        .hukuki-terim { border-bottom:1px dashed #7c3aed; cursor:help; color:inherit; position:relative; }
+        .hukuki-terim::after { content:attr(data-tanim); position:absolute; bottom:calc(100% + 6px); left:50%; transform:translateX(-50%); background:#1e1b4b; color:#e2e8f0; font-size:11px; font-family:'Outfit',sans-serif; line-height:1.5; padding:8px 12px; border-radius:8px; white-space:normal; width:220px; box-shadow:0 4px 20px rgba(0,0,0,.4); border:1px solid rgba(124,58,237,.4); z-index:9999; opacity:0; pointer-events:none; transition:opacity .2s; font-style:normal; }
+        .hukuki-terim:hover::after { opacity:1; }
+
+        /* ── Dilekçe Watermark ── */
+        .dilekce-paper.demo-watermark::before { content:'TASLAK'; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%) rotate(-35deg); font-size:80px; font-weight:900; color:rgba(220,38,38,.06); pointer-events:none; z-index:1; font-family:'Outfit',sans-serif; letter-spacing:10px; white-space:nowrap; }
+
+        /* ── Versiyon geçmişi butonu ── */
+        .version-dot { width:8px; height:8px; border-radius:50%; background:var(--primary); flex-shrink:0; margin-top:5px; }
+
+        /* ── Mic pulse animasyonu ── */
+        @keyframes micPulse { 0%,100%{box-shadow:0 0 0 0 rgba(220,38,38,.4)} 50%{box-shadow:0 0 0 8px rgba(220,38,38,0)} }
+        .mic-active { animation:micPulse 1s infinite !important; background:rgba(220,38,38,.4) !important; color:#fca5a5 !important; }
+        @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.5} }
+        @keyframes fadeIn { from{opacity:0;transform:translateY(8px)} to{opacity:1;transform:translateY(0)} }
     </style>
 </head>
 <body>
@@ -509,7 +526,7 @@
 </div>
 
 <!-- LANDING PAGE -->
-<div class="landing-overlay" id="landingPage">
+<div class="landing-overlay" id="landingPage" style="display:flex;">
     <div class="landing-glow-1"></div>
     <div class="landing-glow-2"></div>
     <div class="landing-container">
@@ -560,14 +577,8 @@
                 </label>
             </div>
             <div class="landing-cta-group">
-                <button class="btn-cta-primary" onclick="startDemo()">
-                    <i class="fas fa-play-circle"></i> 7 Gün Ücretsiz Demo Başlat
-                </button>
-                <button class="btn-cta-primary" onclick="showLoginOverlay()" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);box-shadow:0 4px 20px rgba(124,58,237,.3);">
-                    <i class="fas fa-sign-in-alt"></i> Üye Girişi / Kayıt Ol
-                </button>
-                <button class="btn-cta-secondary" onclick="showIntroAnimation()">
-                    <i class="fas fa-film"></i> Sistemi Tanı — Animasyonlu Tanıtım
+                <button class="btn-cta-primary" onclick="showIntroThenLogin()" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);box-shadow:0 4px 20px rgba(124,58,237,.3);font-size:15px;padding:14px 28px;">
+                    <i class="fas fa-user-plus"></i> Ücretsiz Kayıt Ol / Giriş Yap
                 </button>
             </div>
             <div class="contact-row">
@@ -585,7 +596,7 @@
 </div>
 
 <!-- LOGIN OVERLAY -->
-<div class="login-overlay" id="loginOverlay">
+<div class="login-overlay" id="loginOverlay" style="display:none;">
     <div class="login-particles" id="loginParticles"></div>
     <div class="login-attempts-badge" id="loginAttemptsBadge">
         <i class="fas fa-exclamation-triangle"></i>
@@ -653,7 +664,8 @@
             </div>
             <div class="lf-error" id="subError"><i class="fas fa-exclamation-circle"></i><span id="subErrorText">Hatalı bilgiler!</span></div>
             <div class="pending-banner" id="pendingBanner" style="display:none;">
-                <i class="fas fa-clock"></i> Hesabınız onay bekliyor. Yönetici onayı bekleniyor.
+                <i class="fas fa-clock"></i> <strong>Hesabınız onay bekliyor.</strong><br>
+                <span style="font-size:11px;opacity:.8;">Yönetici en kısa sürede hesabınızı onaylayacak.</span>
             </div>
             <button type="submit" class="lf-submit sub-btn" id="subSubmitBtn">
                 <i class="fas fa-sign-in-alt"></i> Giriş Yap
@@ -823,6 +835,7 @@
 
             <div class="menu-title admin-only hidden" data-static="true" style="margin-top:16px;"><i class="fas fa-cogs"></i> Yönetici İşlemleri</div>
             <div class="menu-item admin-only hidden static" onclick="openAdminPanel()" style="background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(124,58,237,.1));border:1px solid rgba(220,38,38,.2);"><i class="fas fa-users-cog" style="color:#dc2626;"></i><span style="color:#f1f5f9;font-weight:700;">Kullanıcı Paneli</span><span class="badge warning" id="adminPanelBadge">↗</span></div>
+            <div class="menu-item admin-only hidden static" onclick="openTelegramBotPanel()"><i class="fab fa-telegram" style="color:#29b6f6;"></i><span>Telegram Bot</span><span class="badge new" style="background:rgba(41,182,246,.2);color:#29b6f6;">Komut</span></div>
             <div class="menu-item admin-only hidden static" onclick="toggleThemeSelector()"><i class="fas fa-palette"></i><span>Tema Değiştir</span><span class="badge new" style="background:var(--accent);">Yeni</span></div>
             <div id="themeSelector" class="theme-selector admin-only hidden" style="display:none;margin-bottom:10px;">
                 <div class="theme-option dark active" onclick="setTheme('dark',event)" title="Koyu tema"></div>
@@ -853,13 +866,13 @@
             <div class="menu-item admin-only hidden static" onclick="openPriceEditor()"><i class="fas fa-tag"></i><span>Fiyat Düzenle</span></div>
 
             <div class="menu-title" style="margin-top:4px;" data-static="true"><i class="fas fa-folder"></i> Belgelerim</div>
-            <div class="menu-item static" onclick="showSavedDilekceler()"><i class="fas fa-folder-open"></i><span>Kaydedilen Dilekçeler</span><span id="savedCount" style="margin-left:auto;background:var(--primary);color:white;padding:2px 6px;border-radius:10px;font-size:9px;display:none;">0</span></div>
-            <div id="customMenuContainer"></div>
-            <div class="menu-item static" onclick="showSavedDilekceler()" style="margin-top:4px;">
+            <div class="menu-item static" onclick="showSavedDilekceler()" style="position:relative;">
                 <i class="fas fa-folder-open" style="color:#34d399;"></i>
                 <span>Kayıtlı Dilekçelerim</span>
-                <span class="badge new" id="savedCountBadge" style="background:rgba(52,211,153,.2);color:#34d399;display:none;">0</span>
+                <span id="savedCount" style="margin-left:auto;background:var(--primary);color:white;padding:2px 7px;border-radius:10px;font-size:9px;display:none;">0</span>
+                <span id="savedCountBadge" style="display:none;">0</span>
             </div>
+            <div id="customMenuContainer"></div>
         </div>
 
         <div class="sidebar-footer">
@@ -926,6 +939,9 @@
             <button class="toolbar-btn" onclick="formatDoc('justifyRight')"><i class="fas fa-align-right"></i></button>
             <div class="toolbar-separator"></div>
             <button class="toolbar-btn" onclick="insertAIYasalDayanak()" style="background:var(--accent);border-color:var(--accent);"><i class="fas fa-book-open"></i> Yasal Dayanak</button>
+            <button class="toolbar-btn" onclick="showVersionHistory()" style="background:rgba(16,185,129,.2);border-color:rgba(16,185,129,.4);color:#34d399;" title="Versiyon Geçmişi"><i class="fas fa-history"></i> Geçmiş</button>
+            <button class="toolbar-btn" onclick="saveVersion()" style="background:rgba(245,158,11,.2);border-color:rgba(245,158,11,.4);color:#fcd34d;" title="Versiyonu Kaydet"><i class="fas fa-bookmark"></i></button>
+            <button class="toolbar-btn" onclick="shareWhatsApp()" style="background:rgba(37,211,102,.2);border-color:rgba(37,211,102,.4);color:#25d366;" title="WhatsApp ile paylaş"><i class="fab fa-whatsapp"></i> WhatsApp</button>
         </div>
 
         <div class="editor-container" id="editorContainer">
@@ -1050,7 +1066,33 @@
                 <option value="sikayetten-vazgecme">↩️ Şikayetten Vazgeçme</option>
                 </optgroup>
                 </select></div>
-                <div class="form-group full-width"><label class="form-label">Mahkeme Adı</label><input type="text" class="form-input" id="mahkemeAdi" placeholder="Örn: İstanbul Aile Mahkemesi" required></div>
+                <div class="form-grid">
+                    <div class="form-group"><label class="form-label"><i class="fas fa-map-marker-alt" style="color:var(--primary);"></i> İl Seçin</label>
+                        <select class="form-select" id="ilSecimi" onchange="autoSetMahkeme()">
+                            <option value="">— İl seçin —</option>
+                            <option>Adana</option><option>Adıyaman</option><option>Afyonkarahisar</option><option>Ağrı</option><option>Amasya</option>
+                            <option>Ankara</option><option>Antalya</option><option>Artvin</option><option>Aydın</option><option>Balıkesir</option>
+                            <option>Bilecik</option><option>Bingöl</option><option>Bitlis</option><option>Bolu</option><option>Burdur</option>
+                            <option>Bursa</option><option>Çanakkale</option><option>Çankırı</option><option>Çorum</option><option>Denizli</option>
+                            <option>Diyarbakır</option><option>Edirne</option><option>Elazığ</option><option>Erzincan</option><option>Erzurum</option>
+                            <option>Eskişehir</option><option>Gaziantep</option><option>Giresun</option><option>Gümüşhane</option><option>Hakkari</option>
+                            <option>Hatay</option><option>Isparta</option><option>Mersin</option><option>İstanbul</option><option>İzmir</option>
+                            <option>Kars</option><option>Kastamonu</option><option>Kayseri</option><option>Kırklareli</option><option>Kırşehir</option>
+                            <option>Kocaeli</option><option>Konya</option><option>Kütahya</option><option>Malatya</option><option>Manisa</option>
+                            <option>Kahramanmaraş</option><option>Mardin</option><option>Muğla</option><option>Muş</option><option>Nevşehir</option>
+                            <option>Niğde</option><option>Ordu</option><option>Rize</option><option>Sakarya</option><option>Samsun</option>
+                            <option>Siirt</option><option>Sinop</option><option>Sivas</option><option>Tekirdağ</option><option>Tokat</option>
+                            <option>Trabzon</option><option>Tunceli</option><option>Şanlıurfa</option><option>Uşak</option><option>Van</option>
+                            <option>Yozgat</option><option>Zonguldak</option><option>Aksaray</option><option>Bayburt</option><option>Karaman</option>
+                            <option>Kırıkkale</option><option>Batman</option><option>Şırnak</option><option>Bartın</option><option>Ardahan</option>
+                            <option>Iğdır</option><option>Yalova</option><option>Karabük</option><option>Kilis</option><option>Osmaniye</option><option>Düzce</option>
+                        </select>
+                    </div>
+                    <div class="form-group"><label class="form-label"><i class="fas fa-gavel" style="color:var(--primary);"></i> Mahkeme Türü (Otomatik)</label>
+                        <input type="text" class="form-input" id="mahkemeTuru" readonly placeholder="Dava türüne göre otomatik dolacak" style="background:rgba(124,58,237,.08);cursor:default;color:var(--accent-light);">
+                    </div>
+                </div>
+                <div class="form-group full-width"><label class="form-label">Mahkeme Adı <span style="font-size:10px;color:var(--accent-light);">(Otomatik doldurulur, düzenleyebilirsiniz)</span></label><input type="text" class="form-input" id="mahkemeAdi" placeholder="Örn: İstanbul Aile Mahkemesi" required></div>
                 <div class="form-grid">
                     <div class="form-group"><label class="form-label">Davacı Ad Soyad</label><input type="text" class="form-input" id="davaciAdSoyad" placeholder="Ad Soyad" required></div>
                     <div class="form-group"><label class="form-label">Davacı T.C. No</label><input type="text" class="form-input" id="davaciTcNo" placeholder="12345678901" maxlength="11"></div>
@@ -1393,14 +1435,17 @@ async function apiUserLogin(username, password) {
     return r;
 }
 async function hybridSaveDilekce(payload) {
-    const r = await apiCall('/dilekce?action=save','POST',payload).catch(()=>({ok:false,offline:true}));
-    if (!r.ok) {
-        const saved=JSON.parse(localStorage.getItem('hukukai_saved')||'[]');
-        saved.unshift({id:Date.now(),...payload,date:new Date().toISOString()});
-        localStorage.setItem('hukukai_saved',JSON.stringify(saved.slice(0,100)));
-        return {source:'local'};
-    }
-    return {source:'api', dilekce:r.data.dilekce};
+    // Her durumda localStorage'a kaydet (offline yedek + liste görüntüleme)
+    const saved = JSON.parse(localStorage.getItem('hukukai_saved') || '[]');
+    saved.unshift({ id: Date.now(), ...payload, date: new Date().toISOString() });
+    localStorage.setItem('hukukai_saved', JSON.stringify(saved.slice(0, 100)));
+
+    // API'ye de göndermeyi dene (arka planda)
+    try {
+        const r = await apiCall('/dilekce?action=save', 'POST', payload);
+        if (r.ok) return { source:'api', dilekce:r.data.dilekce };
+    } catch(e) {}
+    return { source:'local' };
 }
 async function hybridLoadUsers() {
     const r = await apiCall('/users?action=list').catch(()=>({ok:false,offline:true}));
@@ -1560,7 +1605,7 @@ const davaDayanaklari = {
 // ============================================================
 document.addEventListener('DOMContentLoaded', function() {
     loadUsersDB();
-    checkExistingSession();
+    checkExistingSession();  // currentUser'ı set eder, oturum varsa showMainApp() çağırır
     initSiteLogo();
     setInterval(updateClock, 1000);
     updateClock();
@@ -1574,12 +1619,19 @@ document.addEventListener('DOMContentLoaded', function() {
     loadViolationList();
     updatePricesOnPage();
     spawnLoginParticles();
-    // Kayıtlı temayı yükle
     const savedTheme = localStorage.getItem('hukukai_theme');
     if (savedTheme) setTheme(savedTheme, null);
-    // Kayıtlı guest şifreyi yükle
     const savedGuestPwd = localStorage.getItem('hukukai_guestPwd');
     if (savedGuestPwd) { try { SECURITY.guest.password = atob(savedGuestPwd); } catch(e) {} }
+    loadVersionHistory();
+
+    // Oturum yoksa: landing gizle, animasyonu başlat
+    if (!currentUser) {
+        document.getElementById('landingPage').style.display = 'none';
+        document.getElementById('loginOverlay').style.display = 'none';
+        document.getElementById('mainApp').style.display = 'none';
+        setTimeout(showIntroAnimation, 200);
+    }
 });
 
 function updateCopyrightYear() {
@@ -1691,24 +1743,28 @@ function selectPlan(plan) {
 }
 
 function showLoginOverlay() {
-    const kvkk = document.getElementById('kvkkConsent');
-    if (kvkk && !kvkk.checked) {
-        showNotification("Devam etmek için KVKK ve Çerez Politikası'nı kabul etmelisiniz!", "error");
-        return;
-    }
     document.getElementById('landingPage').style.display = 'none';
+    document.getElementById('introModal').style.display = 'none';
     const overlay = document.getElementById('loginOverlay');
     overlay.style.display = 'flex';
     ['masterForm','subscriberForm','registerForm'].forEach(id => {
         const el = document.getElementById(id);
         if (el) el.style.display = 'none';
     });
-    setTimeout(() => setLoginTab('master'), 30);
+    setTimeout(() => setLoginTab('register'), 30);
 }
 
 function showLandingPage() {
     document.getElementById('loginOverlay').style.display = 'none';
     document.getElementById('landingPage').style.display = 'flex';
+}
+
+let introAutoLoginOnEnd = false;
+
+// Giriş butonuna basınca: intro oynat, son slayttan login'e geç
+function showIntroThenLogin() {
+    introAutoLoginOnEnd = true;
+    showIntroAnimation();
 }
 
 function showKVKKModal() { document.getElementById('kvkkModal').classList.add('active'); }
@@ -1760,6 +1816,8 @@ async function sendDemoStartNotification() {
 }
 
 function checkDemoStatus() {
+    // Eğer master veya abone oturumu varsa demo kontrolü yapma
+    if (currentUser && currentUser.role !== 'demo') return;
     const obKey = 'dSt4r7_' + btoa('demoStart');
     const saved = localStorage.getItem(obKey);
     if (saved) {
@@ -1924,6 +1982,8 @@ async function handleMasterLogin() {
     if (apiOk || (key === SECURITY.master.key && jwt === SECURITY.master.jwt)) {
         loginAttempts = 0;
         isDemoMode = false;
+        // Demo key'i temizle — master girişi demo modunu geçersiz kılar
+        localStorage.removeItem('dSt4r7_' + btoa('demoStart'));
         currentUser = { role:'master', username:'Master Admin', loginTime:Date.now(), isDemo:false };
         createSession();
         showMainApp();
@@ -1992,6 +2052,7 @@ async function handleSubscriberLogin() {
         user.lastLogin = new Date().toISOString();
         saveUsersDB();
         isDemoMode = false;
+        localStorage.removeItem('dSt4r7_' + btoa('demoStart'));
         currentUser = { role:'guest', username:user.username, email:user.email, guestId:user.id, loginTime:Date.now(), isDemo:false };
         createSession();
         showMainApp();
@@ -2027,12 +2088,7 @@ async function handleRegister() {
     try {
         const r = await apiCall('/auth?action=register', 'POST', { fullName, email, username, password });
         if (r.ok) {
-            showNotification('Kayıt talebiniz alındı! Yönetici onayı bekleniyor.', 'success');
-            document.getElementById('regFullName').value = '';
-            document.getElementById('regEmail').value = '';
-            document.getElementById('regUsername').value = '';
-            document.getElementById('regPassword').value = '';
-            setLoginTab('subscriber');
+            showPendingApprovalScreen(fullName, email);
             return;
         } else if (!r.offline) {
             showLoginError('reg', r.data?.error || 'Kayıt hatası');
@@ -2047,12 +2103,44 @@ async function handleRegister() {
     usersDB.pending.push(newPending);
     saveUsersDB();
     logActivity('register', `📝 Kayıt talebi: ${username} (${email})`);
-    document.getElementById('regFullName').value = '';
-    document.getElementById('regEmail').value = '';
-    document.getElementById('regUsername').value = '';
-    document.getElementById('regPassword').value = '';
-    showNotification('Kayıt talebiniz alındı! Yönetici onayı bekleniyor.', 'warning');
-    setLoginTab('subscriber');
+    showPendingApprovalScreen(fullName, email);
+}
+
+function showPendingApprovalScreen(fullName, email) {
+    // Login kartının içini "onay bekleniyor" ekranıyla değiştir
+    const loginOverlay = document.getElementById('loginOverlay');
+    if (!loginOverlay) return;
+
+    // Kart içeriğini değiştir
+    const card = loginOverlay.querySelector('.login-card');
+    if (!card) return;
+
+    card.innerHTML = `
+        <div class="login-card-top-bar"></div>
+        <div style="padding:40px 32px;text-align:center;">
+            <div style="width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,rgba(245,158,11,.2),rgba(217,119,6,.1));border:2px solid rgba(245,158,11,.4);display:flex;align-items:center;justify-content:center;margin:0 auto 24px;animation:ringPulse 2s infinite;">
+                <i class="fas fa-clock" style="font-size:32px;color:#f59e0b;"></i>
+            </div>
+            <div style="font-size:22px;font-weight:800;color:var(--text);margin-bottom:8px;">Talebiniz Alındı!</div>
+            <div style="font-size:14px;color:#f59e0b;font-weight:600;margin-bottom:16px;">Hesabınız İnceleniyor</div>
+            <div style="font-size:13px;color:var(--text-muted);line-height:1.8;margin-bottom:24px;">
+                Merhaba <strong style="color:var(--text);">${fullName}</strong>,<br>
+                Kaydınız başarıyla alındı. Yönetici en kısa sürede hesabınızı onaylayacak.<br><br>
+                Onay bildirimi <strong style="color:var(--accent-light);">${email}</strong> adresine gönderilecektir.
+            </div>
+            <div style="background:rgba(245,158,11,.08);border:1px solid rgba(245,158,11,.2);border-radius:12px;padding:16px;margin-bottom:24px;">
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:8px;">Ortalama onay süresi</div>
+                <div style="font-size:20px;font-weight:800;color:#f59e0b;">24 Saat</div>
+            </div>
+            <div style="display:flex;flex-direction:column;gap:10px;">
+                <button onclick="location.reload()" style="padding:12px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;">
+                    <i class="fas fa-sign-in-alt"></i> Onaylandım, Giriş Yap
+                </button>
+                <button onclick="location.reload()" style="padding:10px;background:transparent;border:1px solid var(--border-light);border-radius:10px;color:var(--text-muted);font-size:12px;cursor:pointer;font-family:Outfit,sans-serif;">
+                    <i class="fas fa-arrow-left"></i> Ana Sayfaya Dön
+                </button>
+            </div>
+        </div>`;
 }
 
 function showLoginError(type, msg) {
@@ -2176,6 +2264,8 @@ function updateUIForRole() {
         document.getElementById('headerMiniStats').style.display = 'flex';
         updateViolationBadge();
         updateHeaderMiniStats();
+        // Master: tüm butonlar aktif
+        _enableAllButtons();
     } else {
         roleBadge.textContent = 'ABONE';
         roleBadge.className = 'user-role-badge subscriber';
@@ -2184,10 +2274,23 @@ function updateUIForRole() {
         if (systemStatus) systemStatus.textContent = 'Abone Modu | Aktif';
         adminMenus.forEach(m => m.classList.add('hidden'));
         document.getElementById('masterModeToggleWrap').classList.add('hidden');
+        // Abone: tüm butonlar aktif
+        _enableAllButtons();
     }
 
     document.getElementById('demoInfo').style.display = 'none';
     updateSavedCount();
+}
+
+function _enableAllButtons() {
+    const ids = ['pdfBtn','saveBtn','printBtn','copyBtn'];
+    ids.forEach(id => {
+        const btn = document.getElementById(id);
+        if (btn) { btn.disabled = false; btn.style.opacity = '1'; btn.title = ''; }
+    });
+    document.querySelectorAll('.btn-copy,.btn-print').forEach(btn => {
+        btn.disabled = false; btn.style.opacity = '1';
+    });
 }
 
 function updateViolationBadge() {
@@ -2633,6 +2736,9 @@ function updateFormFields() {
     if (cocukSection) {
         cocukSection.style.display = cocukTypes.includes(dava) ? 'block' : 'none';
     }
+    // Dava türü değişince mahkeme otomatik güncelle
+    const il = document.getElementById('ilSecimi')?.value;
+    if (il) autoSetMahkeme();
 }
 
 function generateAkilliDilekce() {
@@ -2739,6 +2845,19 @@ function generateAkilliDilekce() {
     closeModal('akilliDilekceModal');
     logActivity('dilekce', `📄 ${dava} dilekçesi oluşturuldu`);
     showNotification('Dilekçe başarıyla oluşturuldu!', 'success');
+    // Hukuki terim tooltip'lerini uygula
+    setTimeout(() => {
+        applyHukukiTerimTooltips();
+        // Demo watermark
+        const paper = document.getElementById('dilekcePaper');
+        if (paper) {
+            if (isDemoMode) paper.classList.add('demo-watermark');
+            else paper.classList.remove('demo-watermark');
+        }
+        // Otomatik versiyon kaydet
+        const davaLabel = document.getElementById('davaTuru')?.options[document.getElementById('davaTuru')?.selectedIndex]?.text || 'Dilekçe';
+        saveVersion(`${davaLabel} — ${new Date().toLocaleTimeString('tr-TR')}`);
+    }, 400);
     document.getElementById('dilekceContent').scrollIntoView({ behavior:'smooth', block:'start' });
 }
 
@@ -2765,7 +2884,8 @@ function insertAIYasalDayanak() {
 // DİLEKÇE KAYDET / YÜKLE
 // ============================================================
 async function saveDilekce() {
-    if (isDemoMode) { showNotification('Demo modunda kayıt devre dışı!', 'error'); return; }
+    const s = getDemoSettings();
+    if (isDemoMode && !s.allowSave) { showNotification('Demo modunda kayıt kapalı!', 'error'); return; }
     const content = document.getElementById('dilekceContent').innerHTML;
     const mahkeme = document.getElementById('dilekceMahkeme').textContent;
     const konu = document.getElementById('davaKonusu').textContent;
@@ -2812,30 +2932,43 @@ function updateHeroSavedCount() {
 
 function showSavedDilekceler() {
     const saved = JSON.parse(localStorage.getItem('hukukai_saved') || '[]');
+
+    // Varsa eski modalı kaldır
+    const existing = document.getElementById('savedDilekcelerModal');
+    if (existing) existing.remove();
+
     if (!saved.length) { showNotification('Henüz kaydedilmiş dilekçe yok!', 'warning'); return; }
+
     const content = saved.map((d, i) => `
-        <div style="padding:12px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.07);border-radius:10px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
-            <div>
-                <div style="font-size:13px;font-weight:700;color:#f1f5f9;">${d.title||'Dilekçe '+(i+1)}</div>
-                <div style="font-size:11px;color:#64748b;">${new Date(d.date).toLocaleDateString('tr-TR')} · ${d.dava||'genel'}</div>
+        <div style="padding:14px;background:var(--surface);border:1px solid var(--border-light);border-radius:10px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+            <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${d.title||'Dilekçe '+(i+1)}</div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${new Date(d.date).toLocaleDateString('tr-TR')} · ${d.dava||'genel'}</div>
             </div>
-            <div style="display:flex;gap:6px;">
-                <button onclick="loadSavedDilekce(${i})" style="padding:5px 12px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);border-radius:6px;color:#a78bfa;font-size:11px;cursor:pointer;font-family:Outfit,sans-serif;font-weight:600;"><i class="fas fa-upload"></i> Yükle</button>
-                <button onclick="deleteSavedDilekce(${i})" style="padding:5px 12px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:6px;color:#fca5a5;font-size:11px;cursor:pointer;font-family:Outfit,sans-serif;font-weight:600;"><i class="fas fa-trash"></i></button>
+            <div style="display:flex;gap:6px;flex-shrink:0;">
+                <button onclick="loadSavedDilekce(${i})" style="padding:6px 14px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.35);border-radius:6px;color:#a78bfa;font-size:11px;cursor:pointer;font-family:Outfit,sans-serif;font-weight:700;white-space:nowrap;">
+                    <i class="fas fa-upload"></i> Yükle
+                </button>
+                <button onclick="deleteSavedDilekce(${i})" style="padding:6px 10px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:6px;color:#fca5a5;font-size:11px;cursor:pointer;font-family:Outfit,sans-serif;">
+                    <i class="fas fa-trash"></i>
+                </button>
             </div>
         </div>`).join('');
+
     const modal = document.createElement('div');
     modal.className = 'modal-overlay active';
     modal.id = 'savedDilekcelerModal';
     modal.innerHTML = `
-        <div class="modal large" style="max-width:700px;">
+        <div class="modal large" style="max-width:680px;">
             <div class="modal-header">
-                <div class="modal-title"><i class="fas fa-folder-open" style="color:#34d399;"></i> Kaydedilen Dilekçeler (${saved.length})</div>
+                <div class="modal-title"><i class="fas fa-folder-open" style="color:#34d399;"></i> Kaydedilen Dilekçeler <span style="font-size:12px;color:var(--text-muted);font-weight:400;">(${saved.length} adet)</span></div>
                 <button class="modal-close" onclick="document.getElementById('savedDilekcelerModal').remove()"><i class="fas fa-times"></i></button>
             </div>
-            <div class="modal-body" style="max-height:500px;overflow-y:auto;">${content}</div>
+            <div class="modal-body" style="max-height:480px;overflow-y:auto;">${content}</div>
         </div>`;
     document.body.appendChild(modal);
+    // Dışa tıklayınca kapat
+    modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
 }
 
 function loadSavedDilekce(index) {
@@ -2875,23 +3008,84 @@ function clearDilekce() {
 // PDF / YAZDIR / KOPYALA
 // ============================================================
 function downloadPDF() {
-    if (isDemoMode) { showNotification('Demo modunda PDF kapalı!', 'error'); return; }
-    const content = document.getElementById('dilekcePaper');
-    if (!content) return;
+    // Master her zaman PDF alabilir, demo ayarına göre demo kısıtlanır
+    const isMaster = currentUser && currentUser.role === 'master';
+    if (!isMaster) {
+        const s = getDemoSettings();
+        if (isDemoMode && !s.allowPdf) { showNotification('Demo modunda PDF kapalı!', 'error'); return; }
+    }
+
+    const paperEl = document.getElementById('dilekcePaper');
+    if (!paperEl) { showNotification('Dilekçe bulunamadı!', 'error'); return; }
+
+    const btn = document.getElementById('pdfBtn');
+    if (btn) { btn.disabled = true; btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Hazırlanıyor...'; }
+    showNotification('UYAP uyumlu PDF hazırlanıyor...', 'info');
+
+    // Geçici klon oluştur — contenteditable outline'larını gizle
+    const clone = paperEl.cloneNode(true);
+    clone.querySelectorAll('[contenteditable]').forEach(el => {
+        el.removeAttribute('contenteditable');
+        el.style.outline = 'none';
+    });
+    clone.style.boxShadow = 'none';
+    clone.style.margin = '0';
+    clone.style.padding = '25mm 25mm 25mm 30mm'; // UYAP: sol 3cm, diğer 2.5cm
+    clone.style.width = '210mm';
+    clone.style.minHeight = '297mm';
+    clone.style.background = 'white';
+    clone.style.fontFamily = "'Times New Roman', Times, serif";
+    clone.style.fontSize = '14px';
+    clone.style.lineHeight = '2';
+    clone.style.color = '#1e293b';
+
+    // Geçici container
+    const wrapper = document.createElement('div');
+    wrapper.style.cssText = 'position:fixed;top:-99999px;left:-99999px;width:210mm;';
+    wrapper.appendChild(clone);
+    document.body.appendChild(wrapper);
+
     const opt = {
-        margin: [15, 15, 15, 15],
-        filename: 'hukukai-dilekce-' + Date.now() + '.pdf',
-        image: { type:'jpeg', quality:0.98 },
-        html2canvas: { scale:2, useCORS:true, logging:false },
-        jsPDF: { unit:'mm', format:'a4', orientation:'portrait' }
+        margin: 0,
+        filename: 'HukukAI-UYAP-' + new Date().toLocaleDateString('tr-TR').replace(/\./g,'-') + '.pdf',
+        image: { type: 'jpeg', quality: 0.98 },
+        html2canvas: {
+            scale: 2,
+            useCORS: true,
+            logging: false,
+            letterRendering: true,
+            width: clone.scrollWidth,
+            windowWidth: 794 // A4 piksel genişliği
+        },
+        jsPDF: {
+            unit: 'mm',
+            format: 'a4',
+            orientation: 'portrait',
+            compress: true
+        },
+        pagebreak: { mode: ['css', 'legacy'], before: '.page-break', avoid: '.madde-item,.kanun-madde-item' }
     };
-    showNotification('PDF hazırlanıyor...', 'success');
+
     if (typeof html2pdf !== 'undefined') {
-        html2pdf().set(opt).from(content).save()
-            .then(() => { logActivity('dilekce','📥 PDF indirildi'); showNotification('PDF indirildi!','success'); })
-            .catch(() => { window.print(); });
+        html2pdf().set(opt).from(clone).save()
+            .then(() => {
+                logActivity('dilekce', '📥 PDF indirildi (UYAP uyumlu)');
+                showNotification('✅ PDF başarıyla indirildi!', 'success');
+            })
+            .catch(err => {
+                console.error('PDF hatası:', err);
+                showNotification('PDF oluşturulamadı — yazdırma ekranı açılıyor', 'warning');
+                printDilekce();
+            })
+            .finally(() => {
+                document.body.removeChild(wrapper);
+                if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-file-pdf"></i> PDF'; }
+            });
     } else {
-        window.print();
+        document.body.removeChild(wrapper);
+        if (btn) { btn.disabled = false; btn.innerHTML = '<i class="fas fa-file-pdf"></i> PDF'; }
+        showNotification('PDF kütüphanesi yüklenemedi, yazdırılıyor...', 'warning');
+        printDilekce();
     }
 }
 
@@ -3590,38 +3784,80 @@ const introSlides = [
     { icon:'🤖', title:'Yapay Zeka Desteği', subtitle:'Olayınızı anlatın, AI hukuki analiz yapsın', desc:'"Olayımı Anlat" ile başından geçenleri yazın. Yapay zeka dava türünü, kanun maddelerini ve talepleri otomatik tespit eder.', color:'#7c3aed', bg:'radial-gradient(ellipse at 50% 50%, rgba(124,58,237,.25) 0%, transparent 70%), #050814' },
     { icon:'📄', title:'30+ Dava Türü', subtitle:'Aile, İş, Borçlar, İdare ve daha fazlası', desc:'Boşanma, velayet, nafaka, iş hukuku, tüketici şikayeti, tapu iptali ve çok daha fazla dava türünde eksiksiz hukuki dayanak.', color:'#059669', bg:'radial-gradient(ellipse at 20% 70%, rgba(5,150,105,.2) 0%, transparent 60%), #050814' },
     { icon:'🛡️', title:'Güvenli & KVKK Uyumlu', subtitle:'Verileriniz yalnızca tarayıcınızda', desc:'Girdiğiniz hiçbir kişisel veri sunucuya iletilmez. 256-bit şifreleme, KVKK uyumlu oturum yönetimi.', color:'#0ea5e9', bg:'radial-gradient(ellipse at 80% 30%, rgba(14,165,233,.2) 0%, transparent 60%), #050814' },
-    { icon:'🚀', title:'Hemen Başlayın', subtitle:'7 günlük ücretsiz demo ile deneyin', desc:'Kayıt olmadan 7 gün demo erişimi. Dilekçelerinizi hazırlayın, düzenleyin. Abone olarak tüm özelliklerin kilidini açın.', color:'#f59e0b', bg:'radial-gradient(ellipse at 50% 80%, rgba(245,158,11,.2) 0%, transparent 60%), #050814', cta:true }
+    { icon:'🚀', title:'Hemen Başlayın', subtitle:'Ücretsiz kayıt olun, hemen kullanmaya başlayın', desc:'Kayıt formunu doldurun, yönetici onayının ardından tüm özelliklere erişin. Profesyonel dilekçelerinizi saniyeler içinde hazırlayın.', color:'#f59e0b', bg:'radial-gradient(ellipse at 50% 80%, rgba(245,158,11,.2) 0%, transparent 60%), #050814', cta:true }
 ];
 let introIndex = 0, introTimer = null;
 
 function showIntroAnimation() {
     const modal = document.getElementById('introModal');
+    if (!modal) return;
     modal.style.display = 'flex';
     introIndex = 0;
+    if (introTimer) { clearInterval(introTimer); introTimer = null; }
     renderIntroSlide();
-    introTimer = setInterval(() => { introIndex = (introIndex+1)%introSlides.length; renderIntroSlide(); }, 4500);
+    introTimer = setInterval(() => {
+        introIndex++;
+        if (introIndex >= introSlides.length) {
+            introIndex = introSlides.length - 1;
+            clearInterval(introTimer); introTimer = null;
+        }
+        renderIntroSlide();
+    }, 4500);
 }
 
 function renderIntroSlide() {
     const slide = introSlides[introIndex];
+    if (!slide) return;
     const container = document.getElementById('introSlideContainer');
     const dots = document.getElementById('introDots');
+    if (!container || !dots) return;
+
     container.style.background = slide.bg;
+    const isLast = introIndex === introSlides.length - 1;
+
+    let ctaHtml = '';
+    if (isLast) {
+        ctaHtml = `<div style="margin-top:36px;">
+            <button id="introCTABtn" style="padding:18px 44px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:14px;color:white;font-size:17px;font-weight:800;cursor:pointer;font-family:Outfit,sans-serif;box-shadow:0 6px 28px rgba(124,58,237,.6);animation:pulse 2s infinite;letter-spacing:.3px;">
+                <i class="fas fa-user-plus"></i>&nbsp; Kayıt Ol / Giriş Yap &rarr;
+            </button>
+        </div>`;
+    } else {
+        ctaHtml = `<div style="margin-top:28px;cursor:pointer;color:#475569;font-size:13px;padding:10px 20px;border:1px solid rgba(255,255,255,.1);border-radius:8px;" onclick="nextIntroSlide()">Devam Et <i class="fas fa-arrow-right"></i></div>`;
+    }
+
     container.innerHTML = `<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;animation:fadeIn .5s ease;">
         <div style="font-size:72px;margin-bottom:24px;">${slide.icon}</div>
         <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);font-weight:900;color:#fff;margin-bottom:12px;max-width:700px;line-height:1.2;">${slide.title}</div>
         <div style="font-size:16px;font-weight:600;color:${slide.color};margin-bottom:20px;">${slide.subtitle}</div>
-        <div style="font-size:14px;color:#94a3b8;max-width:580px;line-height:1.8;">${slide.desc}</div>
-        ${slide.cta ? `<div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;justify-content:center;">
-            <button onclick="closeIntro();document.getElementById('kvkkConsent').checked=true;startDemo()" style="padding:14px 28px;background:linear-gradient(135deg,#dc2626,#991b1b);border:none;border-radius:12px;color:white;font-size:14px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-play"></i> Demo Başlat</button>
-            <button onclick="closeIntro();showLoginOverlay()" style="padding:14px 28px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:12px;color:white;font-size:14px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
-        </div>` : `<div style="margin-top:28px;cursor:pointer;color:#475569;font-size:13px;padding:10px 20px;border:1px solid rgba(255,255,255,.1);border-radius:8px;" onclick="nextIntroSlide()">Devam Et <i class="fas fa-arrow-right"></i></div>`}
+        <div style="font-size:14px;color:#cbd5e1;max-width:580px;line-height:1.8;">${slide.desc}</div>
+        ${ctaHtml}
     </div>`;
-    dots.innerHTML = introSlides.map((_,i) => `<div onclick="goToIntroSlide(${i})" style="width:${i===introIndex?'24px':'8px'};height:8px;border-radius:4px;background:${i===introIndex?slide.color:'rgba(255,255,255,.2)'};cursor:pointer;transition:all .3s;"></div>`).join('');
+
+    // Son slaytta butona tıklama olayı ekle
+    if (isLast) {
+        const btn = document.getElementById('introCTABtn');
+        if (btn) btn.addEventListener('click', function() {
+            closeIntro();
+            showLoginOverlay();
+        });
+        // Timer durdur
+        if (introTimer) { clearInterval(introTimer); introTimer = null; }
+    }
+
+    dots.innerHTML = introSlides.map((_,i) =>
+        `<div onclick="goToIntroSlide(${i})" style="width:${i===introIndex?'24px':'8px'};height:8px;border-radius:4px;background:${i===introIndex?slide.color:'rgba(255,255,255,.2)'};cursor:pointer;transition:all .3s;"></div>`
+    ).join('');
 }
+
 function nextIntroSlide() { introIndex=(introIndex+1)%introSlides.length; renderIntroSlide(); }
 function goToIntroSlide(i) { introIndex=i; renderIntroSlide(); }
-function closeIntro() { document.getElementById('introModal').style.display='none'; if(introTimer){clearInterval(introTimer);introTimer=null;} }
+function closeIntro() {
+    const modal = document.getElementById('introModal');
+    if (modal) modal.style.display = 'none';
+    if (introTimer) { clearInterval(introTimer); introTimer = null; }
+}
+
 
 // ============================================================
 // 12. "OLAYIMI ANLAT, AI ÇÖZSÜN" ÖZELLİĞİ
@@ -3643,7 +3879,15 @@ function openAIAnalysisModal() {
                 </div>
                 <div class="form-group">
                     <label class="form-label">Olayınızı Anlatın</label>
-                    <textarea id="aiAnalysisText" class="form-textarea" rows="7" placeholder="Örnek: 2018 yılında evlendim, 2 çocuğumuz var. Eşim 6 aydır beni terk etti. Çocuklar benimle. Boşanmak ve nafaka almak istiyorum..." style="min-height:160px;font-size:13px;line-height:1.7;"></textarea>
+                    <div style="position:relative;">
+                        <textarea id="aiAnalysisText" class="form-textarea" rows="7" placeholder="Örnek: 2018 yılında evlendim, 2 çocuğumuz var. Eşim 6 aydır beni terk etti. Çocuklar benimle. Boşanmak ve nafaka almak istiyorum..." style="min-height:160px;font-size:13px;line-height:1.7;padding-right:48px;"></textarea>
+                        <button id="micBtn" onclick="toggleMic()" title="Sesli anlatım" style="position:absolute;bottom:10px;right:10px;width:36px;height:36px;border-radius:50%;border:none;background:rgba(124,58,237,.3);color:#a78bfa;font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .2s;">
+                            <i class="fas fa-microphone"></i>
+                        </button>
+                    </div>
+                    <div id="micStatus" style="display:none;font-size:11px;color:#a78bfa;text-align:center;padding:4px;animation:pulse 1s infinite;">
+                        🎙️ Dinleniyor... Konuşmayı bitirmek için tekrar tıklayın
+                    </div>
                 </div>
                 <div id="aiAnalysisResult" style="display:none;"></div>
                 <div style="display:flex;gap:10px;">
@@ -3748,6 +3992,447 @@ function applyAIAnalysis(davaTuru, olay, talepler) {
         showNotification('AI analizi dilekçe formuna aktarıldı!', 'success');
     }, 300);
 }
+
+// ============================================================
+// 1. MİKROFON İLE SESLİ ANLATIM
+// ============================================================
+let micRecognition = null;
+let micActive = false;
+
+function toggleMic() {
+    if (!('webkitSpeechRecognition' in window) && !('SpeechRecognition' in window)) {
+        showNotification('Tarayıcınız sesli girişi desteklemiyor. Chrome kullanın.', 'error');
+        return;
+    }
+    if (micActive) {
+        stopMic();
+    } else {
+        startMic();
+    }
+}
+
+function startMic() {
+    const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+    micRecognition = new SpeechRecognition();
+    micRecognition.lang = 'tr-TR';
+    micRecognition.continuous = true;
+    micRecognition.interimResults = true;
+
+    const textarea = document.getElementById('aiAnalysisText');
+    const btn = document.getElementById('micBtn');
+    const status = document.getElementById('micStatus');
+    let finalTranscript = textarea.value;
+
+    micRecognition.onresult = (e) => {
+        let interim = '';
+        for (let i = e.resultIndex; i < e.results.length; i++) {
+            if (e.results[i].isFinal) finalTranscript += e.results[i][0].transcript + ' ';
+            else interim = e.results[i][0].transcript;
+        }
+        textarea.value = finalTranscript + interim;
+    };
+
+    micRecognition.onerror = (e) => {
+        stopMic();
+        if (e.error !== 'no-speech') showNotification('Mikrofon hatası: ' + e.error, 'error');
+    };
+
+    micRecognition.onend = () => { if (micActive) micRecognition.start(); };
+
+    micRecognition.start();
+    micActive = true;
+    if (btn) { btn.classList.add('mic-active'); btn.innerHTML = '<i class="fas fa-stop"></i>'; }
+    if (status) status.style.display = 'block';
+    showNotification('🎙️ Mikrofon açıldı, konuşun...', 'success');
+}
+
+function stopMic() {
+    if (micRecognition) { micRecognition.onend = null; micRecognition.stop(); micRecognition = null; }
+    micActive = false;
+    const btn = document.getElementById('micBtn');
+    const status = document.getElementById('micStatus');
+    if (btn) { btn.classList.remove('mic-active'); btn.innerHTML = '<i class="fas fa-microphone"></i>'; }
+    if (status) status.style.display = 'none';
+    showNotification('Mikrofon kapatıldı.', 'success');
+}
+
+// ============================================================
+// 2. OTOMATİK MAHKEME TESPİTİ
+// ============================================================
+const mahkemeTurleri = {
+    kisisel: 'Aile Mahkemesi', velayet: 'Aile Mahkemesi', bosanma: 'Aile Mahkemesi',
+    'bosanma-zina': 'Aile Mahkemesi', 'bosanma-terk': 'Aile Mahkemesi', siddet: 'Aile Mahkemesi',
+    'nafaka-yoksulluk': 'Aile Mahkemesi', 'nafaka-tedbir': 'Aile Mahkemesi',
+    'nafaka-istihkak': 'Aile Mahkemesi', 'nafaka-artirimi': 'Aile Mahkemesi',
+    'nafaka-kaldirilmasi': 'Aile Mahkemesi', soybagi: 'Aile Mahkemesi',
+    malrejimi: 'Aile Mahkemesi', 'tazminat-bosanma': 'Aile Mahkemesi',
+    iscilik: 'İş Mahkemesi', iscilikkotuniyetli: 'İş Mahkemesi',
+    isciiseinali: 'İş Mahkemesi', iscimobbing: 'İş Mahkemesi',
+    alacak: 'Asliye Hukuk Mahkemesi', 'icra-itiraz': 'İcra Hukuk Mahkemesi',
+    'kira-tahliye': 'Sulh Hukuk Mahkemesi', tuketici: 'Tüketici Mahkemesi',
+    sigorta: 'Asliye Ticaret Mahkemesi', tapu: 'Asliye Hukuk Mahkemesi',
+    'ortakligin-giderilmesi': 'Sulh Hukuk Mahkemesi', 'miras-taksim': 'Sulh Hukuk Mahkemesi',
+    vasiyetname: 'Sulh Hukuk Mahkemesi', 'idari-itiraz': 'İdare Mahkemesi',
+    'ceza-ihbar': 'Asliye Ceza Mahkemesi', 'sikayetten-vazgecme': 'Asliye Ceza Mahkemesi'
+};
+
+// İstanbul için özel adliye isimleri (örnek - büyük şehirler)
+const buyukSehirAdliyeleri = {
+    'İstanbul': ['Bakırköy', 'Kadıköy', 'Anadolu', 'İstanbul'],
+    'Ankara': ['Ankara'],
+    'İzmir': ['İzmir'],
+    'Bursa': ['Bursa'],
+    'Antalya': ['Antalya'],
+    'Adana': ['Adana'],
+    'Gaziantep': ['Gaziantep'],
+    'Konya': ['Konya'],
+    'Kocaeli': ['Kocaeli'],
+    'Mersin': ['Mersin'],
+};
+
+function autoSetMahkeme() {
+    const il = document.getElementById('ilSecimi')?.value;
+    const dava = document.getElementById('davaTuru')?.value;
+    if (!il) return;
+
+    const mahkemeTuru = mahkemeTurleri[dava] || 'Asliye Hukuk Mahkemesi';
+    const turEl = document.getElementById('mahkemeTuru');
+    if (turEl) turEl.value = mahkemeTuru;
+
+    const mahkemeEl = document.getElementById('mahkemeAdi');
+    if (mahkemeEl) {
+        // Büyük şehirlerde adliye seçimi için ilk adliye adını kullan
+        const adliyeler = buyukSehirAdliyeleri[il];
+        const adliye = adliyeler ? adliyeler[0] + ' ' : '';
+        mahkemeEl.value = `${adliye}${il} ${mahkemeTuru}`;
+        // Dilekcede de güncelle
+        const mahkemeTitle = document.getElementById('dilekceMahkeme');
+        if (mahkemeTitle) mahkemeTitle.textContent = `${adliye}${il} ${mahkemeTuru.toUpperCase()} HAKİMLİĞİNE`;
+    }
+    showNotification(`✅ ${il} ${mahkemeTuru} otomatik seçildi`, 'success');
+}
+
+// updateFormFields'a autoSetMahkeme çağrısı ekle - dava türü değişince mahkeme de güncellenir
+const _origUpdateFormFields = window.updateFormFields;
+
+// ============================================================
+// 3. HUKUKİ TERİMLER SÖZLÜĞÜ — dilekçeye otomatik uygula
+// ============================================================
+const hukukiTerimler = {
+    'istihkak': 'Bir şey üzerindeki hak sahipliğini ileri sürerek o şeyi talep etme hakkı',
+    'nafaka': 'Geçimi sağlamak amacıyla ödenen düzenli para yardımı',
+    'velayet': 'Küçük çocuğun bakım, eğitim ve yetiştirilmesinden sorumlu olma hakkı ve yükümlülüğü',
+    'tazminat': 'Haksız bir eylem sonucu uğranılan zararın karşılanması için ödenen para',
+    'ihtiyati tedbir': 'Dava sonuçlanmadan önce alınan geçici koruyucu önlem',
+    'tedbir nafakası': 'Dava süresince geçici olarak hükmedilen nafaka türü',
+    'yoksulluk nafakası': 'Boşanma sonrası yoksulluğa düşen eş için ödenen nafaka',
+    'tapu tescili': 'Taşınmaz üzerindeki hakkın resmi sicile kaydedilmesi',
+    'soybağı': 'Çocuk ile anne veya baba arasındaki hukuki bağ',
+    'mal rejimi': 'Evlilik süresince eşlerin mallarını nasıl yöneteceğini belirleyen hukuki sistem',
+    'kıdem tazminatı': 'İşçinin iş sözleşmesi belirli koşullarda sona erince aldığı tazminat',
+    'ihbar tazminatı': 'İş sözleşmesi bildirim süresine uyulmadan feshedilince ödenen tazminat',
+    'haksız fesih': 'İş sözleşmesinin yasal gerekçe olmaksızın sonlandırılması',
+    'manevi tazminat': 'Kişinin psikolojik zarar veya acısı karşılığında talep edilen tazminat',
+    'maddi tazminat': 'Ölçülebilir ekonomik zarar karşılığında talep edilen tazminat',
+    'velayetin değiştirilmesi': 'Mevcut velayet kararının değişen koşullar gerekçesiyle yeniden düzenlenmesi',
+    'feragat': 'Davacının dava konusu hakkından vazgeçmesi',
+    'kabul': 'Davalının davacının taleplerini kabul etmesi',
+    'sulh': 'Tarafların anlaşarak davayı sona erdirmesi',
+    'icra': 'Mahkeme kararının zorla uygulatılması süreci',
+    'itiraz': 'Bir karara veya işleme karşı resmi itiraz yolu',
+    'tebligat': 'Resmi belgelerin yasal yollarla ilgili kişiye bildirilmesi',
+    'vekalet': 'Bir kişinin başkası adına işlem yapmasına izin veren yetki belgesi',
+    'dava ehliyeti': 'Kişinin mahkemede davacı veya davalı olabilme yeterliliği',
+    'hak düşürücü süre': 'Bu süre geçince hakkın tamamen ortadan kalktığı yasal süre',
+    'zamanaşımı': 'Bu süre geçince hakkın dava yoluyla talep edilemeyeceği yasal süre',
+};
+
+function applyHukukiTerimTooltips() {
+    const content = document.getElementById('dilekceContent');
+    if (!content) return;
+    let html = content.innerHTML;
+    Object.entries(hukukiTerimler).forEach(([terim, tanim]) => {
+        // Zaten işaretlenmiş terimleri tekrar işaretleme
+        if (html.includes(`data-tanim="${tanim}"`)) return;
+        const regex = new RegExp(`(?<!class="hukuki-terim[^"]*">)\\b(${terim})\\b(?![^<]*data-tanim)`, 'gi');
+        html = html.replace(regex, `<span class="hukuki-terim" data-tanim="${tanim}">$1</span>`);
+    });
+    content.innerHTML = html;
+}
+
+// ============================================================
+// 4. VERSİYON GEÇMİŞİ
+// ============================================================
+let versionHistory = [];
+const MAX_VERSIONS = 20;
+
+function saveVersion(label) {
+    const content = document.getElementById('dilekceContent');
+    if (!content || !content.innerHTML.trim()) { showNotification('Dilekçe boş!', 'error'); return; }
+    const version = {
+        id: Date.now(),
+        label: label || `v${versionHistory.length + 1} — ${new Date().toLocaleTimeString('tr-TR')}`,
+        html: content.innerHTML,
+        date: new Date().toISOString()
+    };
+    versionHistory.unshift(version);
+    if (versionHistory.length > MAX_VERSIONS) versionHistory.pop();
+    // localStorage'a da kaydet
+    try { localStorage.setItem('hukukai_versions', JSON.stringify(versionHistory)); } catch(e) {}
+    showNotification(`📌 Versiyon kaydedildi: ${version.label}`, 'success');
+}
+
+function loadVersionHistory() {
+    try {
+        const saved = JSON.parse(localStorage.getItem('hukukai_versions') || '[]');
+        if (saved.length) versionHistory = saved;
+    } catch(e) {}
+}
+
+function showVersionHistory() {
+    loadVersionHistory();
+    if (!versionHistory.length) { showNotification('Henüz kaydedilmiş versiyon yok. Toolbar\'daki 🔖 ile kaydedin.', 'warning'); return; }
+
+    const existing = document.getElementById('versionHistoryModal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay active';
+    modal.id = 'versionHistoryModal';
+    modal.innerHTML = `
+        <div class="modal" style="max-width:580px;">
+            <div class="modal-header" style="background:linear-gradient(135deg,rgba(16,185,129,.2),rgba(5,150,105,.15));">
+                <div class="modal-title"><i class="fas fa-history" style="color:#34d399;"></i> Versiyon Geçmişi <span style="font-size:11px;color:var(--text-muted);font-weight:400;">(${versionHistory.length} versiyon)</span></div>
+                <button class="modal-close" onclick="document.getElementById('versionHistoryModal').remove()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="max-height:450px;overflow-y:auto;">
+                ${versionHistory.map((v, i) => `
+                <div style="display:flex;align-items:center;gap:12px;padding:12px;background:var(--surface);border:1px solid var(--border-light);border-radius:10px;margin-bottom:8px;">
+                    <div class="version-dot"></div>
+                    <div style="flex:1;">
+                        <div style="font-size:13px;font-weight:600;color:var(--text);">${v.label}</div>
+                        <div style="font-size:11px;color:var(--text-muted);">${new Date(v.date).toLocaleString('tr-TR')}</div>
+                    </div>
+                    <div style="display:flex;gap:6px;">
+                        <button onclick="restoreVersion(${i})" style="padding:5px 12px;background:rgba(16,185,129,.2);border:1px solid rgba(16,185,129,.35);border-radius:6px;color:#34d399;font-size:11px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-undo"></i> Geri Yükle</button>
+                        <button onclick="deleteVersion(${i})" style="padding:5px 8px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:6px;color:#fca5a5;font-size:11px;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-trash"></i></button>
+                    </div>
+                </div>`).join('')}
+            </div>
+            <div class="modal-footer" style="padding:12px 20px;border-top:1px solid var(--border-light);">
+                <button onclick="saveVersion();document.getElementById('versionHistoryModal').remove();" style="padding:10px 20px;background:linear-gradient(135deg,#10b981,#059669);border:none;border-radius:8px;color:white;font-size:12px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-bookmark"></i> Şu Anki Hali Kaydet</button>
+            </div>
+        </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+}
+
+function restoreVersion(index) {
+    if (!confirm('Bu versiyona dönmek istiyor musunuz? Mevcut içerik kaybolacak.')) return;
+    const v = versionHistory[index];
+    if (!v) return;
+    // Önce mevcut hali kaydet
+    saveVersion('Otomatik yedek (geri yükleme öncesi)');
+    document.getElementById('dilekceContent').innerHTML = v.html;
+    document.getElementById('versionHistoryModal')?.remove();
+    showNotification(`✅ "${v.label}" versiyonuna dönüldü!`, 'success');
+}
+
+function deleteVersion(index) {
+    versionHistory.splice(index, 1);
+    try { localStorage.setItem('hukukai_versions', JSON.stringify(versionHistory)); } catch(e) {}
+    document.getElementById('versionHistoryModal')?.remove();
+    showVersionHistory();
+}
+
+// ============================================================
+// 5. WHATSAPP İLE PAYLAŞ
+// ============================================================
+function shareWhatsApp() {
+    const mahkeme = document.getElementById('dilekceMahkeme')?.textContent || 'Mahkeme';
+    const konu = document.getElementById('davaKonusu')?.textContent || 'Dilekçe';
+    const tarih = new Date().toLocaleDateString('tr-TR');
+
+    const mesaj = `⚖️ *HukukAI Pro — Hukuki Belge*\n\n` +
+        `📋 *Konu:* ${konu.substring(0, 100)}\n` +
+        `🏛️ *Mahkeme:* ${mahkeme.substring(0, 80)}\n` +
+        `📅 *Tarih:* ${tarih}\n\n` +
+        `_Bu belge HukukAI Pro ile oluşturulmuştur._\n` +
+        `🔗 hukukai.pro\n\n` +
+        `⚠️ _Bu bir taslaktır. Bir avukata danışmanız önerilir._`;
+
+    const encoded = encodeURIComponent(mesaj);
+    window.open(`https://wa.me/?text=${encoded}`, '_blank');
+    logActivity('dilekce', '📲 WhatsApp paylaşım yapıldı');
+}
+
+// ============================================================
+// 6. TELEGRAM BOT KOMUTLARI (api/auth.js ile entegre)
+// ============================================================
+// Telegram'dan gelen komutları işle - sunucu tarafında /api/telegram-webhook endpoint'i gerekir
+// Burada client-side bot durumu sorgulama ve manuel mesaj gönderme:
+async function sendTelegramCommand(action, data = {}) {
+    try {
+        const r = await apiCall('/auth?action=telegram-notify', 'POST', { action, ...data });
+        return r.ok;
+    } catch(e) { return false; }
+}
+
+// Admin panelde Telegram Bot Komutları butonu
+function openTelegramBotPanel() {
+    const existing = document.getElementById('telegramBotModal');
+    if (existing) existing.remove();
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay active';
+    modal.id = 'telegramBotModal';
+    modal.innerHTML = `
+        <div class="modal" style="max-width:520px;">
+            <div class="modal-header" style="background:linear-gradient(135deg,rgba(0,136,204,.25),rgba(0,100,160,.15));">
+                <div class="modal-title"><i class="fab fa-telegram" style="color:#29b6f6;"></i> Telegram Bot Komutları</div>
+                <button class="modal-close" onclick="document.getElementById('telegramBotModal').remove()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div style="font-size:12px;color:var(--text-muted);margin-bottom:16px;background:rgba(41,182,246,.08);border:1px solid rgba(41,182,246,.2);border-radius:8px;padding:10px;">
+                    <i class="fab fa-telegram" style="color:#29b6f6;"></i> Bot token aktif. Telegram'da <strong style="color:#29b6f6;">komutları</strong> kullanabilirsiniz.
+                </div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;">
+                    ${[
+                        {cmd:'/istatistik', desc:'Kullanıcı istatistikleri', icon:'fa-chart-bar', color:'#a78bfa'},
+                        {cmd:'/kullanicilar', desc:'Aktif kullanıcı listesi', icon:'fa-users', color:'#34d399'},
+                        {cmd:'/bekleyenler', desc:'Onay bekleyen üyeler', icon:'fa-clock', color:'#fcd34d'},
+                        {cmd:'/durum', desc:'Sistem durumu', icon:'fa-server', color:'#29b6f6'},
+                    ].map(b => `
+                        <button onclick="sendTelegramCommand('${b.cmd.replace('/','')}')" style="padding:14px;background:var(--surface);border:1px solid var(--border-light);border-radius:10px;color:var(--text);cursor:pointer;font-family:Outfit,sans-serif;text-align:left;transition:all .2s;" onmouseover="this.style.borderColor='${b.color}'" onmouseout="this.style.borderColor='var(--border-light)'">
+                            <div style="font-size:20px;color:${b.color};margin-bottom:6px;"><i class="fas ${b.icon}"></i></div>
+                            <div style="font-size:12px;font-weight:700;color:${b.color};">${b.cmd}</div>
+                            <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${b.desc}</div>
+                        </button>`).join('')}
+                </div>
+                <div style="margin-top:16px;">
+                    <label class="form-label">Manuel Mesaj Gönder</label>
+                    <div style="display:flex;gap:8px;">
+                        <input type="text" id="telegramManualMsg" class="form-input" placeholder="Mesajınızı yazın...">
+                        <button onclick="sendManualTelegram()" style="padding:10px 16px;background:linear-gradient(135deg,#0088cc,#006699);border:none;border-radius:8px;color:white;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;white-space:nowrap;"><i class="fab fa-telegram"></i> Gönder</button>
+                    </div>
+                </div>
+            </div>
+        </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+}
+
+async function sendManualTelegram() {
+    const msg = document.getElementById('telegramManualMsg')?.value?.trim();
+    if (!msg) return;
+    const ok = await sendTelegramCommand('manual', { message: msg });
+    if (ok) { showNotification('✈️ Telegram mesajı gönderildi!', 'success'); document.getElementById('telegramManualMsg').value = ''; }
+    else showNotification('Telegram gönderilemedi.', 'error');
+}
+
+// ============================================================
+// 7. MONGODB TAM SENKRON — Dilekçeler cross-device
+// ============================================================
+async function syncDilekceToCloud(dilekce) {
+    if (!currentUser || currentUser.role === 'demo') return false;
+    try {
+        const r = await apiCall('/dilekce?action=save', 'POST', dilekce);
+        return r.ok;
+    } catch(e) { return false; }
+}
+
+async function loadDilekceFromCloud() {
+    if (!currentUser || currentUser.role === 'demo') return [];
+    try {
+        const r = await apiCall('/dilekce?action=list');
+        if (r.ok && r.data?.dilekces) return r.data.dilekces;
+    } catch(e) {}
+    return [];
+}
+
+// showSavedDilekceler override - hem local hem cloud
+const _origShowSaved = window.showSavedDilekceler;
+async function showSavedDilekcelerEnhanced() {
+    const localSaved = JSON.parse(localStorage.getItem('hukukai_saved') || '[]');
+    let cloudSaved = [];
+
+    if (currentUser && currentUser.role !== 'demo') {
+        try {
+            const r = await apiCall('/dilekce?action=list');
+            if (r.ok && r.data?.dilekces) {
+                cloudSaved = r.data.dilekces.map(d => ({
+                    ...d, title: d.title || 'Bulut Dilekçesi',
+                    date: d.createdAt || new Date().toISOString(),
+                    fromCloud: true, cloudId: d._id
+                }));
+            }
+        } catch(e) {}
+    }
+
+    // Birleştir (cloud önce, sonra local)
+    const combined = [...cloudSaved, ...localSaved];
+    if (!combined.length) { showNotification('Henüz kaydedilmiş dilekçe yok!', 'warning'); return; }
+
+    const existing = document.getElementById('savedDilekcelerModal');
+    if (existing) existing.remove();
+
+    const content = combined.map((d, i) => `
+        <div style="padding:14px;background:var(--surface);border:1px solid ${d.fromCloud ? 'rgba(14,165,233,.3)' : 'var(--border-light)'};border-radius:10px;margin-bottom:8px;display:flex;align-items:center;justify-content:space-between;gap:8px;">
+            <div style="flex:1;min-width:0;">
+                <div style="font-size:13px;font-weight:700;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">
+                    ${d.fromCloud ? '<i class="fas fa-cloud" style="color:#38bdf8;font-size:10px;margin-right:4px;"></i>' : '<i class="fas fa-hdd" style="color:#64748b;font-size:10px;margin-right:4px;"></i>'}
+                    ${d.title || 'Dilekçe ' + (i + 1)}
+                </div>
+                <div style="font-size:11px;color:var(--text-muted);margin-top:2px;">${new Date(d.date).toLocaleDateString('tr-TR')} · ${d.dava || 'genel'} ${d.fromCloud ? '· ☁️ Bulut' : '· 💾 Yerel'}</div>
+            </div>
+            <div style="display:flex;gap:6px;flex-shrink:0;">
+                <button onclick="${d.fromCloud ? `loadCloudDilekce('${d.cloudId}')` : `loadSavedDilekce(${i - cloudSaved.length})`}" style="padding:6px 14px;background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.35);border-radius:6px;color:#a78bfa;font-size:11px;cursor:pointer;font-family:Outfit,sans-serif;font-weight:700;">
+                    <i class="fas fa-upload"></i> Yükle
+                </button>
+                <button onclick="${d.fromCloud ? `deleteCloudDilekce('${d.cloudId}')` : `deleteSavedDilekce(${i - cloudSaved.length})`}" style="padding:6px 10px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:6px;color:#fca5a5;font-size:11px;cursor:pointer;font-family:Outfit,sans-serif;">
+                    <i class="fas fa-trash"></i>
+                </button>
+            </div>
+        </div>`).join('');
+
+    const modal = document.createElement('div');
+    modal.className = 'modal-overlay active';
+    modal.id = 'savedDilekcelerModal';
+    modal.innerHTML = `
+        <div class="modal large" style="max-width:680px;">
+            <div class="modal-header">
+                <div class="modal-title"><i class="fas fa-folder-open" style="color:#34d399;"></i> Dilekçelerim <span style="font-size:11px;color:var(--text-muted);font-weight:400;">(${combined.length} adet · ${cloudSaved.length} bulut · ${localSaved.length} yerel)</span></div>
+                <button class="modal-close" onclick="document.getElementById('savedDilekcelerModal').remove()"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body" style="max-height:480px;overflow-y:auto;">${content}</div>
+        </div>`;
+    document.body.appendChild(modal);
+    modal.addEventListener('click', e => { if (e.target === modal) modal.remove(); });
+}
+
+async function loadCloudDilekce(cloudId) {
+    try {
+        const r = await apiCall(`/dilekce?action=get&id=${cloudId}`);
+        if (r.ok && r.data?.content) {
+            document.getElementById('dilekceContent').innerHTML = r.data.content;
+            document.getElementById('savedDilekcelerModal')?.remove();
+            showNotification('☁️ Bulut dilekçesi yüklendi!', 'success');
+        }
+    } catch(e) { showNotification('Yüklenemedi!', 'error'); }
+}
+
+async function deleteCloudDilekce(cloudId) {
+    if (!confirm('Bulut dilekçesi silinecek. Emin misiniz?')) return;
+    try {
+        await apiCall(`/dilekce?action=delete&id=${cloudId}`, 'DELETE');
+        document.getElementById('savedDilekcelerModal')?.remove();
+        showSavedDilekcelerEnhanced();
+        showNotification('Bulut dilekçesi silindi!', 'warning');
+    } catch(e) {}
+}
+
+// showSavedDilekceler'i enhanced versiyonla değiştir
+window.showSavedDilekceler = showSavedDilekcelerEnhanced;
 
 // ============================================================
 // UYGULAMA SONU
