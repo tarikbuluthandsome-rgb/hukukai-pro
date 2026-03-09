@@ -66,7 +66,7 @@
         button:not([disabled]) { cursor:pointer !important; }
         form { position:relative; z-index:50; }
         input,textarea,.dilekce-wrapper,[contenteditable="true"],select { -webkit-user-select:text; -moz-user-select:text; user-select:text; }
-        body { font-family:'Outfit',sans-serif; background:var(--background); height:100%; overflow:hidden; color:var(--text); transition:background-color .3s,color .3s; }
+        body { font-family:'Outfit',sans-serif; background:var(--background); height:100%; overflow:hidden; color:var(--text); transition:background-color .3s,color .3s; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale; text-rendering:optimizeLegibility; }
         .app-container { display:flex; height:100vh; width:100vw; }
 
         .landing-overlay {
@@ -337,10 +337,10 @@
         .aciklamalar-list li::before { content:counter(item)"."; counter-increment:item; position:absolute; left:0; font-weight:bold; color:var(--primary); }
         .delil-item { margin-bottom:8px; padding-left:20px; position:relative; }
         .delil-item::before { content:"•"; position:absolute; left:0; color:var(--primary); font-weight:bold; }
-        .madde-item { margin-bottom:16px; padding:16px; background:white; border-radius:8px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,.05); page-break-inside:avoid; }
-        .madde-header { font-weight:700; color:#0f172a; font-size:13px; margin-bottom:8px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #f1f5f9; padding-bottom:8px; }
-        .madde-numara { background:var(--primary); color:white; padding:4px 10px; border-radius:20px; font-size:11px; white-space:nowrap; }
-        .madde-metin { font-size:12px; line-height:1.8; color:#334155; text-align:justify; }
+        .madde-item { margin-bottom:16px; padding:16px; background:white; border-radius:8px; border:1px solid #e2e8f0; box-shadow:0 2px 8px rgba(0,0,0,.05); page-break-inside:avoid; font-family:'Times New Roman',Times,serif; }
+        .madde-header { font-weight:700; color:#0f172a; font-size:13px; margin-bottom:8px; display:flex; align-items:center; gap:8px; border-bottom:1px solid #f1f5f9; padding-bottom:8px; font-family:'Times New Roman',Times,serif; }
+        .madde-numara { background:var(--primary); color:white; padding:4px 10px; border-radius:20px; font-size:11px; white-space:nowrap; font-family:'Outfit',sans-serif; }
+        .madde-metin { font-size:14px; line-height:2; color:#334155; text-align:justify; font-family:'Times New Roman',Times,serif; }
         .sonuc-box { background:linear-gradient(90deg,#fef2f2 0%,#fff 100%); border:2px solid var(--primary); padding:20px; margin-top:30px; border-radius:12px; }
         .signature-area { margin-top:40px; text-align:right; }
         .imza-alani { border-top:1px solid #0f172a; width:200px; margin-left:auto; margin-top:40px; padding-top:8px; text-align:center; }
@@ -566,12 +566,22 @@
                 <button class="btn-cta-primary" onclick="showLoginOverlay()" style="background:linear-gradient(135deg,#7c3aed,#5b21b6);box-shadow:0 4px 20px rgba(124,58,237,.3);">
                     <i class="fas fa-sign-in-alt"></i> Üye Girişi / Kayıt Ol
                 </button>
+                <button class="btn-cta-secondary" onclick="showIntroAnimation()">
+                    <i class="fas fa-film"></i> Sistemi Tanı — Animasyonlu Tanıtım
+                </button>
             </div>
             <div class="contact-row">
                 <i class="fab fa-whatsapp"></i> Bilgi: <strong id="contactPhone">0506 170 30 20</strong>
             </div>
         </div>
     </div>
+</div>
+
+<!-- INTRO ANİMASYON MODALI -->
+<div id="introModal" style="display:none;position:fixed;inset:0;z-index:99997;background:rgba(0,0,0,.97);align-items:center;justify-content:center;flex-direction:column;gap:0;overflow:hidden;">
+    <div id="introSlideContainer" style="width:100%;height:100%;position:relative;"></div>
+    <div style="position:absolute;bottom:30px;left:50%;transform:translateX(-50%);display:flex;gap:8px;z-index:10;" id="introDots"></div>
+    <button onclick="closeIntro()" style="position:absolute;top:20px;right:20px;background:rgba(220,38,38,.2);border:1px solid rgba(220,38,38,.4);border-radius:8px;width:40px;height:40px;color:#fca5a5;font-size:18px;cursor:pointer;z-index:11;display:flex;align-items:center;justify-content:center;">✕</button>
 </div>
 
 <!-- LOGIN OVERLAY -->
@@ -807,6 +817,9 @@
             <div class="menu-item ai-highlight static" onclick="openAkilliDilekceModal()">
                 <i class="fas fa-sparkles"></i><span style="font-weight:700;">Dilekçe Oluştur</span><span class="badge new">Pro</span>
             </div>
+            <div class="menu-item static" onclick="openAIAnalysisModal()" style="background:linear-gradient(135deg,rgba(124,58,237,.25),rgba(91,33,182,.2));border:1px solid rgba(124,58,237,.4);color:#c4b5fd;margin-top:4px;">
+                <i class="fas fa-brain" style="color:#a78bfa;"></i><span style="font-weight:700;">Olayımı Anlat</span><span class="badge new" style="background:rgba(124,58,237,.4);color:#ddd6fe;">AI</span>
+            </div>
 
             <div class="menu-title admin-only hidden" data-static="true" style="margin-top:16px;"><i class="fas fa-cogs"></i> Yönetici İşlemleri</div>
             <div class="menu-item admin-only hidden static" onclick="openAdminPanel()" style="background:linear-gradient(135deg,rgba(220,38,38,.15),rgba(124,58,237,.1));border:1px solid rgba(220,38,38,.2);"><i class="fas fa-users-cog" style="color:#dc2626;"></i><span style="color:#f1f5f9;font-weight:700;">Kullanıcı Paneli</span><span class="badge warning" id="adminPanelBadge">↗</span></div>
@@ -886,11 +899,7 @@
                         <i class="fas fa-wand-magic-sparkles"></i> <span id="masterModeLabel">Düzenleme Modu</span>
                     </button>
                 </div>
-                <button class="header-btn" onclick="lockScreen()" style="background:rgba(245,158,11,.15);border-color:rgba(245,158,11,.4);color:#fcd34d;"><i class="fas fa-lock"></i> Kilitle</button>
-                <div class="profile-avatar-container" onclick="openProfileModal()">
-                    <div class="profile-avatar" id="profileAvatar"><i class="fas fa-user"></i></div>
-                    <div class="profile-avatar-hover">Fotoğraf<br>Değiştir</div>
-                </div>
+                <button class="header-btn" onclick="openProfileModal()" style="background:rgba(124,58,237,.15);border-color:rgba(124,58,237,.4);color:#a78bfa;" title="Profil Fotoğrafı"><i class="fas fa-user-circle"></i></button>
             </div>
             <div class="clock" id="clock">00:00:00</div>
         </header>
@@ -976,7 +985,7 @@
             </div>
             <div class="source-category" data-category="uluslararasi">
                 <div class="source-category-title"><i class="fas fa-globe-americas"></i> <span class="cat-title">Uluslararası</span></div>
-                <a href="https://www.unicef.org/turkiye" target="_blank" class="source-link" style="border-color:#00aeef;background:rgba(0,174,239,.1);"><i class="fas fa-child" style="color:#00aeef;"></i><span>BM Çocuk Hakları Sözleşmesi</span></a>
+                <a href="https://www.unicef.org/turkiye/cocuk-haklarina-dair-sozlesme" target="_blank" class="source-link" style="border-color:#00aeef;background:rgba(0,174,239,.1);"><i class="fas fa-child" style="color:#00aeef;"></i><span>BM Çocuk Hakları Sözleşmesi</span></a>
                 <a href="https://www.un.org" target="_blank" class="source-link"><i class="fas fa-globe"></i><span>Birleşmiş Milletler</span></a>
             </div>
             <div class="source-category" data-category="kanunlar">
@@ -1148,6 +1157,7 @@
                 <button onclick="switchAdminTab('users')" id="adminTabUsers" style="flex:1;padding:13px;border:none;border-bottom:2px solid #dc2626;background:transparent;color:#f1f5f9;font-family:Outfit,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;"><i class="fas fa-users"></i> KULLANICILAR</button>
                 <button onclick="switchAdminTab('pending')" id="adminTabPending" style="flex:1;padding:13px;border:none;border-bottom:2px solid transparent;background:transparent;color:#64748b;font-family:Outfit,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;"><i class="fas fa-clock"></i> ONAY BEKLEYENLER <span id="pendingBadgeCount" style="background:#dc2626;color:white;border-radius:99px;padding:1px 7px;font-size:10px;margin-left:4px;">0</span></button>
                 <button onclick="switchAdminTab('add')" id="adminTabAdd" style="flex:1;padding:13px;border:none;border-bottom:2px solid transparent;background:transparent;color:#64748b;font-family:Outfit,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;"><i class="fas fa-user-plus"></i> KULLANICI EKLE</button>
+                <button onclick="switchAdminTab('demo')" id="adminTabDemo" style="flex:1;padding:13px;border:none;border-bottom:2px solid transparent;background:transparent;color:#64748b;font-family:Outfit,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;"><i class="fas fa-sliders-h"></i> DEMO AYARLARI</button>
                 <button onclick="switchAdminTab('stats')" id="adminTabStats" style="flex:1;padding:13px;border:none;border-bottom:2px solid transparent;background:transparent;color:#64748b;font-family:Outfit,sans-serif;font-size:12px;font-weight:700;cursor:pointer;transition:all .2s;"><i class="fas fa-chart-bar"></i> İSTATİSTİKLER</button>
             </div>
 
@@ -1198,6 +1208,59 @@
                     <div class="form-group"><label class="form-label">Ad Soyad *</label><input type="text" class="form-input" id="newUserFullName" placeholder="Ad Soyad..."></div>
                 </div>
                 <button class="btn-primary" onclick="addNewUser()" style="margin-top:12px;max-width:200px;padding:12px;"><i class="fas fa-plus"></i> Kullanıcı Ekle</button>
+            </div>
+
+            <!-- DEMO AYARLARI TAB -->
+            <div id="adminSectionDemo" style="display:none;padding:24px;">
+                <div style="font-size:14px;font-weight:700;color:var(--text);margin-bottom:6px;"><i class="fas fa-sliders-h" style="color:#f59e0b;"></i> Demo Kullanıcısı Ayarları</div>
+                <div style="font-size:11px;color:#64748b;margin-bottom:20px;">Demo modunda kullanıcılara hangi özelliklerin açık/kapalı olacağını belirleyin.</div>
+                <div style="display:grid;grid-template-columns:1fr 1fr;gap:12px;">
+                    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;">
+                        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9;"><i class="fas fa-file-pdf" style="color:#ef4444;margin-right:6px;"></i>PDF İndirme</div><div style="font-size:11px;color:#64748b;margin-top:2px;">Demo kullanıcısı PDF indirebilir mi?</div></div>
+                        <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                            <input type="checkbox" id="demoAllowPdf" onchange="saveDemoSettings()" style="opacity:0;width:0;height:0;">
+                            <span id="demoAllowPdfSlider" style="position:absolute;inset:0;background:#374151;border-radius:12px;transition:.3s;"></span>
+                        </label>
+                    </div>
+                    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;">
+                        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9;"><i class="fas fa-save" style="color:#7c3aed;margin-right:6px;"></i>Dilekçe Kaydetme</div><div style="font-size:11px;color:#64748b;margin-top:2px;">Demo kullanıcısı dilekçe kaydedebilir mi?</div></div>
+                        <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                            <input type="checkbox" id="demoAllowSave" onchange="saveDemoSettings()" style="opacity:0;width:0;height:0;">
+                            <span id="demoAllowSaveSlider" style="position:absolute;inset:0;background:#374151;border-radius:12px;transition:.3s;"></span>
+                        </label>
+                    </div>
+                    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;">
+                        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9;"><i class="fas fa-print" style="color:#10b981;margin-right:6px;"></i>Yazdırma</div><div style="font-size:11px;color:#64748b;margin-top:2px;">Demo kullanıcısı yazdırabilir mi?</div></div>
+                        <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                            <input type="checkbox" id="demoAllowPrint" onchange="saveDemoSettings()" style="opacity:0;width:0;height:0;">
+                            <span id="demoAllowPrintSlider" style="position:absolute;inset:0;background:#374151;border-radius:12px;transition:.3s;"></span>
+                        </label>
+                    </div>
+                    <div style="background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;display:flex;align-items:center;justify-content:space-between;">
+                        <div><div style="font-size:13px;font-weight:600;color:#f1f5f9;"><i class="fas fa-copy" style="color:#3b82f6;margin-right:6px;"></i>Kopyalama</div><div style="font-size:11px;color:#64748b;margin-top:2px;">Demo kullanıcısı kopyalayabilir mi?</div></div>
+                        <label style="position:relative;display:inline-block;width:44px;height:24px;cursor:pointer;">
+                            <input type="checkbox" id="demoAllowCopy" onchange="saveDemoSettings()" style="opacity:0;width:0;height:0;">
+                            <span id="demoAllowCopySlider" style="position:absolute;inset:0;background:#059669;border-radius:12px;transition:.3s;"></span>
+                        </label>
+                    </div>
+                </div>
+                <div style="margin-top:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;">
+                    <div style="font-size:13px;font-weight:600;color:#f1f5f9;margin-bottom:10px;"><i class="fas fa-file-alt" style="color:#f59e0b;margin-right:6px;"></i>Günlük Dilekçe Limiti</div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <input type="number" id="demoDailyLimit" min="0" max="20" value="1" onchange="saveDemoSettings()"
+                            style="width:80px;padding:8px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#f1f5f9;font-size:14px;font-weight:700;font-family:Outfit,sans-serif;outline:none;text-align:center;">
+                        <span style="font-size:12px;color:#64748b;">dilekçe/gün (0 = sınırsız)</span>
+                    </div>
+                </div>
+                <div style="margin-top:16px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:12px;padding:16px;">
+                    <div style="font-size:13px;font-weight:600;color:#f1f5f9;margin-bottom:10px;"><i class="fas fa-clock" style="color:#a78bfa;margin-right:6px;"></i>Demo Süresi (Gün)</div>
+                    <div style="display:flex;align-items:center;gap:12px;">
+                        <input type="number" id="demoDurationDays" min="1" max="30" value="7" onchange="saveDemoSettings()"
+                            style="width:80px;padding:8px 12px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:8px;color:#f1f5f9;font-size:14px;font-weight:700;font-family:Outfit,sans-serif;outline:none;text-align:center;">
+                        <span style="font-size:12px;color:#64748b;">gün</span>
+                    </div>
+                </div>
+                <button onclick="saveDemoSettings()" style="margin-top:16px;padding:12px 24px;background:linear-gradient(135deg,#f59e0b,#d97706);border:none;border-radius:10px;color:white;font-weight:700;font-size:13px;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-save"></i> Ayarları Kaydet</button>
             </div>
 
             <!-- İSTATİSTİKLER TAB -->
@@ -1456,6 +1519,7 @@ const kanunMetinleri = {
 };
 
 const davaDayanaklari = {
+    // ─── AİLE HUKUKU (BM ÇHS + Anayasa + Aile Kanunları zorunlu) ───
     kisisel:['anayasa41','bmchs3','bmchs9','bmchs12','bmchs18','bmchs19','bmchs8','aihs8','tmk335','tmk336','tmk349','tmk323','kanun5395md4','kanun5395md5','kanun4787md4','kanun4787md5','hmk114','hmk189'],
     velayet:['anayasa41','bmchs3','bmchs9','bmchs12','bmchs18','aihs8','tmk335','tmk336','tmk339','tmk323','kanun5395md4','kanun5395md5','kanun4787md4','kanun4787md5','hmk114'],
     bosanma:['anayasa41','aihs8','tmk166','tmk169','tmk175','tmk182','kanun4787md4','hmk114'],
@@ -1470,20 +1534,23 @@ const davaDayanaklari = {
     soybagi:['anayasa41','bmchs3','bmchs8','bmchs12','aihs8','tmk285','tmk286','tmk287','tmk301','tmk315','kanun4787md4','hmk114'],
     malrejimi:['anayasa41','aihs8','tmk202','tmk218','tmk236','tmk241','kanun4787md4','hmk114'],
     'tazminat-bosanma':['anayasa41','aihs8','tmk175','tmk182','kanun4787md4','hmk114'],
-    iscilik:['anayasa41','aihs8','ik17','ik24','ik25','hmk114','hmk189'],
-    iscilikkotuniyetli:['anayasa41','aihs8','ik17','hmk114'],
-    isciiseinali:['anayasa41','aihs8','ik21','hmk114'],
-    iscimobbing:['anayasa41','aihs8','ik77','tbk49','hmk114'],
+    // ─── İŞ HUKUKU (Anayasa çalışma hakkı kapsamında) ───
+    iscilik:['aihs8','ik17','ik24','ik25','hmk114','hmk189'],
+    iscilikkotuniyetli:['aihs8','ik17','hmk114'],
+    isciiseinali:['aihs8','ik21','hmk114'],
+    iscimobbing:['aihs8','ik77','tbk49','hmk114'],
+    // ─── BORÇLAR / TİCARET ───
     alacak:['aihs8','tbk112','tbk123','hmk114','hmk189'],
     'icra-itiraz':['aihs8','tbk112','hmk114'],
     'kira-tahliye':['aihs8','tbk299','tbk347','hmk114'],
     tuketici:['aihs8','tkhk4','tkhk68','hmk114'],
     sigorta:['aihs8','tbk112','hmk114'],
+    // ─── TAŞINMAZ / MİRAS ───
     tapu:['aihs8','tmk705','tmk716','tmk1023','hmk114'],
     'ortakligin-giderilmesi':['aihs8','tmk698','tmk640','hmk114'],
     'miras-taksim':['aihs8','tmk640','tmk698','hmk114'],
     vasiyetname:['aihs8','tmk559','hmk114'],
-    iscilik:['anayasa41','aihs8','ik17','ik24','ik25','hmk114','hmk189'],
+    // ─── İDARE / CEZA ───
     'idari-itiraz':['aihs8','hmk114'],
     'ceza-ihbar':['aihs8','hmk114'],
     'sikayetten-vazgecme':['aihs8','hmk114']
@@ -1507,6 +1574,12 @@ document.addEventListener('DOMContentLoaded', function() {
     loadViolationList();
     updatePricesOnPage();
     spawnLoginParticles();
+    // Kayıtlı temayı yükle
+    const savedTheme = localStorage.getItem('hukukai_theme');
+    if (savedTheme) setTheme(savedTheme, null);
+    // Kayıtlı guest şifreyi yükle
+    const savedGuestPwd = localStorage.getItem('hukukai_guestPwd');
+    if (savedGuestPwd) { try { SECURITY.guest.password = atob(savedGuestPwd); } catch(e) {} }
 });
 
 function updateCopyrightYear() {
@@ -1516,12 +1589,10 @@ function updateCopyrightYear() {
 
 function loadSavedImages() {
     if (profilePhotoBase64) {
-        const avatar = document.getElementById('profileAvatar');
-        if (avatar) avatar.innerHTML = `<img src="${profilePhotoBase64}" style="width:100%;height:100%;object-fit:cover;">`;
         const sAvatar = document.getElementById('sidebarAvatar');
         const sAvatarIcon = document.getElementById('sidebarAvatarIcon');
-        if (sAvatar && sAvatarIcon) {
-            sAvatarIcon.style.display = 'none';
+        if (sAvatar) {
+            if (sAvatarIcon) sAvatarIcon.style.display = 'none';
             sAvatar.innerHTML = `<img src="${profilePhotoBase64}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">`;
         }
     }
@@ -1676,6 +1747,16 @@ function startDemo() {
     updateUIForRole();
     logActivity('demo', '👾 Demo modu başlatıldı');
     showNotification('7 günlük demo süreniz başladı! Günde 1 dilekçe oluşturabilirsiniz.');
+    // Telegram bildirimi gönder
+    sendDemoStartNotification();
+}
+
+async function sendDemoStartNotification() {
+    try {
+        await apiCall('/auth?action=telegram-notify', 'POST', {
+            message: `👾 *Demo Kullanıcısı Başladı*\n📅 Tarih: ${new Date().toLocaleString('tr-TR')}\n🌐 Platform: Demo Modu`
+        });
+    } catch(e) { /* sessizce geç */ }
 }
 
 function checkDemoStatus() {
@@ -1690,12 +1771,80 @@ function checkDemoStatus() {
     }
 }
 
+// Demo ayarlarını localStorage'dan oku
+function getDemoSettings() {
+    const defaults = { allowPdf:false, allowSave:false, allowPrint:true, allowCopy:true, dailyLimit:1, durationDays:7 };
+    try { return { ...defaults, ...JSON.parse(localStorage.getItem('hukukai_demoSettings') || '{}') }; }
+    catch(e) { return defaults; }
+}
+
+function saveDemoSettings() {
+    const settings = {
+        allowPdf: document.getElementById('demoAllowPdf')?.checked || false,
+        allowSave: document.getElementById('demoAllowSave')?.checked || false,
+        allowPrint: document.getElementById('demoAllowPrint')?.checked || true,
+        allowCopy: document.getElementById('demoAllowCopy')?.checked || true,
+        dailyLimit: parseInt(document.getElementById('demoDailyLimit')?.value || '1'),
+        durationDays: parseInt(document.getElementById('demoDurationDays')?.value || '7')
+    };
+    localStorage.setItem('hukukai_demoSettings', JSON.stringify(settings));
+    // Slider görünümlerini güncelle
+    updateDemoSliders(settings);
+    showNotification('Demo ayarları kaydedildi!', 'success');
+    logActivity('admin', '⚙️ Demo ayarları güncellendi');
+}
+
+function loadDemoSettings() {
+    const s = getDemoSettings();
+    const setProp = (id, val) => { const el = document.getElementById(id); if (el) el.checked = val; };
+    setProp('demoAllowPdf', s.allowPdf);
+    setProp('demoAllowSave', s.allowSave);
+    setProp('demoAllowPrint', s.allowPrint);
+    setProp('demoAllowCopy', s.allowCopy);
+    const dl = document.getElementById('demoDailyLimit');
+    if (dl) dl.value = s.dailyLimit;
+    const dd = document.getElementById('demoDurationDays');
+    if (dd) dd.value = s.durationDays;
+    updateDemoSliders(s);
+}
+
+function updateDemoSliders(s) {
+    const updateSlider = (sliderId, checked) => {
+        const el = document.getElementById(sliderId);
+        if (el) el.style.background = checked ? '#059669' : '#374151';
+    };
+    updateSlider('demoAllowPdfSlider', s.allowPdf);
+    updateSlider('demoAllowSaveSlider', s.allowSave);
+    updateSlider('demoAllowPrintSlider', s.allowPrint);
+    updateSlider('demoAllowCopySlider', s.allowCopy);
+}
+
 function applyDemoRestrictions() {
     if (!isDemoMode) return;
+    const s = getDemoSettings();
     const pdfBtn = document.getElementById('pdfBtn');
     const saveBtn = document.getElementById('saveBtn');
-    if (pdfBtn) { pdfBtn.disabled=true; pdfBtn.style.opacity='.5'; pdfBtn.title='Demo modunda PDF kapalı'; }
-    if (saveBtn) { saveBtn.disabled=true; saveBtn.style.opacity='.5'; saveBtn.title='Demo modunda kayıt kapalı'; }
+    const printBtns = document.querySelectorAll('.btn-print');
+    const copyBtns = document.querySelectorAll('.btn-copy');
+
+    if (pdfBtn) {
+        pdfBtn.disabled = !s.allowPdf;
+        pdfBtn.style.opacity = s.allowPdf ? '1' : '.4';
+        pdfBtn.title = s.allowPdf ? 'PDF İndir' : 'Demo modunda PDF kapalı';
+    }
+    if (saveBtn) {
+        saveBtn.disabled = !s.allowSave;
+        saveBtn.style.opacity = s.allowSave ? '1' : '.4';
+        saveBtn.title = s.allowSave ? 'Kaydet' : 'Demo modunda kayıt kapalı';
+    }
+    printBtns.forEach(btn => {
+        btn.disabled = !s.allowPrint;
+        btn.style.opacity = s.allowPrint ? '1' : '.4';
+    });
+    copyBtns.forEach(btn => {
+        btn.disabled = !s.allowCopy;
+        btn.style.opacity = s.allowCopy ? '1' : '.4';
+    });
     document.getElementById('demoInfo').style.display = 'block';
 }
 
@@ -2171,7 +2320,7 @@ function openAdminPanel() {
 }
 
 function switchAdminTab(tab) {
-    ['users','pending','add','stats'].forEach(t => {
+    ['users','pending','add','demo','stats'].forEach(t => {
         const section = document.getElementById('adminSection' + t.charAt(0).toUpperCase() + t.slice(1));
         const btn = document.getElementById('adminTab' + t.charAt(0).toUpperCase() + t.slice(1));
         if (section) section.style.display = 'none';
@@ -2182,6 +2331,7 @@ function switchAdminTab(tab) {
     if (activeSection) activeSection.style.display = 'block';
     if (activeBtn) { activeBtn.style.borderBottomColor='#dc2626'; activeBtn.style.color='#f1f5f9'; }
     if (tab === 'stats') updateAdminStats();
+    if (tab === 'demo') loadDemoSettings();
 }
 
 function loadAdminStats() {
@@ -2296,12 +2446,43 @@ function searchUsers(term) {
     renderUserCards(status, term);
 }
 
-function renderPendingUsers() {
+async function renderPendingUsers() {
     const container = document.getElementById('pendingUsersList');
     const noMsg = document.getElementById('noPendingMsg');
     const badge = document.getElementById('pendingBadgeCount');
     if (!container) return;
+
+    // API'den pending kullanıcıları çekmeyi dene
+    try {
+        const r = await apiCall('/users?action=list&status=pending');
+        if (r.ok && r.data && r.data.users) {
+            // API'den gelen pending kullanıcıları localStorage'a ekle (tekrar eklememek için)
+            const apiPending = r.data.users.filter(u => u.status === 'pending');
+            apiPending.forEach(apiU => {
+                const exists = usersDB.pending.find(u => u.id == apiU._id || u.email === apiU.email);
+                if (!exists) {
+                    usersDB.pending.push({
+                        id: apiU._id,
+                        username: apiU.username,
+                        email: apiU.email,
+                        fullName: apiU.fullName || apiU.username,
+                        status: 'pending',
+                        requestDate: apiU.createdAt || new Date().toISOString(),
+                        violationCount: 0,
+                        fromApi: true
+                    });
+                }
+            });
+        }
+    } catch(e) { /* API offline, localStorage ile devam */ }
+
     if (badge) badge.textContent = usersDB.pending.length;
+    // Header pending sayısını da güncelle
+    const hdrPending = document.getElementById('hdrPendingCount');
+    if (hdrPending) hdrPending.textContent = usersDB.pending.length;
+    const pendingBadge2 = document.getElementById('pendingUsers');
+    if (pendingBadge2) pendingBadge2.textContent = usersDB.pending.length;
+
     if (!usersDB.pending.length) {
         container.innerHTML = '';
         if (noMsg) noMsg.style.display = 'block';
@@ -2314,19 +2495,28 @@ function renderPendingUsers() {
                 <div>
                     <div style="font-size:13px;font-weight:700;color:#f1f5f9;">${u.fullName||u.username} <span style="font-size:10px;color:#64748b;">(@${u.username})</span></div>
                     <div style="font-size:11px;color:#64748b;">${u.email} · <span style="color:#fcd34d;">${new Date(u.requestDate).toLocaleDateString('tr-TR')}</span></div>
+                    ${u.fromApi ? '<div style="font-size:10px;color:#a78bfa;margin-top:2px;"><i class="fas fa-cloud"></i> API üzerinden kayıt</div>' : ''}
                 </div>
                 <div style="display:flex;gap:6px;">
-                    <button onclick="approveUser(${u.id})" style="padding:6px 14px;background:rgba(5,150,105,.2);border:1px solid rgba(5,150,105,.4);border-radius:8px;color:#34d399;font-size:11px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-check"></i> Onayla</button>
-                    <button onclick="rejectUser(${u.id})" style="padding:6px 14px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:8px;color:#fca5a5;font-size:11px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-times"></i> Reddet</button>
+                    <button onclick="approveUser('${u.id}')" style="padding:6px 14px;background:rgba(5,150,105,.2);border:1px solid rgba(5,150,105,.4);border-radius:8px;color:#34d399;font-size:11px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-check"></i> Onayla</button>
+                    <button onclick="rejectUser('${u.id}')" style="padding:6px 14px;background:rgba(220,38,38,.15);border:1px solid rgba(220,38,38,.3);border-radius:8px;color:#fca5a5;font-size:11px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-times"></i> Reddet</button>
                 </div>
             </div>
         </div>`).join('');
 }
 
-function approveUser(id) {
-    const idx = usersDB.pending.findIndex(u => u.id === id);
+async function approveUser(id) {
+    const idx = usersDB.pending.findIndex(u => u.id == id);
     if (idx === -1) return;
     const user = usersDB.pending.splice(idx, 1)[0];
+
+    // Eğer API'den geldiyse, API üzerinden onayla
+    if (user.fromApi) {
+        try {
+            await apiUpdateUser(id, { status: 'active' });
+        } catch(e) { console.log('API onay hatası:', e); }
+    }
+
     user.status = 'active';
     user.approvedDate = new Date().toISOString();
     usersDB.guests.push(user);
@@ -2354,10 +2544,13 @@ async function sendApprovalNotification(user) {
     }
 }
 
-function rejectUser(id) {
-    const idx = usersDB.pending.findIndex(u => u.id === id);
+async function rejectUser(id) {
+    const idx = usersDB.pending.findIndex(u => u.id == id);
     if (idx === -1) return;
     const user = usersDB.pending.splice(idx, 1)[0];
+    if (user.fromApi) {
+        try { await apiDeleteUser(id); } catch(e) {}
+    }
     saveUsersDB();
     renderPendingUsers();
     loadAdminStats();
@@ -2508,13 +2701,13 @@ function generateAkilliDilekce() {
             const m = kanunMetinleri[key];
             const div = document.createElement('div');
             div.className = 'kanun-madde-item';
-            div.style.cssText = 'background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-left:3px solid var(--accent);border-radius:8px;padding:12px;margin-bottom:10px;';
+            div.style.cssText = 'background:#f8f6ff;border:1px solid #c4b5fd;border-left:4px solid #7c3aed;border-radius:8px;padding:14px;margin-bottom:10px;';
             div.innerHTML = `
-                <div style="font-size:11px;font-weight:800;color:var(--accent);margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;">
+                <div style="font-size:11px;font-weight:800;color:#5b21b6;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;font-family:'Outfit',sans-serif;">
                     ${m.kanun} · Madde ${m.madde}
                 </div>
-                <div style="font-size:11px;font-weight:700;color:#f1f5f9;margin-bottom:6px;">${m.baslik}</div>
-                <div class="editable-field" contenteditable="true" style="font-size:11px;color:#94a3b8;line-height:1.7;font-style:italic;">"${m.metin}"</div>`;
+                <div style="font-size:14px;font-weight:700;color:#1e293b;margin-bottom:6px;font-family:'Times New Roman',Times,serif;">${m.baslik}</div>
+                <div class="editable-field" contenteditable="true" style="font-size:14px;color:#334155;line-height:2;font-family:'Times New Roman',Times,serif;text-align:justify;">"${m.metin}"</div>`;
             hukukiContainer.appendChild(div);
         });
     }
@@ -2559,10 +2752,10 @@ function insertAIYasalDayanak() {
         const m = kanunMetinleri[key];
         const div = document.createElement('div');
         div.className = 'kanun-madde-item';
-        div.style.cssText = 'background:rgba(124,58,237,.08);border:1px solid rgba(124,58,237,.2);border-left:3px solid var(--accent);border-radius:8px;padding:12px;margin-bottom:10px;';
+        div.style.cssText = 'background:#f8f6ff;border:1px solid #c4b5fd;border-left:4px solid #7c3aed;border-radius:8px;padding:14px;margin-bottom:10px;';
         div.innerHTML = `
-            <div style="font-size:11px;font-weight:800;color:var(--accent);margin-bottom:4px;">${m.kanun} · Madde ${m.madde}</div>
-            <div class="editable-field" contenteditable="true" style="font-size:11px;color:#94a3b8;line-height:1.7;font-style:italic;">"${m.metin}"</div>`;
+            <div style="font-size:11px;font-weight:800;color:#5b21b6;margin-bottom:4px;font-family:'Outfit',sans-serif;">${m.kanun} · Madde ${m.madde}</div>
+            <div class="editable-field" contenteditable="true" style="font-size:14px;color:#334155;line-height:2;font-family:'Times New Roman',Times,serif;text-align:justify;">"${m.metin}"</div>`;
         hukukiContainer.appendChild(div);
     });
     showNotification('Yasal dayanak eklendi!', 'success');
@@ -2829,28 +3022,63 @@ function closeSidebar() {
 function setTheme(theme, e) {
     document.querySelectorAll('.theme-option').forEach(o => o.classList.remove('active'));
     if (e) e.target.classList.add('active');
+    // Önce tüm theme class'larını kaldır
+    document.body.classList.remove('theme-dark','theme-light','theme-blue','theme-red','theme-green');
+    document.documentElement.classList.remove('theme-dark','theme-light','theme-blue','theme-red','theme-green');
+
     const themes = {
-        dark:  { '--bg':'#040811','--surface':'#080d1f','--border':'rgba(255,255,255,.07)',
-                 '--text':'#f1f5f9','--text-muted':'#64748b','--primary':'#7c3aed',
-                 '--accent':'#7c3aed','--accent-light':'#a78bfa' },
-        light: { '--bg':'#f1f5f9','--surface':'#ffffff','--border':'rgba(0,0,0,.1)',
-                 '--text':'#0f172a','--text-muted':'#475569','--primary':'#7c3aed',
-                 '--accent':'#7c3aed','--accent-light':'#5b21b6' },
-        blue:  { '--bg':'#020c1b','--surface':'#050f24','--border':'rgba(14,165,233,.15)',
-                 '--text':'#e2e8f0','--text-muted':'#64748b','--primary':'#0ea5e9',
-                 '--accent':'#0ea5e9','--accent-light':'#38bdf8' },
-        red:   { '--bg':'#0c0205','--surface':'#150309','--border':'rgba(220,38,38,.15)',
-                 '--text':'#fef2f2','--text-muted':'#6b7280','--primary':'#dc2626',
-                 '--accent':'#dc2626','--accent-light':'#f87171' },
-        green: { '--bg':'#020c05','--surface':'#050f08','--border':'rgba(5,150,105,.15)',
-                 '--text':'#ecfdf5','--text-muted':'#6b7280','--primary':'#059669',
-                 '--accent':'#059669','--accent-light':'#34d399' }
+        dark: {
+            '--primary':'#dc2626','--primary-dark':'#991b1b','--primary-light':'#ef4444',
+            '--accent':'#7c3aed','--accent-dark':'#5b21b6','--accent-light':'#8b5cf6',
+            '--background':'#0a0e1a','--surface':'#0f172a','--surface-light':'#1e1b4b',
+            '--border':'#312e81','--border-light':'#4338ca',
+            '--text':'#e2e8f0','--text-muted':'#64748b',
+            '--success':'#10b981','--warning':'#f59e0b','--danger':'#ef4444'
+        },
+        light: {
+            '--primary':'#dc2626','--primary-dark':'#991b1b','--primary-light':'#ef4444',
+            '--accent':'#7c3aed','--accent-dark':'#5b21b6','--accent-light':'#8b5cf6',
+            '--background':'#f1f5f9','--surface':'#ffffff','--surface-light':'#e2e8f0',
+            '--border':'#cbd5e1','--border-light':'#94a3b8',
+            '--text':'#0f172a','--text-muted':'#475569',
+            '--success':'#10b981','--warning':'#f59e0b','--danger':'#ef4444'
+        },
+        blue: {
+            '--primary':'#2563eb','--primary-dark':'#1e3a8a','--primary-light':'#3b82f6',
+            '--accent':'#059669','--accent-dark':'#047857','--accent-light':'#10b981',
+            '--background':'#0f172a','--surface':'#1e293b','--surface-light':'#334155',
+            '--border':'#475569','--border-light':'#64748b',
+            '--text':'#f1f5f9','--text-muted':'#94a3b8',
+            '--success':'#10b981','--warning':'#f59e0b','--danger':'#ef4444'
+        },
+        red: {
+            '--primary':'#dc2626','--primary-dark':'#991b1b','--primary-light':'#ef4444',
+            '--accent':'#7c3aed','--accent-dark':'#5b21b6','--accent-light':'#8b5cf6',
+            '--background':'#0c0205','--surface':'#150309','--surface-light':'#1e0412',
+            '--border':'rgba(220,38,38,.2)','--border-light':'rgba(220,38,38,.35)',
+            '--text':'#fef2f2','--text-muted':'#6b7280',
+            '--success':'#10b981','--warning':'#f59e0b','--danger':'#ef4444'
+        },
+        green: {
+            '--primary':'#059669','--primary-dark':'#047857','--primary-light':'#10b981',
+            '--accent':'#7c3aed','--accent-dark':'#5b21b6','--accent-light':'#8b5cf6',
+            '--background':'#020c05','--surface':'#051a0b','--surface-light':'#0a2e14',
+            '--border':'rgba(5,150,105,.2)','--border-light':'rgba(5,150,105,.35)',
+            '--text':'#ecfdf5','--text-muted':'#6b7280',
+            '--success':'#10b981','--warning':'#f59e0b','--danger':'#ef4444'
+        }
     };
     const vars = themes[theme] || themes.dark;
     const root = document.documentElement;
-    Object.entries(vars).forEach(([key,val]) => root.style.setProperty(key, val));
+    // Hem :root'a hem de body'ye uygula
+    Object.entries(vars).forEach(([key,val]) => {
+        root.style.setProperty(key, val);
+        document.body.style.setProperty(key, val);
+    });
+    // Body'e theme class ekle
+    document.body.classList.add('theme-' + theme);
     localStorage.setItem('hukukai_theme', theme);
-    showNotification('Tema değiştirildi!');
+    showNotification('Tema değiştirildi: ' + theme.toUpperCase());
 }
 
 function toggleThemeSelector() {
@@ -2914,8 +3142,6 @@ function previewImage(input) {
 function saveProfilePhoto() {
     if (!profilePhotoBase64) { showNotification('Önce fotoğraf seçin!', 'error'); return; }
     localStorage.setItem('profilePhoto', profilePhotoBase64);
-    const avatar = document.getElementById('profileAvatar');
-    if (avatar) avatar.innerHTML = `<img src="${profilePhotoBase64}" style="width:100%;height:100%;object-fit:cover;">`;
     const sAvatar = document.getElementById('sidebarAvatar');
     const sAvatarIcon = document.getElementById('sidebarAvatarIcon');
     if (sAvatar) {
@@ -3354,6 +3580,173 @@ function handleDevToolsDetected() {
 function closeDevToolsWarning() {
     document.getElementById('devtoolsWarningModal').classList.remove('active');
     devToolsDetected = true;
+}
+
+// ============================================================
+// 11. TANITIM ANİMASYONU
+// ============================================================
+const introSlides = [
+    { icon:'⚖️', title:'HukukAI Pro\'ya Hoş Geldiniz', subtitle:'Türkiye\'nin en gelişmiş hukuki belge sistemi', desc:'30+ dava türünde profesyonel dilekçe, BM Çocuk Hakları\'ndan TMK\'ya tam yasal dayanak ile saniyeler içinde.', color:'#dc2626', bg:'radial-gradient(ellipse at 30% 50%, rgba(220,38,38,.2) 0%, transparent 60%), radial-gradient(ellipse at 70% 20%, rgba(124,58,237,.15) 0%, transparent 60%), #050814' },
+    { icon:'🤖', title:'Yapay Zeka Desteği', subtitle:'Olayınızı anlatın, AI hukuki analiz yapsın', desc:'"Olayımı Anlat" ile başından geçenleri yazın. Yapay zeka dava türünü, kanun maddelerini ve talepleri otomatik tespit eder.', color:'#7c3aed', bg:'radial-gradient(ellipse at 50% 50%, rgba(124,58,237,.25) 0%, transparent 70%), #050814' },
+    { icon:'📄', title:'30+ Dava Türü', subtitle:'Aile, İş, Borçlar, İdare ve daha fazlası', desc:'Boşanma, velayet, nafaka, iş hukuku, tüketici şikayeti, tapu iptali ve çok daha fazla dava türünde eksiksiz hukuki dayanak.', color:'#059669', bg:'radial-gradient(ellipse at 20% 70%, rgba(5,150,105,.2) 0%, transparent 60%), #050814' },
+    { icon:'🛡️', title:'Güvenli & KVKK Uyumlu', subtitle:'Verileriniz yalnızca tarayıcınızda', desc:'Girdiğiniz hiçbir kişisel veri sunucuya iletilmez. 256-bit şifreleme, KVKK uyumlu oturum yönetimi.', color:'#0ea5e9', bg:'radial-gradient(ellipse at 80% 30%, rgba(14,165,233,.2) 0%, transparent 60%), #050814' },
+    { icon:'🚀', title:'Hemen Başlayın', subtitle:'7 günlük ücretsiz demo ile deneyin', desc:'Kayıt olmadan 7 gün demo erişimi. Dilekçelerinizi hazırlayın, düzenleyin. Abone olarak tüm özelliklerin kilidini açın.', color:'#f59e0b', bg:'radial-gradient(ellipse at 50% 80%, rgba(245,158,11,.2) 0%, transparent 60%), #050814', cta:true }
+];
+let introIndex = 0, introTimer = null;
+
+function showIntroAnimation() {
+    const modal = document.getElementById('introModal');
+    modal.style.display = 'flex';
+    introIndex = 0;
+    renderIntroSlide();
+    introTimer = setInterval(() => { introIndex = (introIndex+1)%introSlides.length; renderIntroSlide(); }, 4500);
+}
+
+function renderIntroSlide() {
+    const slide = introSlides[introIndex];
+    const container = document.getElementById('introSlideContainer');
+    const dots = document.getElementById('introDots');
+    container.style.background = slide.bg;
+    container.innerHTML = `<div style="position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:40px;text-align:center;animation:fadeIn .5s ease;">
+        <div style="font-size:72px;margin-bottom:24px;">${slide.icon}</div>
+        <div style="font-family:'Playfair Display',serif;font-size:clamp(22px,4vw,36px);font-weight:900;color:#fff;margin-bottom:12px;max-width:700px;line-height:1.2;">${slide.title}</div>
+        <div style="font-size:16px;font-weight:600;color:${slide.color};margin-bottom:20px;">${slide.subtitle}</div>
+        <div style="font-size:14px;color:#94a3b8;max-width:580px;line-height:1.8;">${slide.desc}</div>
+        ${slide.cta ? `<div style="display:flex;gap:12px;margin-top:32px;flex-wrap:wrap;justify-content:center;">
+            <button onclick="closeIntro();document.getElementById('kvkkConsent').checked=true;startDemo()" style="padding:14px 28px;background:linear-gradient(135deg,#dc2626,#991b1b);border:none;border-radius:12px;color:white;font-size:14px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-play"></i> Demo Başlat</button>
+            <button onclick="closeIntro();showLoginOverlay()" style="padding:14px 28px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:12px;color:white;font-size:14px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-sign-in-alt"></i> Giriş Yap</button>
+        </div>` : `<div style="margin-top:28px;cursor:pointer;color:#475569;font-size:13px;padding:10px 20px;border:1px solid rgba(255,255,255,.1);border-radius:8px;" onclick="nextIntroSlide()">Devam Et <i class="fas fa-arrow-right"></i></div>`}
+    </div>`;
+    dots.innerHTML = introSlides.map((_,i) => `<div onclick="goToIntroSlide(${i})" style="width:${i===introIndex?'24px':'8px'};height:8px;border-radius:4px;background:${i===introIndex?slide.color:'rgba(255,255,255,.2)'};cursor:pointer;transition:all .3s;"></div>`).join('');
+}
+function nextIntroSlide() { introIndex=(introIndex+1)%introSlides.length; renderIntroSlide(); }
+function goToIntroSlide(i) { introIndex=i; renderIntroSlide(); }
+function closeIntro() { document.getElementById('introModal').style.display='none'; if(introTimer){clearInterval(introTimer);introTimer=null;} }
+
+// ============================================================
+// 12. "OLAYIMI ANLAT, AI ÇÖZSÜN" ÖZELLİĞİ
+// ============================================================
+function openAIAnalysisModal() {
+    let modal = document.getElementById('aiAnalysisModal');
+    if (!modal) {
+        modal = document.createElement('div');
+        modal.id = 'aiAnalysisModal';
+        modal.className = 'modal-overlay';
+        modal.innerHTML = `<div class="modal" style="max-width:680px;">
+            <div class="modal-header" style="background:linear-gradient(135deg,rgba(124,58,237,.3),rgba(91,33,182,.2));">
+                <div class="modal-title"><i class="fas fa-brain" style="color:#a78bfa;"></i> Olayımı Anlat — AI Hukuki Analiz <span class="ai-badge"><i class="fas fa-robot"></i> AI</span></div>
+                <button class="modal-close" onclick="closeModal('aiAnalysisModal')"><i class="fas fa-times"></i></button>
+            </div>
+            <div class="modal-body">
+                <div style="background:rgba(124,58,237,.12);border:1px solid rgba(124,58,237,.3);border-radius:10px;padding:12px;margin-bottom:16px;font-size:12px;color:#a78bfa;line-height:1.6;">
+                    <i class="fas fa-lightbulb"></i> Başınızdan geçen olayları kendi cümlelerinizle anlatın. AI dava türünü, kanun maddelerini ve talepleri otomatik tespit eder.
+                </div>
+                <div class="form-group">
+                    <label class="form-label">Olayınızı Anlatın</label>
+                    <textarea id="aiAnalysisText" class="form-textarea" rows="7" placeholder="Örnek: 2018 yılında evlendim, 2 çocuğumuz var. Eşim 6 aydır beni terk etti. Çocuklar benimle. Boşanmak ve nafaka almak istiyorum..." style="min-height:160px;font-size:13px;line-height:1.7;"></textarea>
+                </div>
+                <div id="aiAnalysisResult" style="display:none;"></div>
+                <div style="display:flex;gap:10px;">
+                    <button onclick="runAIAnalysis()" id="aiAnalysisBtn" style="flex:1;padding:13px;background:linear-gradient(135deg,#7c3aed,#5b21b6);border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;display:flex;align-items:center;justify-content:center;gap:8px;"><i class="fas fa-brain"></i> AI ile Analiz Et</button>
+                    <button onclick="document.getElementById('aiAnalysisText').value='';document.getElementById('aiAnalysisResult').style.display='none';" style="padding:13px 16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.1);border-radius:10px;color:#64748b;cursor:pointer;font-family:Outfit,sans-serif;"><i class="fas fa-trash-alt"></i></button>
+                </div>
+            </div>
+        </div>`;
+        document.body.appendChild(modal);
+    }
+    modal.classList.add('active');
+    const r = document.getElementById('aiAnalysisResult');
+    if (r) r.style.display = 'none';
+}
+
+function runAIAnalysis() {
+    const text = document.getElementById('aiAnalysisText')?.value?.trim();
+    if (!text || text.length < 20) { showNotification('Lütfen daha detaylı bir açıklama yazın!','error'); return; }
+    const btn = document.getElementById('aiAnalysisBtn');
+    const result = document.getElementById('aiAnalysisResult');
+    if (btn) { btn.disabled=true; btn.innerHTML='<i class="fas fa-spinner fa-spin"></i> AI Analiz Yapıyor...'; }
+    setTimeout(() => {
+        const analysis = localAIAnalysis(text);
+        if (btn) { btn.disabled=false; btn.innerHTML='<i class="fas fa-brain"></i> AI ile Analiz Et'; }
+        if (result) {
+            result.style.display = 'block';
+            result.innerHTML = `<div style="background:rgba(5,150,105,.1);border:1px solid rgba(5,150,105,.3);border-radius:12px;padding:16px;margin-bottom:12px;">
+                <div style="font-size:12px;font-weight:700;color:#34d399;margin-bottom:10px;"><i class="fas fa-check-circle"></i> AI Analiz Tamamlandı</div>
+                <div style="margin-bottom:10px;"><div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;">Tespit Edilen Dava</div>
+                <div style="background:rgba(124,58,237,.2);border:1px solid rgba(124,58,237,.3);border-radius:8px;padding:10px;font-size:13px;color:#a78bfa;font-weight:700;">${analysis.davaLabel}</div></div>
+                <div style="margin-bottom:10px;"><div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;">Yasal Dayanaklar</div>
+                <div style="font-size:12px;color:#94a3b8;line-height:2;">${analysis.maddeList}</div></div>
+                <div><div style="font-size:11px;font-weight:700;color:#64748b;margin-bottom:4px;text-transform:uppercase;letter-spacing:.5px;">Önerilen Talepler</div>
+                <div style="font-size:12px;color:#94a3b8;line-height:2;">${analysis.talepler.replace(/\n/g,'<br>')}</div></div>
+            </div>
+            <button onclick="applyAIAnalysis('${analysis.davaTuru}',\`${text.replace(/`/g,"'")}\`,\`${analysis.talepler.replace(/`/g,"'")}\`)"
+                style="width:100%;padding:13px;background:linear-gradient(135deg,#dc2626,#991b1b);border:none;border-radius:10px;color:white;font-size:13px;font-weight:700;cursor:pointer;font-family:Outfit,sans-serif;">
+                <i class="fas fa-magic"></i> Bu Bilgilerle Dilekçe Oluştur
+            </button>`;
+        }
+    }, 1200); // Küçük bekleme - AI etkisi için
+}
+
+function localAIAnalysis(text) {
+    const t = text.toLowerCase();
+    const rules = [
+        {keys:['velayet','çocuğu al','velayeti ver','çocuk.*mahkeme'],dava:'velayet'},
+        {keys:['boşanma','boşanmak','evlilik.*sona','ayrılmak.*eş'],dava:'bosanma'},
+        {keys:['zina','aldatma','başkasıyla','ihanet'],dava:'bosanma-zina'},
+        {keys:['terk etti','evden ayrıldı','terk etmek','çekip gitti'],dava:'bosanma-terk'},
+        {keys:['şiddet','dövme','tehdit','fiziksel.*zarar','koruma.*karar','uzaklaştırma'],dava:'siddet'},
+        {keys:['nafaka','geçim.*para','çocuk.*geçim','yoksulluk.*nafaka'],dava:'nafaka-yoksulluk'},
+        {keys:['çocukla.*görüşme','çocuğu.*görmek','kişisel.*ilişki','ziyaret'],dava:'kisisel'},
+        {keys:['işten çıkar','kıdem tazminat','ihbar tazminat','iş sözleşme.*fesih'],dava:'iscilik'},
+        {keys:['işe iade','haksız fesih','iş.*geri dön'],dava:'isciiseinali'},
+        {keys:['mobbing','işyeri.*baskı','psikolojik.*taciz'],dava:'iscimobbing'},
+        {keys:['kira','kiracı.*çıkar','tahliye','ev.*terk'],dava:'kira-tahliye'},
+        {keys:['alacak','borç.*ödeme','para.*alamadım','borçlu'],dava:'alacak'},
+        {keys:['tapu','arsa','gayrimenkul.*devir','mülk.*tescil'],dava:'tapu'},
+        {keys:['miras','veraset','öldü.*mal'],dava:'miras-taksim'},
+        {keys:['tüketici','bozuk ürün','garanti','hizmet.*almadım'],dava:'tuketici'},
+        {keys:['mal rejimi','edinilmiş mal','evlilik.*mal'],dava:'malrejimi'},
+        {keys:['soybağı','babalık','dna'],dava:'soybagi'},
+        {keys:['sigorta.*tazminat','kaza.*sigorta'],dava:'sigorta'}
+    ];
+    let bestDava='bosanma', bestScore=0;
+    rules.forEach(r => {
+        const score = r.keys.filter(k=>new RegExp(k).test(t)).length;
+        if(score>bestScore){bestScore=score;bestDava=r.dava;}
+    });
+    const labels={velayet:'Velayet Değişikliği Davası',bosanma:'Boşanma Davası',
+        'bosanma-zina':'Boşanma (Zina)','bosanma-terk':'Boşanma (Terk)',
+        siddet:'Koruyucu Tedbir (6284 Sayılı Kanun)','nafaka-yoksulluk':'Yoksulluk Nafakası',
+        'nafaka-tedbir':'Tedbir Nafakası','nafaka-istihkak':'İştirak Nafakası',
+        kisisel:'Çocukla Kişisel İlişki',iscilik:'İşçilik Alacakları',
+        isciiseinali:'İşe İade',iscimobbing:'Mobbing','kira-tahliye':'Kira/Tahliye',
+        alacak:'Alacak Davası',tapu:'Tapu İptal ve Tescil','miras-taksim':'Miras Taksim',
+        tuketici:'Tüketici Şikayeti',malrejimi:'Mal Rejimi Tasfiyesi',
+        soybagi:'Soybağı Davası',sigorta:'Sigorta Tazminatı'};
+    const dayanaklar = (davaDayanaklari[bestDava]||['hmk114']).slice(0,5);
+    const maddeList = dayanaklar.map(k=>{const m=kanunMetinleri[k];return m?`• <strong>${m.kanun}</strong> Md.${m.madde} — ${m.baslik}`:''}).filter(Boolean).join('<br>');
+    const tMap={velayet:'- Velayetin tarafıma verilmesine\n- İştirak nafakası belirlenmesine',
+        bosanma:'- Boşanmaya karar verilmesine\n- Velayet ve nafaka düzenlenmesine\n- Maddi/manevi tazminata',
+        'bosanma-zina':'- Boşanmaya karar verilmesine\n- Maddi/manevi tazminat ödenmesine',
+        siddet:'- Koruma tedbiri kararı verilmesine\n- Müştekinin konuttan uzaklaştırılmasına',
+        iscilik:'- Kıdem tazminatının ödenmesine\n- İhbar tazminatının ödenmesine\n- Birikmiş ücretlerin tahsiline',
+        isciiseinali:'- Feshin geçersiz sayılmasına\n- İşe iade edilmeme halinde 8 aylık tazminata',
+        default:'- Davanın kabulüne\n- Yargılama giderlerinin davalıya yükletilmesine\n- Hüküm verilmesini talep ederim'};
+    return {davaTuru:bestDava, davaLabel:labels[bestDava]||bestDava, maddeList, talepler:tMap[bestDava]||tMap.default};
+}
+
+function applyAIAnalysis(davaTuru, olay, talepler) {
+    closeModal('aiAnalysisModal');
+    openAkilliDilekceModal();
+    setTimeout(() => {
+        const sel = document.getElementById('davaTuru');
+        if (sel) { sel.value = davaTuru; updateFormFields(); }
+        const olayEl = document.getElementById('olayAciklama');
+        if (olayEl) olayEl.value = olay;
+        const talepEl = document.getElementById('taleplerInput');
+        if (talepEl) talepEl.value = talepler;
+        showNotification('AI analizi dilekçe formuna aktarıldı!', 'success');
+    }, 300);
 }
 
 // ============================================================
